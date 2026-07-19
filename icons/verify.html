@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="bn" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Verification | Rupsha Jonokollan Foundation</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Hind Siliguri', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    
+    <!-- External Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <!-- New: HTML5 QR Code Scanner -->
+    <script src="https://unpkg.com/html5-qrcode"></script>
+
+
+
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap');
+        
+        body { 
+            background: linear-gradient(135deg, #e0f2fe 0%, #f3f4f6 100%);
+            min-height: 100vh;
+            transition: background 0.3s ease;
+        }
+        .dark body { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); }
+        
+        .glass-card { 
+            background: rgba(255, 255, 255, 0.85); 
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 24px; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08); 
+            transition: all 0.3s ease;
+        }
+        .dark .glass-card {
+            background: rgba(30, 41, 59, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        @keyframes popIn {
+            0% { opacity: 0; transform: scale(0.95) translateY(10px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .animate-pop-in { animation: popIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+        @keyframes pulse-bg {
+            0% { background-color: #e2e8f0; }
+            50% { background-color: #cbd5e1; }
+            100% { background-color: #e2e8f0; }
+        }
+        .skeleton { animation: pulse-bg 1.5s infinite; border-radius: 8px; }
+        .dark .skeleton { animation: pulse-bg-dark 1.5s infinite; }
+        @keyframes pulse-bg-dark {
+            0% { background-color: #334155; }
+            50% { background-color: #475569; }
+            100% { background-color: #334155; }
+        }
+
+        @media print {
+            body { background: white !important; }
+            .no-print { display: none !important; }
+            .glass-card { box-shadow: none !important; border: 1px solid #ddd !important; background: white !important; }
+            * { color: black !important; }
+        }
+
+        /* QR Reader Custom Styles */
+        #qr-reader { border: none !important; }
+        #qr-reader button { background-color: #0d9488; color: white; padding: 8px 16px; border-radius: 8px; margin-top: 10px; cursor: pointer; border: none; font-weight: bold; }
+        #qr-reader a { display: none; }
+    </style>
+</head>
+<body class="flex items-center justify-center p-4">
+
+    <!-- Floating Buttons Container -->
+    <div class="fixed top-4 right-4 z-50 no-print flex gap-3">
+        <button id="lang-toggle" class="bg-white/80 dark:bg-slate-800/80 backdrop-blur border border-gray-200 dark:border-gray-700 px-3 py-2 rounded-full shadow-lg text-gray-700 dark:text-gray-300 font-bold text-xs transition duration-300 hover:scale-105 active:scale-95 cursor-pointer flex items-center justify-center">
+            EN/বাং
+        </button>
+        <button id="theme-toggle" class="bg-white/80 dark:bg-slate-800/80 backdrop-blur border border-gray-200 dark:border-gray-700 w-10 h-10 rounded-full shadow-lg text-gray-700 dark:text-gray-300 transition duration-300 hover:scale-105 active:scale-95 cursor-pointer flex items-center justify-center">
+            <i id="theme-toggle-icon" class="fas fa-moon text-lg"></i>
+        </button>
+    </div>
+
+    <!-- 1. Search Card -->
+    <div id="search-card" class="hidden animate-pop-in glass-card max-w-md w-full p-8 text-center relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 to-indigo-600"></div>
+        <div class="w-20 h-20 bg-blue-50 dark:bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-magnifying-glass text-blue-500 text-3xl"></i>
+        </div>
+        <h1 class="text-2xl font-bold text-gray-800 dark:text-white mb-2 translate-title">মেম্বার ভেরিফিকেশন</h1>
+        <p class="text-gray-500 dark:text-gray-400 text-sm mb-6 translate-subtitle">সদস্যের সঠিক পরিচয় নিশ্চিত করতে আইডি দিয়ে সার্চ করুন</p>
+        
+        <form id="search-form" class="space-y-4">
+            <!-- Updated Input Field with Voice & QR Search -->
+            <div class="relative">
+                <input type="text" id="search-input" placeholder="Member ID (year-code)" required
+                    class="w-full pl-4 pr-20 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-white dark:bg-slate-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500 uppercase tracking-wider text-center">
+                <div class="absolute right-2 top-1/2 transform -translate-y-1/2 flex items-center gap-1">
+                    <button type="button" id="qr-scan-btn" class="w-8 h-8 flex items-center justify-center bg-gray-100 dark:bg-slate-600 rounded-full text-teal-600 hover:bg-teal-100 transition duration-200" title="QR Scan">
+                        <i class="fas fa-qrcode"></i>
+                    </button>
+                    <button type="button" id="voice-search-btn" class="w-8 h-8 flex items-center justify-center bg-gray-100 dark:bg-slate-600 rounded-full text-blue-500 hover:bg-blue-100 transition duration-200" title="Voice Search">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+            <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 rounded-xl font-bold shadow-md hover:shadow-xl hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-300">
+                <i class="fas fa-check-circle mr-2"></i> <span class="translate-btn">ভেরিফাই করুন</span>
+            </button>
+        </form>
+    </div>
+
+    <!-- 2. Loader Card (Original) -->
+    <div id="loader" class="hidden glass-card max-w-md w-full p-8">
+        <div class="skeleton h-20 w-20 rounded-full mx-auto mb-6"></div>
+        <div class="skeleton h-8 w-3/4 mx-auto mb-4"></div>
+        <div class="skeleton h-4 w-1/2 mx-auto mb-8"></div>
+        <div class="space-y-4">
+            <div class="skeleton h-12 w-full"></div>
+            <div class="skeleton h-12 w-full"></div>
+            <div class="skeleton h-12 w-full"></div>
+        </div>
+    </div>
+
+    <!-- 3. Verified Result Card -->
+    <div id="verified-card" class="hidden animate-pop-in glass-card max-w-md w-full p-6 sm:p-8 text-center relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-teal-500 to-emerald-600"></div>
+        
+        <div id="card-watermark" class="absolute inset-0 z-0 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 select-none">
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-300 dark:text-gray-600 transform -rotate-45 tracking-widest uppercase">rupsha jonokollan foundation</h2>
+        </div>
+
+        <div class="relative w-24 h-24 mx-auto mb-4 z-10">
+            <div class="bg-slate-200 dark:bg-slate-700 animate-pulse w-full h-full rounded-full flex items-center justify-center shadow-inner overflow-hidden border-4 border-white dark:border-gray-700">
+                <img id="profile-img" src="rjf.webp" alt="Profile" class="w-full h-full object-cover opacity-0 transition-opacity duration-500" onload="this.classList.remove('opacity-0'); this.parentElement.classList.remove('animate-pulse');" onerror="this.src='rjf.webp'; this.classList.remove('opacity-0'); this.parentElement.classList.remove('animate-pulse');">
+            </div>
+            <div class="absolute bottom-0 right-0 bg-white dark:bg-gray-800 rounded-full shadow-lg overflow-hidden w-8 h-8 flex items-center justify-center border-2 border-white dark:border-gray-800">
+                <div class="text-emerald-500 flex items-center justify-center w-full h-full text-base">
+    <i class="fas fa-circle-check"></i>
+</div>
+
+            </div>
+        </div>
+        
+        <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white mb-1 tracking-tight z-10 relative translate-v-title">সদস্যপদ ভেরিফাইড</h1>
+        <div class="inline-flex items-center gap-2 bg-green-100 dark:bg-green-900/40 text-green-700 dark:text-green-400 px-3 py-1 rounded-full text-sm font-semibold mb-6 z-10 relative">
+            <i class="fas fa-shield-halved"></i> <span class="translate-v-badge">ভেরিফাইড মেম্বার</span>
+        </div>
+
+        <div class="space-y-3 text-left bg-white/60 dark:bg-slate-800/60 p-5 rounded-xl border border-gray-100 dark:border-gray-700 z-10 relative backdrop-blur-sm">
+            <div class="flex justify-between items-center border-b border-gray-200/60 dark:border-gray-700 pb-3">
+                <span class="text-gray-500 dark:text-gray-400 text-sm translate-v-id"><i class="fas fa-id-card mr-2 opacity-70"></i>সদস্য আইডি</span>
+                <div class="flex items-center gap-2">
+                    <span id="display-id" class="font-bold text-teal-700 dark:text-teal-400 uppercase tracking-widest text-lg bg-teal-50 dark:bg-slate-700 px-2 py-1 rounded">---</span>
+                    <button id="copy-id-btn" class="text-gray-400 hover:text-teal-500 transition-colors" title="Copy ID">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                </div>
+            </div>
+            <div id="member-info-container" class="space-y-3 pt-1">
+                <!-- Info injected dynamically here -->
+            </div>
+        </div>
+
+        <div class="mt-6 p-4 bg-gray-50 dark:bg-slate-800 rounded-xl border border-dashed border-gray-300 dark:border-gray-600 flex items-center justify-between no-print z-10 relative">
+            <div class="text-left">
+                <p class="text-xs font-bold text-gray-800 dark:text-white uppercase mb-1 flex items-center gap-1">
+                    <i class="fas fa-lock text-green-500"></i> <span class="translate-qr-title">ফাউন্ডেশন মেম্বার ভেরিফাই</span>
+                </p>
+                <p class="text-[10px] text-gray-500 dark:text-gray-400 translate-qr-sub">স্ক্যান করে অরিজিনাল ডাটাবেসে চেক করুন</p>
+            </div>
+            <div id="qrcode-container" class="w-16 h-16 bg-white p-1 rounded shadow-sm flex items-center justify-center">
+                <!-- QR Code generated locally -->
+            </div>
+        </div>
+        
+        <div class="mt-4 flex justify-between items-center px-2 z-10 relative">
+            <p class="text-[10px] text-gray-500 dark:text-gray-400"><i class="fas fa-clock mr-1"></i> <span id="live-time"></span></p>
+            <p class="text-[10px] text-green-600 dark:text-green-400 font-semibold flex items-center gap-1.5"><span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span> Active Status</p>
+        </div>
+
+        <div class="mt-6 grid grid-cols-2 gap-3 no-print z-10 relative">
+            <button id="share-btn" class="bg-blue-50 border border-blue-200 dark:border-slate-600 dark:bg-slate-700 text-blue-700 dark:text-blue-400 py-2.5 rounded-xl font-bold hover:shadow-md active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2">
+                <i class="fas fa-share-nodes"></i> <span class="translate-btn-share">শেয়ার</span>
+            </button>
+            <button id="download-btn" class="bg-indigo-50 border border-indigo-200 dark:border-slate-600 dark:bg-slate-700 text-indigo-700 dark:text-indigo-400 py-2.5 rounded-xl font-bold hover:shadow-md active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2">
+                <i class="fas fa-image"></i> <span class="translate-btn-save">ইমেজ সেভ</span>
+            </button>
+            <button id="pdf-btn" class="bg-red-50 border border-red-200 dark:border-slate-600 dark:bg-slate-700 text-red-700 dark:text-red-400 py-2.5 rounded-xl font-bold hover:shadow-md active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2">
+                <i class="fas fa-file-pdf"></i> <span class="translate-btn-pdf">পিডিএফ</span>
+            </button>
+            <button onclick="window.print()" class="bg-white dark:bg-slate-800 border-2 border-teal-600 dark:border-teal-500 text-teal-700 dark:text-teal-400 py-2.5 rounded-xl font-bold hover:shadow-md active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2">
+                <i class="fas fa-print"></i> <span class="translate-btn-print">প্রিন্ট</span>
+            </button>
+            <a href="/index.html" class="col-span-2 bg-gradient-to-r from-teal-600 to-emerald-600 text-white py-2.5 flex items-center justify-center rounded-xl font-bold shadow-md hover:shadow-xl hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-300">
+                <i class="fas fa-home mr-2"></i> <span class="translate-btn-home">হোম পেজ</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- 4. Error Card (Original) -->
+    <div id="error-card" class="hidden animate-pop-in glass-card max-w-md w-full p-8 text-center relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-red-500 to-rose-600"></div>
+        <div class="bg-red-50 dark:bg-red-900/30 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-user-xmark text-red-500 text-5xl"></i>
+        </div>
+        <h1 class="text-2xl font-bold text-gray-800 dark:text-white mb-2 translate-err-title">তথ্য পাওয়া যায়নি!</h1>
+        <p id="error-message" class="text-gray-600 dark:text-gray-300 mb-8 bg-red-50/50 dark:bg-red-900/20 p-4 rounded-lg border border-red-100 dark:border-red-800">
+            দুঃখিত, এই মেম্বার আইডিটি সঠিক নয় অথবা আমাদের ডাটাবেসে নিবন্ধিত নেই।
+        </p>
+        <button onclick="window.location.href=window.location.pathname" class="w-full bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-white py-3 rounded-xl font-bold hover:bg-gray-200 dark:hover:bg-slate-600 active:scale-[0.98] transition duration-200 mb-3">
+            <i class="fas fa-search mr-2"></i> <span class="translate-err-btn">নতুন আইডি খুঁজুন</span>
+        </button>
+    </div>
+
+    <!-- 5. New QR Scanner Modal -->
+    <div id="qr-modal" class="hidden fixed inset-0 z-[100] bg-black/80 flex items-center justify-center p-4 backdrop-blur-sm animate-pop-in">
+        <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl max-w-sm w-full relative shadow-2xl">
+            <button id="close-qr-btn" class="absolute -top-3 -right-3 w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center z-10 shadow-lg hover:scale-105 active:scale-95 transition-transform"><i class="fas fa-times"></i></button>
+            <h3 class="text-center font-bold text-gray-800 dark:text-white mb-4 text-lg translate-qr-scan">কিউআর কোড স্ক্যান করুন</h3>
+            <div id="qr-reader" class="w-full overflow-hidden rounded-xl border border-gray-200 dark:border-gray-700"></div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+        import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyC-ke7FIUPX5Ksow8vJQ4axmGAIdiKd49Q",
+            authDomain: "member-selection.firebaseapp.com",
+            projectId: "member-selection",
+            storageBucket: "member-selection.firebasestorage.app",
+            messagingSenderId: "434008909239",
+            appId: "1:434008909239:web:a790d1e0603ebfdbd27432",
+            measurementId: "G-JVMKJZLCC5"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // --- Theme Toggle Logic ---
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleIcon = document.getElementById('theme-toggle-icon');
+
+        const applyTheme = (isDark) => {
+            if (isDark) {
+                document.documentElement.classList.add('dark');
+                themeToggleIcon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                document.documentElement.classList.remove('dark');
+                themeToggleIcon.classList.replace('fa-sun', 'fa-moon');
+            }
+        };
+
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            applyTheme(true);
+        } else {
+            applyTheme(false);
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            const isDark = document.documentElement.classList.contains('dark');
+            applyTheme(!isDark);
+            localStorage.theme = !isDark ? 'dark' : 'light';
+        });
+
+        // --- Language Toggle Logic ---
+        let currentLang = 'bn';
+        const langToggleBtn = document.getElementById('lang-toggle');
+        
+        const dictionary = {
+            en: {
+                '.translate-title': 'Member Verification',
+                '.translate-subtitle': 'Search with ID to confirm member identity',
+                '.translate-btn': 'Verify Now',
+                '.translate-v-title': 'Membership Verified',
+                '.translate-v-badge': 'Verified Member',
+                '.translate-v-id': '<i class="fas fa-id-card mr-2 opacity-70"></i>Member ID',
+                '.translate-qr-title': 'Foundation Member Verify',
+                '.translate-qr-sub': 'Scan to check in original database',
+                '.translate-btn-share': 'Share',
+                '.translate-btn-save': 'Save Image',
+                '.translate-btn-pdf': 'Save PDF',
+                '.translate-btn-print': 'Print',
+                '.translate-btn-home': 'Home Page',
+                '.translate-err-title': 'Data Not Found!',
+                '.translate-err-btn': 'Search New ID',
+                '.translate-qr-scan': 'Scan QR Code',
+                'fa-user': 'Name', 'fa-briefcase': 'Occupation', 'fa-star': 'Membership Type', 
+                'fa-droplet': 'Blood Group', 'fa-venus-mars': 'Gender', 'fa-phone': 'Mobile', 'fa-location-dot': 'Address'
+            },
+            bn: {
+                '.translate-title': 'মেম্বার ভেরিফিকেশন',
+                '.translate-subtitle': 'সদস্যের সঠিক পরিচয় নিশ্চিত করতে আইডি দিয়ে সার্চ করুন',
+                '.translate-btn': 'ভেরিফাই করুন',
+                '.translate-v-title': 'সদস্যপদ ভেরিফাইড',
+                '.translate-v-badge': 'ভেরিফাইড মেম্বার',
+                '.translate-v-id': '<i class="fas fa-id-card mr-2 opacity-70"></i>সদস্য আইডি',
+                '.translate-qr-title': 'ফাউন্ডেশন মেম্বার ভেরিফাই',
+                '.translate-qr-sub': 'স্ক্যান করে অরিজিনাল ডাটাবেসে চেক করুন',
+                '.translate-btn-share': 'শেয়ার',
+                '.translate-btn-save': 'ইমেজ সেভ',
+                '.translate-btn-pdf': 'পিডিএফ',
+                '.translate-btn-print': 'প্রিন্ট',
+                '.translate-btn-home': 'হোম পেজ',
+                '.translate-err-title': 'তথ্য পাওয়া যায়নি!',
+                '.translate-err-btn': 'নতুন আইডি খুঁজুন',
+                '.translate-qr-scan': 'কিউআর কোড স্ক্যান করুন',
+                'fa-user': 'নাম', 'fa-briefcase': 'পেশা', 'fa-star': 'সদস্যপদ ধরন', 
+                'fa-droplet': 'রক্তের গ্রুপ', 'fa-venus-mars': 'লিঙ্গ', 'fa-phone': 'মোবাইল নম্বর', 'fa-location-dot': 'ঠিকানা'
+            }
+        };
+
+        const updateLanguage = (lang) => {
+            currentLang = lang;
+            const dict = dictionary[lang];
+            for (let selector in dict) {
+                if(selector.startsWith('.')) {
+                    const el = document.querySelector(selector);
+                    if(el) el.innerHTML = el.innerHTML.includes('<i') && !dict[selector].includes('<i') 
+                        ? el.innerHTML.replace(/<\/i>.*$/, `</i> ${dict[selector]}`) 
+                        : dict[selector];
+                }
+            }
+            const memberId = getMemberId();
+            if(memberId && document.getElementById('verified-card').classList.contains('hidden') === false) {
+                const data = JSON.parse(sessionStorage.getItem(`rjf_member_${memberId}`));
+                if(data) renderDynamicInfo(data, lang);
+            }
+        };
+
+        langToggleBtn.addEventListener('click', () => {
+            updateLanguage(currentLang === 'bn' ? 'en' : 'bn');
+        });
+
+        // --- Core Functions ---
+        const getMemberId = () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            let id = urlParams.get('id');
+            if (!id) {
+                const pathParts = window.location.pathname.split('/');
+                id = pathParts[pathParts.length - 1];
+                if(id === 'verify.html' || id === '') return null;
+            }
+            return id ? id.trim().toUpperCase() : null; 
+        };
+
+        const maskMobile = (number) => {
+            if (!number || number.length < 11) return number;
+            return number.substring(0, 3) + '*****' + number.substring(number.length - 3);
+        };
+
+        const showToast = (message, icon = 'fa-clipboard-check', color = 'text-teal-400') => {
+            const existingToast = document.getElementById('custom-toast');
+            if(existingToast) existingToast.remove();
+            const toast = document.createElement('div');
+            toast.id = 'custom-toast';
+            toast.className = "fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-5 py-3 rounded-xl text-sm shadow-2xl z-50 animate-pop-in flex items-center gap-2 font-semibold";
+            toast.innerHTML = `<i class='fas ${icon} ${color} text-lg'></i> ${message}`;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        };
+
+        const triggerConfetti = () => {
+            var duration = 3 * 1000;
+            var end = Date.now() + duration;
+            (function frame() {
+                confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#0d9488', '#059669', '#ffffff'] });
+                confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#0d9488', '#059669', '#ffffff'] });
+                if (Date.now() < end) requestAnimationFrame(frame);
+            }());
+        };
+
+        const showView = (viewId) => {
+            ['search-card', 'loader', 'verified-card', 'error-card'].forEach(id => {
+                document.getElementById(id).classList.add('hidden');
+            });
+            document.getElementById(viewId).classList.remove('hidden');
+        };
+
+        const updateLiveTime = () => {
+            const now = new Date();
+            document.getElementById('live-time').innerText = now.toLocaleString('en-US', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute:'2-digit' });
+        };
+
+        const renderDynamicInfo = (data, lang) => {
+            const infoContainer = document.getElementById('member-info-container');
+            const dict = dictionary[lang];
+            
+            const createRow = (icon, labelKey, value, valueClass = 'text-gray-800 dark:text-gray-200') => `
+                <div class="flex justify-between items-center border-b border-gray-100 dark:border-gray-700 last:border-0 pb-2 last:pb-0">
+                    <span class="text-gray-500 dark:text-gray-400 text-sm flex items-center">
+                        <i class="fas ${icon} w-5 text-gray-400 dark:text-gray-500"></i> ${dict[icon] || labelKey}
+                    </span>
+                    <span class="font-semibold text-right ${valueClass}">${value || '---'}</span>
+                </div>
+            `;
+
+            infoContainer.innerHTML = `
+                ${createRow('fa-user', 'নাম', data.full_name)}
+                ${createRow('fa-briefcase', 'পেশা', data.occupation)}
+                ${createRow('fa-star', 'সদস্যপদ ধরন', data.membership_type, 'text-teal-700 dark:text-teal-300 bg-teal-50 dark:bg-slate-700 px-2 py-0.5 rounded')}
+                ${createRow('fa-droplet', 'রক্তের গ্রুপ', data.blood_group, 'text-red-600 dark:text-red-400 font-bold')}
+                ${createRow('fa-venus-mars', 'লিঙ্গ', data.gender)}
+                ${createRow('fa-phone', 'মোবাইল নম্বর', maskMobile(data.mobile_number))}
+                ${createRow('fa-location-dot', 'ঠিকানা', data.permanent_address)}
+            `;
+        };
+
+        async function verifyMember() {
+            const memberId = getMemberId();
+
+            if (!memberId || memberId === 'VERIFY') {
+                showView('search-card');
+                return;
+            }
+
+            showView('loader');
+
+            const cachedData = sessionStorage.getItem(`rjf_member_${memberId}`);
+            if (cachedData) {
+                setTimeout(() => showSuccess(JSON.parse(cachedData)), 500); 
+                return;
+            }
+
+            try {
+                const q = query(collection(db, "members"), where("member_id", "==", memberId));
+                const querySnapshot = await getDocs(q);
+
+                setTimeout(() => {
+                    if (querySnapshot.empty) {
+                        showError(currentLang === 'bn' ? `সদস্য আইডি <strong>${memberId}</strong> ডাটাবেসে পাওয়া যায়নি।` : `Member ID <strong>${memberId}</strong> not found in database.`);
+                    } else {
+                        const memberData = querySnapshot.docs[0].data();
+                        sessionStorage.setItem(`rjf_member_${memberId}`, JSON.stringify(memberData));
+                        showSuccess(memberData);
+                    }
+                }, 800);
+
+            } catch (error) {
+                console.error("Verification Error:", error);
+                showError(currentLang === 'bn' ? "সার্ভারের সাথে কানেক্ট করা যাচ্ছে না। দয়া করে ইন্টারনেট কানেকশন চেক করুন।" : "Connection error. Please check your internet connection.");
+            }
+        }
+
+        function showSuccess(data) {
+            showView('verified-card');
+            
+            document.title = `Verified: ${data.full_name || 'Member'} | RJF`;
+            document.getElementById('display-id').innerText = data.member_id || getMemberId();
+            
+            const profileImg = document.getElementById('profile-img');
+            if (data.photo_url) profileImg.src = data.photo_url;
+
+            const currentUrl = window.location.origin + window.location.pathname + '?id=' + (data.member_id || getMemberId());
+            const qrContainer = document.getElementById('qrcode-container');
+            qrContainer.innerHTML = ""; 
+            new QRCode(qrContainer, {
+                text: currentUrl, width: 60, height: 60,
+                colorDark : "#0f172a", colorLight : "#ffffff", correctLevel : QRCode.CorrectLevel.L
+            });
+
+            renderDynamicInfo(data, currentLang);
+            updateLiveTime();
+
+            document.getElementById('copy-id-btn').onclick = () => {
+                navigator.clipboard.writeText(data.member_id || getMemberId()).then(() => {
+                    showToast(currentLang === 'bn' ? 'আইডি কপি করা হয়েছে!' : 'ID Copied!', 'fa-copy');
+                });
+            };
+
+            document.getElementById('share-btn').onclick = () => {
+                if (navigator.share) {
+                    navigator.share({ title: 'Verified Member - RJF', text: `${data.full_name}-এর ভেরিফাইড মেম্বারশিপ প্রোফাইল দেখুন।`, url: currentUrl }).catch(console.error);
+                } else {
+                    navigator.clipboard.writeText(currentUrl).then(() => showToast(currentLang === 'bn' ? 'লিংকটি কপি করা হয়েছে!' : 'Link Copied!'));
+                }
+            };
+
+            document.getElementById('download-btn').onclick = () => {
+                const card = document.getElementById('verified-card');
+                const isDark = document.documentElement.classList.contains('dark');
+                const watermark = document.getElementById('card-watermark');
+                
+                showToast(currentLang === 'bn' ? 'কার্ড ডাউনলোড হচ্ছে...' : 'Downloading Card...', 'fa-spinner fa-spin', 'text-blue-400');
+                
+                watermark.classList.remove('opacity-0'); 
+                watermark.classList.add('opacity-10');
+
+                html2canvas(card, {
+                    ignoreElements: (element) => element.classList.contains('no-print'),
+                    backgroundColor: isDark ? '#1e293b' : '#ffffff',
+                    scale: 2, useCORS: true
+                }).then(canvas => {
+                    watermark.classList.remove('opacity-10'); 
+                    watermark.classList.add('opacity-0');
+                    const link = document.createElement('a');
+                    link.download = `RJF_Verified_${data.member_id || getMemberId()}.png`;
+                    link.href = canvas.toDataURL('image/png');
+                    link.click();
+                }).catch(err => {
+                    console.error("Download Error:", err);
+                    watermark.classList.remove('opacity-10'); watermark.classList.add('opacity-0');
+                    showToast(currentLang === 'bn' ? 'ডাউনলোড করতে সমস্যা হচ্ছে!' : 'Download failed!', 'fa-triangle-exclamation', 'text-red-400');
+                });
+            };
+
+            document.getElementById('pdf-btn').onclick = () => {
+                const card = document.getElementById('verified-card');
+                const isDark = document.documentElement.classList.contains('dark');
+                const watermark = document.getElementById('card-watermark');
+                
+                showToast(currentLang === 'bn' ? 'পিডিএফ তৈরি হচ্ছে...' : 'Generating PDF...', 'fa-file-pdf', 'text-red-400');
+                
+                watermark.classList.remove('opacity-0');
+                watermark.classList.add('opacity-10');
+
+                html2canvas(card, {
+                    ignoreElements: (element) => element.classList.contains('no-print'),
+                    backgroundColor: isDark ? '#1e293b' : '#ffffff',
+                    scale: 2, useCORS: true
+                }).then(canvas => {
+                    watermark.classList.remove('opacity-10'); watermark.classList.add('opacity-0');
+                    
+                    const imgData = canvas.toDataURL('image/png');
+                    const { jsPDF } = window.jspdf;
+                    const pdf = new jsPDF('p', 'mm', 'a4');
+                    const pdfWidth = pdf.internal.pageSize.getWidth();
+                    const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+                    
+                    pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+                    pdf.save(`RJF_ID_${data.member_id || getMemberId()}.pdf`);
+                });
+            };
+
+            triggerConfetti();
+        }
+
+        function showError(customMessage = null) {
+            showView('error-card');
+            if (customMessage) document.getElementById('error-message').innerHTML = customMessage;
+        }
+
+        // Voice Search Feature Logic
+        const voiceBtn = document.getElementById('voice-search-btn');
+        const searchInput = document.getElementById('search-input');
+        
+        if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            const recognition = new SpeechRecognition();
+            recognition.lang = 'en-US';
+            
+            recognition.onstart = function() {
+                voiceBtn.classList.add('animate-pulse', 'text-red-500', 'bg-red-100');
+                showToast(currentLang === 'bn' ? ' এখন বলুন, আমি শুনছি...' : 'Listening...', 'fa-microphone');
+            };
+            
+            recognition.onresult = function(event) {
+                const transcript = event.results[0][0].transcript.replace(/\s+/g, '').toUpperCase();
+                searchInput.value = transcript;
+                voiceBtn.classList.remove('animate-pulse', 'text-red-500', 'bg-red-100');
+                showToast(currentLang === 'bn' ? 'সার্চ করা হচ্ছে...' : 'Searching...', 'fa-search');
+                document.getElementById('search-form').dispatchEvent(new Event('submit'));
+            };
+
+            recognition.onerror = function(event) {
+                voiceBtn.classList.remove('animate-pulse', 'text-red-500', 'bg-red-100');
+            };
+
+            voiceBtn.addEventListener('click', () => { recognition.start(); });
+        } else {
+            voiceBtn.style.display = 'none'; 
+        }
+
+        // New: QR Scanner Feature Logic
+        const qrScanBtn = document.getElementById('qr-scan-btn');
+        const qrModal = document.getElementById('qr-modal');
+        const closeQrBtn = document.getElementById('close-qr-btn');
+        let html5QrcodeScanner;
+
+        qrScanBtn.addEventListener('click', () => {
+            qrModal.classList.remove('hidden');
+            if (!html5QrcodeScanner) {
+                html5QrcodeScanner = new Html5QrcodeScanner(
+                    "qr-reader", { fps: 10, qrbox: { width: 250, height: 250 }, aspectRatio: 1.0 }, false);
+                
+                html5QrcodeScanner.render((decodedText) => {
+                    let scannedId = decodedText;
+                    try {
+                        const url = new URL(decodedText);
+                        scannedId = url.searchParams.get('id') || decodedText;
+                    } catch(e) {}
+                    
+                    document.getElementById('search-input').value = scannedId;
+                    closeQrModal();
+                    showToast(currentLang === 'bn' ? 'স্ক্যান সফল হয়েছে!' : 'Scan Successful!', 'fa-check-circle', 'text-green-500');
+                    document.getElementById('search-form').dispatchEvent(new Event('submit'));
+                }, (errorMessage) => {
+                    // Ignore background scan errors
+                });
+            }
+        });
+
+        const closeQrModal = () => {
+            qrModal.classList.add('hidden');
+            if (html5QrcodeScanner) {
+                html5QrcodeScanner.clear().then(() => {
+                    html5QrcodeScanner = null;
+                    document.getElementById('qr-reader').innerHTML = '';
+                }).catch(err => console.error("Failed to clear scanner", err));
+            }
+        };
+
+        closeQrBtn.addEventListener('click', closeQrModal);
+
+        // Updated Search Form Logic with Auto 'RJF-' Prefix
+        document.getElementById('search-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            let val = document.getElementById('search-input').value.trim().toUpperCase();
+            
+            if(val) {
+                // Auto add "RJF-2026-" if user typed numbers only, or typed "RJF2026-9689"
+                if (/^\d/.test(val)) {
+                    val = 'RJF-2026-' + val;
+                } else if (val.startsWith('RJF') && !val.startsWith('RJF-2026-')) {
+                    val = val.replace('RJF', 'RJF-2026-');
+                }
+
+               const regex = /^[a-zA-Z0-9\-]+$/;     
+                if(!regex.test(val)) {
+                    showToast(currentLang === 'bn' ? 'আইডিতে কোনো স্পেশাল ক্যারেক্টার/লিংক ব্যবহার করা যাবে না!' : 'No special characters/link allowed!', 'fa-circle-xmark', 'text-red-500');
+                    return;
+                }
+                window.location.href = window.location.pathname + '?id=' + encodeURIComponent(val);
+            }
+        });
+
+        // Initialize
+        verifyMember();
+
+    </script>
+</body>
+</html>
