@@ -5,7 +5,7 @@ RJF.data = {
   brand: {
     name: "রূপসা জনকল্যাণ ফাউন্ডেশন",
     sub: "RUPSHA JANAKALYAN FOUNDATION",
-    logo: "Https://rupshajf.vercel.app/icons/logo.webp" // ব্যানার লোগো এই নামে/পাথে যোগ করুন
+    logo: "" // ব্যানার লোগো এই নামে/পাথে যোগ করুন
   },
 
   nav: [
@@ -23,11 +23,11 @@ RJF.data = {
     desc: "শিক্ষা, স্বাস্থ্য, ত্রাণ ও দক্ষতা উন্নয়নের মাধ্যমে আমরা গড়ে তুলছি একটি স্বনির্ভর সমাজ।",
     // ছবিগুলো images/ ফোল্ডারে এই নামে যোগ করলেই ক্যারোজেলে দেখা যাবে, না থাকলে আইকন-প্লেসহোল্ডার দেখাবে
     slides: [
-      { src: "Https://rupshajf.vercel.app/gallery/win-team.webp", alt: "শিক্ষা কার্যক্রম", icon: "book", label: "শিক্ষা কার্যক্রমের ছবি এখানে যোগ করুন" },
-      { src: "Https://rupshajf.vercel.app/gallery/imran.webp", alt: "স্বাস্থ্যসেবা ক্যাম্প", icon: "heart", label: "স্বাস্থ্যসেবা কার্যক্রমের ছবি এখানে যোগ করুন" },
-      { src: "https://rupshajf.vercel.app/gallery/lost-team.webp", alt: "ত্রাণ বিতরণ", icon: "hand", label: "ত্রাণ বিতরণ কার্যক্রমের ছবি এখানে যোগ করুন" },
-      { src: "Https://rupshajf.vercel.app/gallery/sumon.webp", alt: "দক্ষতা প্রশিক্ষণ", icon: "tool", label: "প্রশিক্ষণ কার্যক্রমের ছবি এখানে যোগ করুন" },
-      { src: "images/activity-5.jpg", alt: "বৃক্ষরোপণ কার্যক্রম", icon: "leaf", label: "বৃক্ষরোপণ কার্যক্রমের ছবি এখানে যোগ করুন" }
+      { src: "/gallery/win-team.webp", alt: "শিক্ষা কার্যক্রম", icon: "book", label: "শিক্ষা কার্যক্রমের ছবি এখানে যোগ করুন" },
+      { src: "/gallery/IMG_20260320_234348.jpg", alt: "ইফতার মাহফিল", icon: "heart", label: "স্বাস্থ্যসেবা কার্যক্রমের ছবি এখানে যোগ করুন" },
+      { src: "/gallery/lost-team.webp", alt: "খেলাধুলা", icon: "hand", label: "ত্রাণ বিতরণ কার্যক্রমের ছবি এখানে যোগ করুন" },
+      { src: "/gallery/national-anthem-all-team.webp", alt: "জাতীয় সংগীত", icon: "tool", label: "প্রশিক্ষণ কার্যক্রমের ছবি এখানে যোগ করুন" },
+      { src: "/gallery/team-trophy.webp", alt: "ট্রফি উদযাপন", icon: "leaf", label: "বৃক্ষরোপণ কার্যক্রমের ছবি এখানে যোগ করুন" }
     ]
   },
 
@@ -35,7 +35,7 @@ RJF.data = {
     heading: "রূপসা জনকল্যাণ ফাউন্ডেশন",
     body: "রূপসা জনকল্যাণ ফাউন্ডেশন একটি অলাভজনক সামাজিক সংগঠন, যা তৃণমূল পর্যায়ে সাধারণ মানুষের জীবনমান উন্নয়নে কাজ করে যাচ্ছে। আমরা বিশ্বাস করি, প্রতিটি মানুষের সম্মানজনক জীবনযাপনের অধিকার আছে — আর সেই লক্ষ্যেই আমাদের প্রতিটি কার্যক্রম পরিচালিত হয়।",
     stats: [
-      { value: "১০০+", label: "উপকারভোগী পরিবার" },
+      { value: "৫+", label: "উপকারভোগী পরিবার" },
       { value: "৫+", label: "চলমান কার্যক্রম" },
       { value: "২৪/৭", label: "স্বেচ্ছাসেবক দল" }
     ],
@@ -60,9 +60,9 @@ RJF.data = {
     heading: "আমাদের সাথে যোগাযোগ করুন",
     sub: "নিচের ঠিকানায় সরাসরি এসে অথবা যোগাযোগ মাধ্যমে আমাদের সাথে কথা বলতে পারেন।",
     address: "রূপসা, খুলনা, বাংলাদেশ — (এখানে সম্পূর্ণ ঠিকানা যোগ করুন)",
-    phone: "+৮৮০ ১XXX-XXXXXX",
-    email: "info@rupshafoundation.org",
-    mapEmbed: "https://www.google.com/maps?q=Khulna,Bangladesh&output=embed"
+    phone: "+৮৮০ ১৯৫৭৩২৯২১১",
+    email: "info.rjfoundation25@gmail.com",
+    mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3625.321305411649!2d89.76065507536412!3d24.5964839780996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m"
   },
 
   footer: {
@@ -80,9 +80,9 @@ RJF.data = {
       { label: "ব্যবহারের শর্তাবলী", href: "#/terms" }
     ],
     social: [
-      { label: "Facebook", href: "#", icon: "facebook" },
-      { label: "YouTube", href: "#", icon: "youtube" },
-      { label: "WhatsApp", href: "#", icon: "whatsapp" }
+      { label: "Facebook", href: "facebook.com/rupshajonokollanfoundation", icon: "facebook" },
+      { label: "YouTube", href: "youtube.com/rupshajonokollanfoundation", icon: "youtube" },
+      { label: "WhatsApp", href: "https://wa.me/8801957329211?text=%E0%A6%86%E0%A6%AE%E0%A6%BF%20%E0%A6%AB%E0%A6%BE%E0%A6%89%E0%A6%A8%E0%A7%8D%E0%A6%A1%E0%A7%87%E0%A6%B6%E0%A6%A8%20%E0%A6%B8%E0%A6%AE%E0%A7%8D%E0%A6%AA%E0%A6%B0%E0%A7%8D%E0%A6%95%E0%A7%87%20%E0%A6%9C%E0%A6%BE%E0%A6%A8%E0%A6%A4%E0%A7%87%20%E0%A6%9A%E0%A6%BE%E0%A6%87", icon: "whatsapp" }
     ]
   }
 };
