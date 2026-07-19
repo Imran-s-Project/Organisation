@@ -62,7 +62,7 @@ RJF.data = {
     address: "রূপসা, খুলনা, বাংলাদেশ — (এখানে সম্পূর্ণ ঠিকানা যোগ করুন)",
     phone: "+৮৮০ ১৯৫৭৩২৯২১১",
     email: "info.rjfoundation25@gmail.com",
-    mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3625.321305411649!2d89.76065507536412!3d24.5964839780996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m"
+    mapEmbed: "https://maps.app.goo.gl/DU9nMvQakt6Jh2oN6"
   },
 
   footer: {
