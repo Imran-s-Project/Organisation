@@ -1,0 +1,648 @@
+/* ==========================================================================
+   রূপসা জনকল্যাণ ফাউন্ডেশন — Donation Page
+   Design tokens
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&display=swap');.donate-page {
+  /* Color — warm cotton & marigold, deep teal (the palette this foundation
+     already uses on its main site), not the neon-tech look this page had. */
+  --cream: #FBF5E9;
+  --card: #FFFFFF;
+  --ink: #22302B;
+  --ink-soft: #5B6B62;
+  --teal: #0E5F52;
+  --teal-deep: #0A4A40;
+  --marigold: #E4A335;
+  --marigold-deep: #C7841C;
+  --terracotta: #C1502E;
+  --stitch: #D8C6A1;
+  --line: rgba(34, 48, 43, 0.1);
+
+  --font-display: 'Fraunces', 'Hind Siliguri', serif;
+  --font-body: 'Hind Siliguri', 'Fraunces', sans-serif;
+
+  --radius-lg: 22px;
+  --radius-md: 14px;
+  --radius-sm: 9px;
+
+  --shadow-card: 0 24px 60px -20px rgba(14, 95, 82, 0.35);
+  --shadow-soft: 0 8px 24px -12px rgba(34, 48, 43, 0.25);
+}
+
+.donate-page.dark-theme {
+  --cream: #10201B;
+  --card: #16302A;
+  --ink: #F3EFE3;
+  --ink-soft: #B9C7C0;
+  --line: rgba(243, 239, 227, 0.12);
+  --stitch: #3D5148;
+  --shadow-card: 0 24px 60px -18px rgba(0, 0, 0, 0.6);
+}
+
+.donate-page * { box-sizing: border-box; }
+
+.donate-page { scroll-behavior: smooth; }
+
+.donate-page {
+  margin: 0;
+  padding-top: 130px;
+  font-family: var(--font-body);
+  background: var(--cream);
+  color: var(--ink);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+@media (max-width: 520px) { .donate-page { padding-top: 105px; } }
+
+.donate-page a { color: inherit; }
+
+.donate-page ::selection { background: var(--marigold); color: var(--teal-deep); }
+
+.donate-page /* Focus visibility kept everywhere for accessibility */
+a:focus-visible,
+.donate-page button:focus-visible,
+.donate-page input:focus-visible,
+.donate-page select:focus-visible {
+  outline: 2px solid var(--marigold);
+  outline-offset: 2px;
+}
+
+.donate-page /* ==========================================================================
+   Top bar
+   ========================================================================== */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 18px;
+  background: var(--teal);
+  color: #FBF5E9;
+}
+
+.donate-page .topbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.donate-page .logo-img {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 2px solid var(--marigold);
+  object-fit: cover;
+  flex-shrink: 0;
+  background: #fff;
+}
+
+.donate-page .topbar-brand h1 {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.donate-page .topbar-brand span {
+  display: block;
+  font-size: 11px;
+  color: rgba(251, 245, 233, 0.75);
+  font-weight: 400;
+}
+
+.donate-page .topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.donate-page .icon-btn {
+  background: rgba(251, 245, 233, 0.12);
+  border: 1px solid rgba(251, 245, 233, 0.28);
+  color: #FBF5E9;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  font-size: 14px;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.donate-page .icon-btn:hover { background: rgba(251, 245, 233, 0.22); transform: translateY(-1px); }
+
+.donate-page /* ==========================================================================
+   Side menu
+   ========================================================================== */
+
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 20, 17, 0.55);
+  z-index: 60;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.donate-page .menu-overlay.active { opacity: 1; pointer-events: auto; }
+
+.donate-page .side-menu {
+  position: fixed;
+  top: 0;
+  left: -280px;
+  width: 270px;
+  height: 100%;
+  background: var(--card);
+  z-index: 61;
+  transition: left 0.35s cubic-bezier(.2,.8,.2,1);
+  box-shadow: 12px 0 40px rgba(0,0,0,0.25);
+  padding: 26px 0 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.donate-page .side-menu.active { left: 0; }
+
+.donate-page .side-menu-header {
+  padding: 0 22px 18px;
+  border-bottom: 1px dashed var(--stitch);
+  margin-bottom: 8px;
+}
+
+.donate-page .side-menu-header strong {
+  font-family: var(--font-display);
+  font-size: 17px;
+  display: block;
+}
+
+.donate-page .side-menu-header small { color: var(--ink-soft); font-size: 12px; }
+
+.donate-page .side-menu a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 22px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 500;
+  font-size: 14.5px;
+  border-left: 3px solid transparent;
+  transition: background 0.2s ease, border-color 0.2s ease, padding-left 0.2s ease;
+}
+
+.donate-page .side-menu a i { width: 20px; text-align: center; color: var(--marigold-deep); }
+
+.donate-page .side-menu a:hover {
+  background: color-mix(in srgb, var(--marigold) 12%, transparent);
+  border-left-color: var(--marigold);
+  padding-left: 26px;
+}
+
+.donate-page /* ==========================================================================
+   Hero strip — replaces the old scrolling marquee
+   ========================================================================== */
+
+.hero-strip {
+  background: var(--teal-deep);
+  color: #F3EFE3;
+  text-align: center;
+  padding: 34px 18px 60px;
+}
+
+.donate-page .hero-strip .kicker {
+  font-size: 12.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--marigold);
+  font-weight: 600;
+  margin: 0 0 10px;
+}
+
+.donate-page .hero-strip h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(22px, 5vw, 30px);
+  margin: 0 auto 10px;
+  max-width: 520px;
+  line-height: 1.35;
+}
+
+.donate-page .hero-strip p {
+  max-width: 480px;
+  margin: 0 auto;
+  color: rgba(243, 239, 227, 0.78);
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+
+.donate-page /* ==========================================================================
+   Donation card
+   ========================================================================== */
+
+.dashboard-main {
+  display: flex;
+  justify-content: center;
+  padding: 0 16px 60px;
+  margin-top: -34px;
+}
+
+.donate-page .donation-card {
+  width: 100%;
+  max-width: 440px;
+  background: var(--card);
+  background-image: linear-gradient(180deg, color-mix(in srgb, var(--teal) 4%, transparent), transparent 140px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 30px 26px 28px;
+  position: relative;
+}
+
+.donate-page /* Kantha running-stitch signature — a nod to Bengali nakshi kantha
+   embroidery,
+.donate-page used as the card's top seam */
+.donation-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 24px;
+  right: 24px;
+  height: 1px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--marigold) 0 8px,
+    transparent 8px 16px
+  );
+}
+
+.donate-page .card-title {
+  font-family: var(--font-display);
+  font-size: 21px;
+  font-weight: 600;
+  text-align: center;
+  margin: 6px 0 18px;
+  line-height: 1.4;
+}
+
+.donate-page .pay-panel {
+  background: color-mix(in srgb, var(--teal) 7%, transparent);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.donate-page .pay-panel .label {
+  font-size: 11.5px;
+  color: var(--ink-soft);
+  letter-spacing: 0.04em;
+}
+
+.donate-page .pay-panel .number {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--teal);
+  display: block;
+  margin: 6px 0 12px;
+  letter-spacing: 0.03em;
+}
+
+.donate-page.dark-theme .pay-panel .number { color: var(--marigold); }
+
+.donate-page .copy-btn {
+  background: var(--marigold);
+  color: var(--teal-deep);
+  border: none;
+  padding: 9px 20px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 12.5px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.donate-page .copy-btn:hover { transform: translateY(-1px); background: var(--marigold-deep); }
+
+.donate-page .subtitle {
+  text-align: center;
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.65;
+  margin: 0 0 20px;
+}
+
+.donate-page /* Honeypot — kept in the DOM and tab order excluded,
+.donate-page but invisible to
+   people. Bots that auto-fill every field will trip this. */
+.hp-field {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.donate-page .field-group { margin-bottom: 14px; position: relative; }
+
+.donate-page .field-group input,
+.donate-page .field-group select {
+  width: 100%;
+  padding: 13px 14px;
+  background: var(--cream);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-sm);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 14px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.donate-page .field-group.has-icon input,
+.donate-page .field-group.has-icon select {
+  padding-left: 40px;
+}
+
+.donate-page .field-icon {
+  position: absolute;
+  left: 14px;
+  top: 15px;
+  font-size: 13px;
+  color: var(--ink-soft);
+  pointer-events: none;
+}
+
+.donate-page .field-group.has-icon input:focus ~ .field-icon,
+.donate-page .field-group.has-icon select:focus ~ .field-icon {
+  color: var(--teal);
+}
+
+.donate-page .field-group input::placeholder { color: var(--ink-soft); opacity: 0.8; }
+
+.donate-page .field-group input:focus,
+.donate-page .field-group select:focus {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--teal) 18%, transparent);
+  outline: none;
+}
+
+.donate-page .invalid-signal { border-color: var(--terracotta) !important; }
+
+.donate-page .error-hint {
+  color: var(--terracotta);
+  font-size: 11.5px;
+  margin-top: 5px;
+  display: none;
+}
+
+.donate-page .invalid-signal + .error-hint { display: block; }
+
+.donate-page .trx-guide {
+  position: absolute;
+  right: 12px;
+  top: 13px;
+  color: var(--teal);
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.donate-page.dark-theme .trx-guide { color: var(--marigold); }
+
+.donate-page .amount-options {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.donate-page .amt-btn {
+  flex: 1;
+  background: transparent;
+  border: 1.5px solid var(--teal);
+  color: var(--teal);
+  padding: 9px 4px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 13px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.donate-page.dark-theme .amt-btn { border-color: var(--marigold); color: var(--marigold); }
+
+.donate-page .amt-btn:hover,
+.donate-page .amt-btn.active {
+  background: var(--teal);
+  color: #FBF5E9;
+}
+
+.donate-page.dark-theme .amt-btn:hover,
+.donate-page.dark-theme .amt-btn.active {
+  background: var(--marigold);
+  color: var(--teal-deep);
+}
+
+.donate-page .recaptcha-row {
+  display: flex;
+  justify-content: center;
+  margin: 18px 0 6px;
+}
+
+.donate-page .btn-submit {
+  width: 100%;
+  padding: 15px;
+  background: var(--teal);
+  color: #FBF5E9;
+  font-weight: 700;
+  font-size: 14.5px;
+  letter-spacing: 0.02em;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: background 0.25s ease, transform 0.2s ease;
+}
+
+.donate-page .btn-submit:hover { background: var(--teal-deep); transform: translateY(-1px); }
+
+.donate-page .btn-submit:active:not(:disabled) { transform: translateY(0) scale(0.98); }
+
+.donate-page .btn-submit:disabled { opacity: 0.7; cursor: progress; transform: none; }
+
+.donate-page .copy-btn:active,
+.donate-page .amt-btn:active { transform: scale(0.96); }
+
+.donate-page .spinner {
+  display: none;
+  width: 16px;
+  height: 16px;
+  border: 2.5px solid rgba(251, 245, 233, 0.35);
+  border-top-color: #FBF5E9;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.donate-page .trust-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  text-align: center;
+  font-size: 11.5px;
+  color: var(--teal);
+  margin: 14px 0 0;
+  font-weight: 600;
+}
+
+.donate-page.dark-theme .trust-line { color: var(--marigold); }
+
+.donate-page .footer-msg {
+  text-align: center;
+  font-size: 11.5px;
+  color: var(--ink-soft);
+  margin: 8px 0 0;
+  line-height: 1.6;
+}
+
+.donate-page /* ==========================================================================
+   Success overlay
+   ========================================================================== */
+
+#successOverlay {
+  display: none;
+  position: absolute;
+  inset: 0;
+  background: var(--card);
+  border-radius: var(--radius-lg);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 30px;
+  z-index: 5;
+}
+
+.donate-page .badge-ring {
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--teal) 12%, transparent);
+  display: grid;
+  place-items: center;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.donate-page .badge-ring::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px dashed var(--marigold);
+  animation: spin 12s linear infinite;
+}
+
+.donate-page .badge-ring i { font-size: 30px; color: var(--teal); }
+
+.donate-page.dark-theme .badge-ring i { color: var(--marigold); }
+
+.donate-page #successOverlay h2 {
+  font-family: var(--font-display);
+  font-size: 19px;
+  margin: 0 0 8px;
+  color: var(--teal);
+}
+
+.donate-page.dark-theme #successOverlay h2 { color: var(--marigold); }
+
+.donate-page #successOverlay p {
+  color: var(--ink-soft);
+  font-size: 13.5px;
+  line-height: 1.6;
+  margin: 0 0 18px;
+}
+
+.donate-page /* ==========================================================================
+   Toast
+   ========================================================================== */
+
+#donateToast {
+  visibility: hidden;
+  position: fixed;
+  bottom: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--ink);
+  color: var(--cream);
+  padding: 10px 22px;
+  border-radius: 999px;
+  z-index: 1000;
+  font-size: 12.5px;
+  box-shadow: var(--shadow-soft);
+}
+
+.donate-page #donateToast.show { visibility: visible; animation: toast-pop 0.25s ease; }
+
+@keyframes toast-pop {
+  from { opacity: 0; transform: translate(-50%, 8px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+.donate-page /* ==========================================================================
+   Footer
+   ========================================================================== */
+
+footer {
+  padding: 20px;
+  background: var(--teal-deep);
+  color: rgba(243, 239, 227, 0.65);
+  text-align: center;
+  font-size: 12.5px;
+}
+
+.donate-page /* ==========================================================================
+   Motion & entrance
+   ========================================================================== */
+
+.donation-card,
+.donate-page .hero-strip {
+  animation: rise 0.6s cubic-bezier(.2,.8,.2,1) both;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {.donate-page * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+
+@media (max-width: 380px) {.donate-page .donation-card { padding: 26px 18px 24px; }
+
+.donate-page .amount-options { flex-wrap: wrap; }
+}
+
+/* "মূল পাতায় ফিরুন" লিংকের পাশে মার্জিন — উপরের জায়গাটা এখন .donate-page-এর নিজের padding-top থেকেই আসে */
+.donate-page > .legal-back {
+  display: inline-flex;
+  margin: 0 6vw 22px;
+}

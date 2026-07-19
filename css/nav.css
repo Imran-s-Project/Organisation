@@ -1,0 +1,51 @@
+.nav{
+  position:fixed; top:0; left:0; right:0; z-index:500;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:14px 5vw;
+  background:rgba(14,59,54,0);
+  transition:background .35s ease, box-shadow .35s ease, padding .35s ease;
+}
+.nav.scrolled{
+  background:rgba(14,59,54,0.92);
+  backdrop-filter:blur(8px);
+  box-shadow:0 6px 20px rgba(0,0,0,0.15);
+  padding:10px 5vw;
+}
+.brand{ display:flex; align-items:center; gap:10px; }
+.brand-logo{ height:44px; width:auto; object-fit:contain; }
+.brand-mark{
+  width:38px; height:38px; border-radius:50%;
+  background:linear-gradient(135deg,var(--turmeric),var(--clay));
+  display:flex; align-items:center; justify-content:center;
+  font-weight:700; color:var(--white); font-family:'Baloo Da 2';
+  flex-shrink:0;
+}
+.logo-text{ color:var(--white); font-size:1.05rem; font-weight:700; line-height:1.2; }
+.logo-sub{ color:var(--turmeric); font-size:.68rem; font-family:'Work Sans'; letter-spacing:.08em; }
+.nav-links{ display:flex; gap:34px; }
+.nav-links a{ color:var(--white); font-weight:500; font-size:.95rem; position:relative; padding-bottom:4px; }
+.nav-links a::after{
+  content:''; position:absolute; left:0; bottom:0; width:0; height:2px;
+  background:var(--turmeric); transition:width .25s ease;
+}
+.nav-links a:hover::after{ width:100%; }
+.nav-toggle{ display:none; z-index:501; }
+.nav-toggle span{
+  display:block; width:24px; height:2px; background:var(--white); margin:5px 0;
+  transition:transform .3s ease, opacity .3s ease;
+}
+@media(max-width:720px){
+  .nav-links{
+    position:fixed; top:0; right:0; height:100vh; width:min(72vw,300px);
+    background:var(--river-deep); flex-direction:column; padding:90px 30px;
+    transform:translateX(100%); transition:transform .35s ease; gap:26px;
+    z-index:500;
+  }
+  .nav-links.open{ transform:translateX(0); }
+  .nav-toggle{ display:block; }
+
+  /* হ্যামবার্গার আইকন ক্রস (X) আইকনে পরিণত হবে */
+  .nav-toggle.active span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+  .nav-toggle.active span:nth-child(2){ opacity:0; }
+  .nav-toggle.active span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+}

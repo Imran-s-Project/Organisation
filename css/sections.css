@@ -1,0 +1,36 @@
+.intro{ background:var(--rice); }
+.intro-grid{ display:grid; grid-template-columns:1.1fr .9fr; gap:56px; align-items:center; }
+.intro-card{ background:var(--white); border-radius:var(--radius); padding:30px; box-shadow:var(--shadow); border-top:4px solid var(--clay); }
+.intro-card p{ color:#41504A; margin-bottom:0; }
+.stat-row{ display:flex; gap:28px; margin-top:30px; flex-wrap:wrap; }
+.stat{ min-width:120px; }
+.stat b{ font-family:'Baloo Da 2'; font-size:1.9rem; color:var(--river-deep); display:block; }
+.stat span{ font-family:'Work Sans'; font-size:.78rem; color:#6a756f; letter-spacing:.03em; }
+
+.about{ background:var(--rice-2); }
+.mv-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:26px; margin-bottom:50px; }
+.mv-card{ background:var(--river-deep); color:var(--white); border-radius:var(--radius); padding:32px; position:relative; overflow:hidden; }
+.mv-card.alt{ background:var(--clay); }
+.mv-card svg{ width:34px; height:34px; margin-bottom:16px; color:var(--turmeric); }
+.mv-card.alt svg{ color:var(--rice); }
+.mv-card h3{ font-size:1.2rem; margin-bottom:10px; }
+.mv-card p{ color:rgba(255,255,255,.88); font-size:.95rem; }
+
+.activities{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+.activity{ background:var(--white); border-radius:14px; padding:26px 20px; text-align:center; box-shadow:0 6px 18px rgba(14,59,54,0.08); transition:transform .25s ease; }
+.activity:hover{ transform:translateY(-6px); }
+.activity-icon{
+  width:56px; height:56px; border-radius:50%; margin:0 auto 14px;
+  display:flex; align-items:center; justify-content:center;
+  background:linear-gradient(135deg,var(--moss),var(--river-deep));
+}
+.activity-icon svg{ width:26px; height:26px; color:var(--white); }
+.activity h4{ font-size:1rem; margin-bottom:6px; color:var(--river-deep); }
+.activity p{ font-size:.85rem; color:#5c655f; }
+
+@media(max-width:900px){
+  .intro-grid{ grid-template-columns:1fr; }
+  .mv-grid{ grid-template-columns:1fr; }
+  .activities{ grid-template-columns:repeat(2,1fr); }
+}
+@media(max-width:520px){ .activities{ grid-template-columns:1fr 1fr; } }
