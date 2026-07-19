@@ -59,7 +59,7 @@ RJF.data = {
   location: {
     heading: "আমাদের সাথে যোগাযোগ করুন",
     sub: "নিচের ঠিকানায় সরাসরি এসে অথবা যোগাযোগ মাধ্যমে আমাদের সাথে কথা বলতে পারেন।",
-    address: "রূপসা, খুলনা, বাংলাদেশ — (এখানে সম্পূর্ণ ঠিকানা যোগ করুন)",
+    address: "রূপসা,মধ্যপাড়া,সিরাজগঞ্জ সদর সিরাজগঞ্জ",
     phone: "+৮৮০ ১৯৫৭৩২৯২১১",
     email: "info.rjfoundation25@gmail.com",
     mapEmbed: "https://maps.app.goo.gl/DU9nMvQakt6Jh2oN6"
