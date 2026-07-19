@@ -1,0 +1,40 @@
+{
+  "name": "রূপসা জনকল্যাণ ফাউন্ডেশন",
+  "short_name": "রূপসা জেকেএফ",
+  "description": "শিক্ষা, স্বাস্থ্য, ত্রাণ ও দক্ষতা উন্নয়নের মাধ্যমে একটি স্বনির্ভর সমাজ গড়ার প্রত্যয়",
+  "start_url": "/index.html",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0E3B36",
+  "theme_color": "#0E3B36",
+  "lang": "bn",
+  "dir": "ltr",
+  "categories": ["charity", "social", "nonprofit"],
+  "icons": [
+    { "src": "icons/icon-72.png", "sizes": "72x72", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-96.png", "sizes": "96x96", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-128.png", "sizes": "128x128", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-144.png", "sizes": "144x144", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-152.png", "sizes": "152x152", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-384.png", "sizes": "384x384", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    {
+      "name": "দান করুন",
+      "short_name": "দান",
+      "url": "/index.html#/donate",
+      "icons": [{ "src": "icons/icon-96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "সদস্যবৃন্দ",
+      "short_name": "সদস্য",
+      "url": "/index.html#/member",
+      "icons": [{ "src": "icons/icon-96.png", "sizes": "96x96" }]
+    }
+  ]
+}
