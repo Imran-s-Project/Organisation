@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>পেজ খুঁজে পাওয়া যায়নি (404) | রূপসা জনকল্যাণ ফাউন্ডেশন</title>
+<title>404</title>
 <meta name="theme-color" content="#004d40">
 <meta name="robots" content="noindex">
 <link rel="manifest" href="manifest.json">
@@ -289,45 +289,45 @@ footer.site-footer{
     <div class="error-code">404</div>
     <div class="icon-float"><i class="fa-solid fa-compass"></i></div>
 
-    <h1>ওহ্‌! পেজটি খুঁজে পাওয়া যায়নি</h1>
-    <p class="desc">আপনি যে পেজটি খুঁজছেন সেটি হয়তো মুছে ফেলা হয়েছে, নাম পরিবর্তন হয়েছে, অথবা লিংকটি সঠিক নয়। তবে চিন্তার কিছু নেই — <b>রূপসা জনকল্যাণ ফাউন্ডেশন</b>-এর সঠিক পেজে ফিরে যেতে নিচের অপশনগুলো ব্যবহার করুন।</p>
+    <h1>Oops! Page not found.</h1>
+    <p class="desc">The page you're looking for may have been deleted, renamed, or the link is broken. But don't worry — <b>Use the options below to return to the correct page of Rupsha Janakalyan Foundation.</p>
 
     <form class="search-box" id="searchForm" onsubmit="return handleSearch(event)">
       <i class="fa-solid fa-magnifying-glass"></i>
-      <input type="text" id="searchInput" placeholder="যা খুঁজছেন লিখুন... (যেমনঃ দান, গ্যালারি, সদস্য)">
+      <input type="text" id="searchInput" placeholder=" Type what you are looking for...">
       <button type="submit">খুঁজুন</button>
     </form>
     <div class="suggest-row">
-      <span class="suggest-chip" onclick="quickSearch('দান')">দান করুন</span>
-      <span class="suggest-chip" onclick="quickSearch('গ্যালারি')">গ্যালারি</span>
-      <span class="suggest-chip" onclick="quickSearch('সদস্য')">সদস্যবৃন্দ</span>
-      <span class="suggest-chip" onclick="quickSearch('ব্লগ')">ব্লগ</span>
+      <span class="suggest-chip" onclick="quickSearch('দান')">Donate</span>
+      <span class="suggest-chip" onclick="quickSearch('গ্যালারি')">Gallery</span>
+      <span class="suggest-chip" onclick="quickSearch('সদস্য')">Members</span>
+      <span class="suggest-chip" onclick="quickSearch('ব্লগ')">Blog</span>
     </div>
 
-    <div class="section-label">প্রয়োজনীয় লিংকসমূহ</div>
+    <div class="section-label">Useful links</div>
     <div class="quick-links">
-      <a href="/"><i class="fa-solid fa-house"></i> হোম পেজ</a>
-      <a href="/about.html"><i class="fa-solid fa-users"></i> আমাদের সম্পর্কে</a>
-      <a href="/gallery/"><i class="fa-solid fa-tasks"></i> কার্যক্রমসমূহ</a>
-      <a href="/gallery.html"><i class="fa-solid fa-images"></i> গ্যালারি</a>
-      <a href="/blog.html"><i class="fa-solid fa-newspaper"></i> ব্লগ</a>
-      <a href="/member/"><i class="fa-solid fa-people-group"></i> সদস্যবৃন্দ</a>
-      <a href="/from/"><i class="fa-solid fa-file-lines"></i> সদস্য নিবন্ধন ফরম</a>
-      <a href="/verify.html"><i class="fa-solid fa-magnifying-glass"></i> সদস্য যাচাই করুন</a>
-      <a href="/donate/" class="highlight"><i class="fa-solid fa-hand-holding-heart"></i> দান করুন</a>
-      <a href="https://www.facebook.com/rupshajonokollanfoundation" class="highlight"><i class="fa-brands fa-facebook-f"></i> ফেসবুক পেজ</a>
+      <a href="/"><i class="fa-solid fa-house"></i> Home page</a>
+      <a href="/about.html"><i class="fa-solid fa-users"></i> About us</a>
+      <a href="/gallery/"><i class="fa-solid fa-tasks"></i> Activities</a>
+      <a href="/gallery.html"><i class="fa-solid fa-images"></i> Gallery</a>
+      <a href="/blog.html"><i class="fa-solid fa-newspaper"></i> Blog</a>
+      <a href="/member/"><i class="fa-solid fa-people-group"></i> Members</a>
+      <a href="/from/"><i class="fa-solid fa-file-lines"></i> Member Registration Form</a>
+      <a href="/verify.html"><i class="fa-solid fa-magnifying-glass"></i> Verify member</a>
+      <a href="/donate/" class="highlight"><i class="fa-solid fa-hand-holding-heart"></i> Donate</a>
+      <a href="https://www.facebook.com/rupshajonokollanfoundation" class="highlight"><i class="fa-brands fa-facebook-f"></i> Facebook page</a>
     </div>
 
-    <a href="/" class="home-btn"><i class="fa-solid fa-arrow-left-long"></i> হোম পেজে ফিরে যান</a>
+    <a href="/" class="home-btn"><i class="fa-solid fa-arrow-left-long"></i> Return to home page</a>
 
     <div class="redirect-note">
-      <span id="countdown">10</span> সেকেন্ড পর স্বয়ংক্রিয়ভাবে হোম পেজে যাচ্ছেন —
-      <a onclick="cancelRedirect()" id="cancelLink">বাতিল করুন</a>
+      <span id="countdown">10</span> Automatically going to the home page after a few seconds —
+      <a onclick="cancelRedirect()" id="cancelLink">Cancel</a>
     </div>
 
     <div class="help-line">
       <a href="mailto:info.rjfoundation25@gmail.com"><i class="fa-solid fa-envelope"></i> info.rjfoundation25@gmail.com</a>
-      <a href="https://wa.me/8801957329211"><i class="fa-brands fa-whatsapp"></i> হোয়াটসঅ্যাপে যোগাযোগ</a>
+      <a href="https://wa.me/8801957329211"><i class="fa-brands fa-whatsapp"></i> Contact on WhatsApp</a>
     </div>
   </div>
 </main>
@@ -405,7 +405,7 @@ function tick(){
 redirectTimer = setTimeout(tick, 1000);
 function cancelRedirect(){
   clearTimeout(redirectTimer);
-  document.querySelector('.redirect-note').innerHTML = '✅ স্বয়ংক্রিয় রিডাইরেক্ট বাতিল করা হয়েছে।';
+  document.querySelector('.redirect-note').innerHTML = '✔️ Automatic redirect canceled';
 }
 </script>
 
