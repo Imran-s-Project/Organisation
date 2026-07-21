@@ -18,16 +18,16 @@ RJF.data = {
   ],
 
   hero: {
-    eyebrow: "রূপসা নদীর পাড় থেকে জনসেবার প্রত্যয়",
+    eyebrow: "সেবা হোক প্রত্যয়, জনকল্যাণ হোক জয়",
     title: "মানুষের পাশে দাঁড়ানোই আমাদের একমাত্র পরিচয়",
     desc: "শিক্ষা, স্বাস্থ্য, ত্রাণ ও দক্ষতা উন্নয়নের মাধ্যমে আমরা গড়ে তুলছি একটি স্বনির্ভর সমাজ।",
     // ছবিগুলো images/ ফোল্ডারে এই নামে যোগ করলেই ক্যারোজেলে দেখা যাবে, না থাকলে আইকন-প্লেসহোল্ডার দেখাবে
     slides: [
-      { src: "Https://rupshajf.vercel.app/gallery/win-team.webp", alt: "শিক্ষা কার্যক্রম", icon: "book", label: "শিক্ষা কার্যক্রমের ছবি এখানে যোগ করুন" },
-      { src: "Https://rupshajf.vercel.app/gallery/imran.webp", alt: "স্বাস্থ্যসেবা ক্যাম্প", icon: "heart", label: "স্বাস্থ্যসেবা কার্যক্রমের ছবি এখানে যোগ করুন" },
-      { src: "https://rupshajf.vercel.app/gallery/lost-team.webp", alt: "ত্রাণ বিতরণ", icon: "hand", label: "ত্রাণ বিতরণ কার্যক্রমের ছবি এখানে যোগ করুন" },
-      { src: "Https://rupshajf.vercel.app/gallery/sumon.webp", alt: "দক্ষতা প্রশিক্ষণ", icon: "tool", label: "প্রশিক্ষণ কার্যক্রমের ছবি এখানে যোগ করুন" },
-      { src: "images/activity-5.jpg", alt: "বৃক্ষরোপণ কার্যক্রম", icon: "leaf", label: "বৃক্ষরোপণ কার্যক্রমের ছবি এখানে যোগ করুন" }
+      { src: "/gallery/win-team.webp", alt: "শিক্ষা কার্যক্রম", icon: "book", label: "শিক্ষা কার্যক্রমের ছবি এখানে যোগ করুন" },
+      { src: "/gallery/IMG_20260320_234348.jpg", alt: "ইফতার মাহফিল", icon: "heart", label: "স্বাস্থ্যসেবা কার্যক্রমের ছবি এখানে যোগ করুন" },
+      { src: "/gallery/lost-team.webp", alt: "খেলাধুলা", icon: "hand", label: "ত্রাণ বিতরণ কার্যক্রমের ছবি এখানে যোগ করুন" },
+      { src: "/gallery/national-anthem-all-team.webp", alt: "জাতীয় সংগীত", icon: "tool", label: "প্রশিক্ষণ কার্যক্রমের ছবি এখানে যোগ করুন" },
+      { src: "/gallery/team-trophy.webp", alt: "ট্রফি উদযাপন", icon: "leaf", label: "বৃক্ষরোপণ কার্যক্রমের ছবি এখানে যোগ করুন" }
     ]
   },
 
