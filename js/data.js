@@ -5,7 +5,7 @@ RJF.data = {
   brand: {
     name: "রূপসা জনকল্যাণ ফাউন্ডেশন",
     sub: "RUPSHA JANAKALYAN FOUNDATION",
-    logo: "Https://rupshajf.vercel.app/icons/logo.webp" // ব্যানার লোগো এই নামে/পাথে যোগ করুন
+    logo: "/icons/file_00000000ab908209aa1ec8e66e5efe5a.png" // ব্যানার লোগো এই নামে/পাথে যোগ করুন
   },
 
   nav: [
