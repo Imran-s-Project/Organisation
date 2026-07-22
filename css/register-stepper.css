@@ -1,0 +1,66 @@
+/* ---------- স্টেপার ---------- */
+.reg-stepper-desktop {
+  display: none;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+@media (min-width: 760px) {
+  .reg-stepper-desktop { display: flex; }
+}
+.reg-stepper-track {
+  position: absolute; left: 0; right: 0; top: 20px;
+  height: 3px; background: var(--line); border-radius: 4px; z-index: 0;
+}
+.reg-stepper-progress {
+  position: absolute; left: 0; top: 20px;
+  height: 3px; width: 0%; background: var(--marigold);
+  border-radius: 4px; z-index: 1; transition: width .4s ease;
+}
+.reg-step-item {
+  position: relative; z-index: 2;
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  width: 64px;
+}
+.reg-step-circle {
+  width: 40px; height: 40px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; background: #fff;
+  border: 2px solid var(--line); color: var(--ink-soft);
+  transition: all .25s ease;
+}
+.reg-step-text {
+  font-size: .72rem; font-weight: 600; text-align: center; color: var(--ink-soft);
+}
+.reg-step-item.is-active .reg-step-circle {
+  background: var(--teal); border-color: var(--teal); color: #fff;
+  box-shadow: 0 0 0 5px rgba(14, 95, 82, 0.15);
+}
+.reg-step-item.is-active .reg-step-text { color: var(--teal); font-weight: 700; }
+.reg-step-item.is-completed .reg-step-circle {
+  background: var(--marigold); border-color: var(--marigold); color: #fff;
+}
+.reg-step-item.is-completed .reg-step-text { color: var(--marigold-deep); font-weight: 700; }
+
+/* ---------- মোবাইল প্রোগ্রেস বার ---------- */
+.reg-stepper-mobile { margin-bottom: 28px; }
+@media (min-width: 760px) {
+  .reg-stepper-mobile { display: none; }
+}
+.reg-stepper-mobile-top {
+  display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 10px;
+}
+.reg-stepper-mobile-count {
+  font-size: .72rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em;
+  color: var(--ink-soft); margin: 0 0 2px;
+}
+.reg-stepper-mobile-title { font-size: 1rem; font-weight: 700; color: var(--teal); margin: 0; }
+.reg-stepper-mobile-percent { font-size: .85rem; font-weight: 700; color: var(--teal); }
+.reg-progress-track {
+  width: 100%; height: 8px; background: var(--line); border-radius: 100px; overflow: hidden;
+}
+.reg-progress-bar {
+  height: 100%; width: 0%; background: var(--marigold);
+  border-radius: 100px; transition: width .4s ease;
+}
