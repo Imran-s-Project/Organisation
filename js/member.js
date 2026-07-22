@@ -51,8 +51,8 @@ RJF.renderMemberPage = function () {
       '<div class="live-counter-wrapper">' +
         '<div class="live-widget">' +
           '<div class="live-indicator"><span class="pulse"></span></div>' +
-          '<div class="live-text"><i class="fa-solid fa-eye"></i>Now See</div>' +
-          '<div class="live-count-box"><span id="active-users">0</span>People</div>' +
+          '<div class="live-text"><i class="fa-solid fa-eye"></i>Now watching</div>' +
+          '<div class="live-count-box"><span id="active-users">0</span> </div>' +
         '</div>' +
       '</div>' +
 
