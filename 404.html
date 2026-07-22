@@ -147,22 +147,142 @@ main{
 }
 @keyframes cardIn{from{opacity:0;transform:translateY(30px) scale(0.96);}to{opacity:1;transform:translateY(0) scale(1);}}
 
-.error-code{
-  font-size:92px;
-  font-weight:700;
-  line-height:1;
-  background: linear-gradient(90deg,#ffffff,#80cbc4,#ffffff);
-  background-size:200% auto;
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
-  animation:shine 3s linear infinite;
-  text-shadow:0 0 40px rgba(128,203,196,0.35);
-}
-@keyframes shine{to{background-position:200% center;}}
+/* ---------- "404" লেখাটার ৮ রকম প্রো-লেভেল স্টাইল — প্রতিবার রিফ্রেশে র‍্যান্ডম একটা দেখাবে ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&display=swap');
 
-.icon-float{font-size:32px;color:var(--accent);margin:8px 0 6px;animation:bob 2.4s ease-in-out infinite;}
+.error-stage{
+  position:relative;
+  min-height:150px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:2px auto 8px;
+}
+
+.main-404{
+  font-family:'Baloo 2','Hind Siliguri',sans-serif;
+  font-size:90px;
+  font-weight:800;
+  line-height:1;
+  letter-spacing:2px;
+  display:flex;
+  gap:2px;
+}
+.main-404 span{ display:inline-block; }
+
+.scene-caption{
+  font-size:12.5px;color:var(--accent);text-align:center;
+  margin:2px 0 14px;min-height:16px;font-weight:500;opacity:0.9;
+}
+
+.icon-float{font-size:32px;color:var(--accent);margin:0 0 6px;animation:bob 2.4s ease-in-out infinite;}
 @keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+
+/* --- স্টাইল ১: নিয়ন গ্লো --- */
+.style-1 .main-404{
+  color:#eafffb;
+  text-shadow:
+    0 0 6px #80cbc4, 0 0 14px #80cbc4,
+    0 0 26px #26e0d1, 0 0 46px #12b8ab,
+    0 0 2px #fff;
+  animation:neonFlicker 2.6s infinite;
+}
+@keyframes neonFlicker{0%,19%,21%,23%,55%,57%,80%,100%{opacity:1;}20%,22%,56%{opacity:0.5;}}
+
+/* --- স্টাইল ২: থ্রিডি এমবস্‌ড ব্লক --- */
+.style-2 .main-404{
+  color:#ffe9b0;
+  text-shadow:
+    1px 1px 0 #d4af37,2px 2px 0 #c39c2e,3px 3px 0 #b28825,
+    4px 4px 0 #a1751d,5px 5px 0 #906214,6px 6px 10px rgba(0,0,0,0.5);
+  animation:d3Tilt 4s ease-in-out infinite;
+}
+@keyframes d3Tilt{0%,100%{transform:perspective(400px) rotateX(0deg);}50%{transform:perspective(400px) rotateX(10deg);}}
+
+/* --- স্টাইল ৩: একটা কার্টুন হাত সাইনবোর্ডে "৪০৪" ধরে আছে --- */
+.hand-sign{ display:none; }
+.style-3 .main-404{ display:none; }
+.style-3 .hand-sign{
+  display:flex; flex-direction:column; align-items:center; position:relative;
+}
+.sign-board{
+  background:#fff; color:#00251a; font-family:'Baloo 2','Hind Siliguri',sans-serif;
+  font-weight:800; font-size:42px; padding:8px 24px; border-radius:10px;
+  border:3px solid var(--gold); box-shadow:0 12px 26px rgba(0,0,0,0.4);
+  position:relative; z-index:2; transform-origin:bottom center;
+  animation:signWave 2.6s ease-in-out infinite;
+}
+.hand{ position:relative; width:70px; height:30px; margin-top:-12px; z-index:3; }
+.palm{ position:absolute; bottom:0; left:50%; transform:translateX(-50%); width:38px; height:24px;
+  background:linear-gradient(160deg,#ffe9b0,var(--gold)); border-radius:40% 40% 50% 50%;
+  box-shadow:0 4px 10px rgba(0,0,0,0.3); }
+.finger{ position:absolute; bottom:12px; width:8px; height:18px;
+  background:linear-gradient(160deg,#ffe9b0,var(--gold)); border-radius:6px; }
+.f1{ left:8px; transform:rotate(-8deg); }
+.f2{ left:21px; }
+.f3{ left:34px; transform:rotate(8deg); }
+.thumb{ position:absolute; bottom:4px; left:-2px; width:8px; height:15px;
+  background:linear-gradient(160deg,#ffe9b0,var(--gold)); border-radius:6px; transform:rotate(-40deg); }
+.arm{ width:15px; height:46px; background:linear-gradient(160deg,#ffe9b0,var(--gold));
+  border-radius:8px 8px 4px 4px; margin-top:-6px; box-shadow:0 4px 10px rgba(0,0,0,0.25); }
+@keyframes signWave{0%,100%{transform:rotate(-4deg);}50%{transform:rotate(4deg);}}
+
+/* --- স্টাইল ৪: গ্লসি বাবল / বেলুন --- */
+.style-4 .main-404{
+  background:radial-gradient(circle at 30% 25%, #ffffff 0%, #80cbc4 42%, #00796b 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  filter:drop-shadow(0 10px 16px rgba(0,0,0,0.35));
+  animation:bubbleFloat 2.8s ease-in-out infinite;
+}
+@keyframes bubbleFloat{0%,100%{transform:translateY(0) scale(1);}50%{transform:translateY(-9px) scale(1.03);}}
+
+/* --- স্টাইল ৫: ডিজিটাল গ্লিচ --- */
+.style-5 .main-404{ color:#fff; position:relative; animation:glitchMain 1.6s steps(2) infinite; }
+.style-5 .main-404::before,
+.style-5 .main-404::after{
+  content:'404'; position:absolute; left:0; top:0; width:100%; height:100%;
+  font-family:inherit; font-weight:inherit; letter-spacing:inherit; overflow:hidden;
+}
+.style-5 .main-404::before{ color:#ff3d5a; animation:glitchTop 1.6s steps(2) infinite; }
+.style-5 .main-404::after{ color:#26e0d1; animation:glitchBottom 1.6s steps(2) infinite; }
+@keyframes glitchMain{0%,100%{transform:translate(0);}20%{transform:translate(-2px,1px);}40%{transform:translate(2px,-1px);}60%{transform:translate(-1px,-1px);}80%{transform:translate(1px,1px);}}
+@keyframes glitchTop{0%,100%{transform:translate(0);}20%{transform:translate(3px,-2px);}50%{transform:translate(-3px,2px);}}
+@keyframes glitchBottom{0%,100%{transform:translate(0);}30%{transform:translate(-3px,2px);}60%{transform:translate(3px,-2px);}}
+
+/* --- স্টাইল ৬: লিকুইড ওয়েভ --- */
+.style-6 .main-404 span{
+  color:#80cbc4; text-shadow:0 0 20px rgba(128,203,196,0.6);
+  animation:liquidWave 2s ease-in-out infinite;
+}
+.style-6 .main-404 span:nth-child(1){animation-delay:0s;}
+.style-6 .main-404 span:nth-child(2){animation-delay:.15s;}
+.style-6 .main-404 span:nth-child(3){animation-delay:.3s;}
+@keyframes liquidWave{0%,100%{transform:translateY(0) skewX(0deg);}50%{transform:translateY(-12px) skewX(-6deg);}}
+
+/* --- স্টাইল ৭: রাবার স্ট্যাম্প --- */
+.style-7 .main-404{
+  color:transparent; -webkit-text-stroke:3px #d4af37;
+  border:4px double #d4af37; padding:6px 22px; border-radius:10px;
+  transform:rotate(-6deg); opacity:0.92;
+  animation:stampPulse 3s ease-in-out infinite;
+}
+@keyframes stampPulse{0%,100%{opacity:0.82;transform:rotate(-6deg);}50%{opacity:1;transform:rotate(-3deg);}}
+
+/* --- স্টাইল ৮: পেপার কাট-আউট, পিন করা --- */
+.style-8 .main-404{
+  color:#00251a; background:#fdf6e3; font-size:64px;
+  padding:8px 26px; border-radius:6px;
+  box-shadow:0 12px 24px rgba(0,0,0,0.4), inset 0 0 0 2px rgba(0,0,0,0.05);
+  transform:rotate(-3deg); position:relative;
+  animation:paperSway 3.4s ease-in-out infinite;
+}
+.style-8 .main-404::before, .style-8 .main-404::after{
+  content:''; position:absolute; top:-8px; width:12px;height:12px;border-radius:50%;
+  background:#c1632f; box-shadow:0 2px 4px rgba(0,0,0,0.4);
+}
+.style-8 .main-404::before{ left:16px; }
+.style-8 .main-404::after{ right:16px; }
+@keyframes paperSway{0%,100%{transform:rotate(-3deg);}50%{transform:rotate(2deg);}}
 
 h1{font-size:22px;font-weight:700;margin:6px 0 10px;}
 p.desc{font-size:15px;line-height:1.75;color:rgba(255,255,255,0.85);margin-bottom:24px;}
@@ -255,7 +375,9 @@ footer.site-footer{
 .footer-bottom{font-size:11.5px;color:rgba(255,255,255,0.4);}
 
 @media (max-width:480px){
-  .error-code{font-size:68px;}
+  .main-404{font-size:64px;}
+  .style-8 .main-404{font-size:46px;}
+  .error-stage{min-height:110px;}
   .card{padding:34px 20px 30px;border-radius:22px;}
   .quick-links{grid-template-columns:1fr;}
   .site-title{font-size:18px;}
@@ -269,7 +391,7 @@ footer.site-footer{
 <header class="site-header">
   <div class="header-content">
     <div class="logo-wrapper">
-      <img src="rupsha_jonokollan_foundation.webp" alt="Rupsha Public Welfare Foundation Logo" onerror="this.style.display='none'">
+      <img src="/icons/file_00000000ab908209aa1ec8e66e5efe5a.png" alt="Rupsha Public Welfare Foundation Logo" onerror="this.style.display='none'">
     </div>
     <div class="site-title">Rupsha Public Welfare Foundation</div>
     <div class="site-tagline">"Let service be your conviction, let public welfare be your victory."</div>
@@ -286,7 +408,23 @@ footer.site-footer{
 
 <main>
   <div class="card">
-    <div class="error-code">404</div>
+    <div class="error-stage" id="errorStage">
+      <div class="main-404" id="main404">
+        <span>4</span><span>0</span><span>4</span>
+      </div>
+      <div class="hand-sign" id="handSign">
+        <div class="sign-board">404</div>
+        <div class="hand">
+          <div class="finger f1"></div>
+          <div class="finger f2"></div>
+          <div class="finger f3"></div>
+          <div class="thumb"></div>
+          <div class="palm"></div>
+        </div>
+        <div class="arm"></div>
+      </div>
+    </div>
+    <p class="scene-caption" id="sceneCaption"></p>
     <div class="icon-float"><i class="fa-solid fa-compass"></i></div>
 
     <h1>Oops! Page not found.</h1>
@@ -299,22 +437,22 @@ footer.site-footer{
     </form>
     <div class="suggest-row">
       <span class="suggest-chip" onclick="quickSearch('দান')">Donate</span>
-      <span class="suggest-chip" onclick="quickSearch('গ্যালারি')">Gallery</span>
       <span class="suggest-chip" onclick="quickSearch('সদস্য')">Members</span>
-      <span class="suggest-chip" onclick="quickSearch('ব্লগ')">Blog</span>
+      <span class="suggest-chip" onclick="quickSearch('যাচাই')">Verify</span>
+      <span class="suggest-chip" onclick="quickSearch('যোগাযোগ')">Contact</span>
     </div>
 
     <div class="section-label">Useful links</div>
     <div class="quick-links">
       <a href="/"><i class="fa-solid fa-house"></i> Home page</a>
-      <a href="/about.html"><i class="fa-solid fa-users"></i> About us</a>
-      <a href="/gallery/"><i class="fa-solid fa-tasks"></i> Activities</a>
-      <a href="/gallery.html"><i class="fa-solid fa-images"></i> Gallery</a>
-      <a href="/blog.html"><i class="fa-solid fa-newspaper"></i> Blog</a>
-      <a href="/member/"><i class="fa-solid fa-people-group"></i> Members</a>
-      <a href="/from/"><i class="fa-solid fa-file-lines"></i> Member Registration Form</a>
+      <a href="/#somporke"><i class="fa-solid fa-circle-info"></i> About us</a>
+      <a href="/#/member"><i class="fa-solid fa-people-group"></i> Members</a>
       <a href="/verify.html"><i class="fa-solid fa-magnifying-glass"></i> Verify member</a>
-      <a href="/donate/" class="highlight"><i class="fa-solid fa-hand-holding-heart"></i> Donate</a>
+      <a href="/#অবস্থান"><i class="fa-solid fa-location-dot"></i> Contact us</a>
+      <a href="/#feedback-root"><i class="fa-solid fa-comment-dots"></i> Feedback</a>
+      <a href="/#/privacy"><i class="fa-solid fa-file-shield"></i> Privacy policy</a>
+      <a href="/#/terms"><i class="fa-solid fa-file-lines"></i> Terms of use</a>
+      <a href="/#/donate" class="highlight"><i class="fa-solid fa-hand-holding-heart"></i> Donate</a>
       <a href="https://www.facebook.com/rupshajonokollanfoundation" class="highlight"><i class="fa-brands fa-facebook-f"></i> Facebook page</a>
     </div>
 
@@ -348,6 +486,26 @@ footer.site-footer{
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
 
+// প্রতিবার পেজ লোড/রিফ্রেশে "404" লেখাটার ৮টা স্টাইলের মধ্যে থেকে একটা র‍্যান্ডম বেছে নেওয়া হয়
+(function () {
+  var styleNo = Math.floor(Math.random() * 8) + 1;
+  var stage = document.getElementById('errorStage');
+  if (stage) stage.classList.add('style-' + styleNo);
+
+  var captions = {
+    1: 'নিয়ন গ্লো স্টাইলে জ্বলছে',
+    2: 'থ্রিডি এমবস্‌ড স্টাইলে ভেসে আছে',
+    3: 'একটা কার্টুন হাত সাইনবোর্ডে "৪০৪" ধরে আছে!',
+    4: 'গ্লসি বাবল স্টাইলে ফুলে আছে',
+    5: 'ডিজিটাল গ্লিচ ইফেক্টে কাঁপছে',
+    6: 'লিকুইড ওয়েভ স্টাইলে দুলছে',
+    7: 'রাবার স্ট্যাম্পের মতো ছাপ মারা',
+    8: 'পেপার কাট-আউট স্টাইলে পিন করা'
+  };
+  var cap = document.getElementById('sceneCaption');
+  if (cap) cap.textContent = captions[styleNo] || '';
+})();
+
 // floating particles
 const particleContainer = document.getElementById('particles');
 for(let i=0;i<20;i++){
@@ -363,18 +521,14 @@ for(let i=0;i<20;i++){
 
 // smart search: map known keywords to real pages of the site
 const routeMap = [
-  { keys: ['দান','donate','ডোনেট','অনুদান'], url: '/donate/' },
-  { keys: ['গ্যালারি','ছবি','gallery','photo'], url: '/gallery.html' },
-  { keys: ['কার্যক্রম','activity'], url: '/gallery/' },
-  { keys: ['ব্লগ','blog','খবর','news'], url: '/blog.html' },
-  { keys: ['সদস্য','member','টিম','team','ভলান্টিয়ার'], url: '/member/' },
-  { keys: ['আমাদের সম্পর্কে','about','পরিচিতি'], url: '/about.html' },
-  { keys: ['রেজিস্ট্রেশন','নিবন্ধন','registration','ফরম'], url: '/from/' },
-  { keys: ['মিটিং','meeting'], url: '/meeting/' },
-  { keys: ['ফিডব্যাক','feedback','মতামত'], url: '/feedback/' },
-  { keys: ['সাবস্ক্রাইব','subscribe'], url: '/subscribe/' },
+  { keys: ['দান','donate','ডোনেট','অনুদান'], url: '/#/donate' },
+  { keys: ['সদস্য','member','টিম','team','ভলান্টিয়ার','কমিটি'], url: '/#/member' },
   { keys: ['যাচাই','verify'], url: '/verify.html' },
-  { keys: ['ড্যাশবোর্ড','dashboard','impact'], url: '/impact-dashboard.html' },
+  { keys: ['যোগাযোগ','contact','ঠিকানা','অবস্থান','location'], url: '/#অবস্থান' },
+  { keys: ['ফিডব্যাক','feedback','মতামত','রিভিউ','review'], url: '/#feedback-root' },
+  { keys: ['প্রাইভেসি','privacy'], url: '/#/privacy' },
+  { keys: ['শর্তাবলী','terms'], url: '/#/terms' },
+  { keys: ['আমাদের সম্পর্কে','about','পরিচিতি'], url: '/#somporke' },
 ];
 
 function resolveQuery(q){
