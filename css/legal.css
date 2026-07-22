@@ -4,6 +4,4 @@
 .legal-page p, .legal-page li{ color:#41504A; font-size:.98rem; margin-bottom:10px; }
 .legal-page ul{ padding-right:20px; }
 .legal-updated{ font-family:'Work Sans'; font-size:.8rem; color:var(--clay-dark); margin-bottom:26px; display:block; }
-.legal-back{ display:inline-flex; align-items:center; gap:6px; font-family:'Work Sans'; font-size:.85rem; font-weight:600; color:var(--clay-dark); margin-bottom:22px; }
-.legal-back svg{ width:16px; height:16px; }
-.legal-back:hover{ color:var(--river-deep); }
+/* ---------- "মূল পাতায় ফিরুন" — এখন শেয়ার্ড ফিক্সড বাটন, দেখুন css/back-home.css (.rjf-back-home) ---------- */
