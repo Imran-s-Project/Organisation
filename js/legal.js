@@ -37,7 +37,7 @@ RJF.renderLegalPage = function(key){
 
   root.innerHTML =
     '<div class="legal-page">' +
-      '<a class="rjf-back-home" href="#/">' + RJF.iconSvg('up', 'fill="none" stroke="currentColor" stroke-width="2" style="transform:rotate(-90deg)"') + '<span>মূল পাতায় ফিরুন</span></a>' +
+      '<a class="rjf-back-home" href="#/">' + RJF.iconSvg('up', 'fill="none" stroke="currentColor" stroke-width="2" style="transform:rotate(-90deg)"') + '<span>Go back</span></a>' +
       '<h1>' + c.title + '</h1>' +
       '<span class="legal-updated">' + c.updated + '</span>' +
       sectionsHtml +
