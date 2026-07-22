@@ -641,8 +641,4 @@ footer {
 .donate-page .amount-options { flex-wrap: wrap; }
 }
 
-/* "মূল পাতায় ফিরুন" লিংকের পাশে মার্জিন — উপরের জায়গাটা এখন .donate-page-এর নিজের padding-top থেকেই আসে */
-.donate-page > .legal-back {
-  display: inline-flex;
-  margin: 0 6vw 22px;
-}
+/* "মূল পাতায় ফিরুন" — এখন শেয়ার্ড ফিক্সড বাটন, দেখুন css/back-home.css (.rjf-back-home) */
