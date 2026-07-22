@@ -46,7 +46,7 @@ RJF.renderDonatePage = function () {
   root.innerHTML =
     '<div class="donate-page">' +
 
-      '<a class="legal-back" href="#/">' + RJF.iconSvg('up', 'fill="none" stroke="currentColor" stroke-width="2" style="transform:rotate(-90deg)"') + '<span>মূল পাতায় ফিরুন</span></a>' +
+      '<a class="rjf-back-home" href="#/">' + RJF.iconSvg('up', 'fill="none" stroke="currentColor" stroke-width="2" style="transform:rotate(-90deg)"') + '<span>মূল পাতায় ফিরুন</span></a>' +
 
       '<section class="hero-strip">' +
         '<p class="kicker">' + d.kicker + '</p>' +
