@@ -104,8 +104,6 @@ RJF.renderMemberPage = function () {
       '<canvas id="member-snow"></canvas>' +
     '</div>';
 
-  document.getElementById('memberYear').textContent = new Date().getFullYear();
-
   RJF._loadScriptOnce('https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js', 'firebase-app');
   RJF._loadScriptOnce('https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js', 'firebase-database');
 
