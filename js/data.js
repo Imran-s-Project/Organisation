@@ -14,6 +14,7 @@ RJF.data = {
     { label: "সম্পর্কে", href: "#somporke" },
     { label: "অবস্থান", href: "#অবস্থান" },
     { label: "সদস্যবৃন্দ", href: "#/member" },
+    { label: "গ্যালারি", href: "#/gallery" },
     { label: "দান করুন", href: "#/donate" }
   ],
 
