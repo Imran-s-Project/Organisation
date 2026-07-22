@@ -1,0 +1,13 @@
+/* verify.html — QR স্ক্যানার (html5-qrcode লাইব্রেরির ডিফল্ট UI ওভাররাইড) */
+#qr-reader { border: none !important; }
+#qr-reader button {
+    background-color: #0d9488;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    margin-top: 10px;
+    cursor: pointer;
+    border: none;
+    font-weight: bold;
+}
+#qr-reader a { display: none; }
