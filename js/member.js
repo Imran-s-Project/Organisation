@@ -37,7 +37,7 @@ RJF.renderMemberPage = function () {
   root.innerHTML =
     '<div class="member-page">' +
 
-      '<a class="rjf-back-home" href="#/">' + RJF.iconSvg('up', 'fill="none" stroke="currentColor" stroke-width="2" style="transform:rotate(-90deg)"') + '<span>মূল পাতায় ফিরুন</span></a>' +
+      '<a class="rjf-back-home" href="#/">' + RJF.iconSvg('up', 'fill="none" stroke="currentColor" stroke-width="2" style="transform:rotate(-90deg)"') + '<span>Go back</span></a>' +
 
       '<div class="hero-banner">' +
         '<div class="banner-content">' +
@@ -51,16 +51,16 @@ RJF.renderMemberPage = function () {
       '<div class="live-counter-wrapper">' +
         '<div class="live-widget">' +
           '<div class="live-indicator"><span class="pulse"></span></div>' +
-          '<div class="live-text"><i class="fa-solid fa-eye"></i>এখন দেখছে</div>' +
-          '<div class="live-count-box"><span id="active-users">0</span> জন</div>' +
+          '<div class="live-text"><i class="fa-solid fa-eye"></i>Now See</div>' +
+          '<div class="live-count-box"><span id="active-users">0</span>People</div>' +
         '</div>' +
       '</div>' +
 
       '<div class="stats-grid">' +
-        '<div class="stat-card"><div class="stat-icon"><i class="fa-solid fa-users"></i></div><div class="stat-value" id="stat-total">0</div><div class="stat-label">মোট সদস্য</div></div>' +
-        '<div class="stat-card"><div class="stat-icon"><i class="fa-solid fa-circle-check"></i></div><div class="stat-value" id="stat-active">0</div><div class="stat-label">সক্রিয় সদস্য</div></div>' +
-        '<div class="stat-card"><div class="stat-icon"><i class="fa-solid fa-id-card"></i></div><div class="stat-value" id="stat-verified">0</div><div class="stat-label">ভেরিফাইড আইডি</div></div>' +
-        '<div class="stat-card"><div class="stat-icon"><i class="fa-solid fa-sitemap"></i></div><div class="stat-value" id="stat-categories">0</div><div class="stat-label">বিভাগ / পদবী</div></div>' +
+        '<div class="stat-card"><div class="stat-icon"><i class="fa-solid fa-users"></i></div><div class="stat-value" id="stat-total">0</div><div class="stat-label">Total members</div></div>' +
+        '<div class="stat-card"><div class="stat-icon"><i class="fa-solid fa-circle-check"></i></div><div class="stat-value" id="stat-active">0</div><div class="stat-label">Active member</div></div>' +
+        '<div class="stat-card"><div class="stat-icon"><i class="fa-solid fa-id-card"></i></div><div class="stat-value" id="stat-verified">0</div><div class="stat-label">Verified ID</div></div>' +
+        '<div class="stat-card"><div class="stat-icon"><i class="fa-solid fa-sitemap"></i></div><div class="stat-value" id="stat-categories">0</div><div class="stat-label">Department / Designation</div></div>' +
       '</div>' +
 
       '<div class="controls-container">' +
@@ -75,11 +75,11 @@ RJF.renderMemberPage = function () {
       '<div class="scroll-frame-wrapper">' +
         '<div class="member-scroll-box" id="scroll-box"><div class="scroll-wrapper" id="scroll-content"></div></div>' +
         '<div class="scroll-controls">' +
-          '<button type="button" class="scroll-btn" id="memberScrollUp" aria-label="উপরে স্ক্রল করুন"><i class="fa-solid fa-chevron-up"></i></button>' +
-          '<button type="button" class="scroll-btn" id="memberScrollDown" aria-label="নিচে স্ক্রল করুন"><i class="fa-solid fa-chevron-down"></i></button>' +
+          '<button type="button" class="scroll-btn" id="memberScrollUp" aria-label="Scroll up"><i class="fa-solid fa-chevron-up"></i></button>' +
+          '<button type="button" class="scroll-btn" id="memberScrollDown" aria-label="Scroll down"><i class="fa-solid fa-chevron-down"></i></button>' +
         '</div>' +
       '</div>' +
-      '<p class="frame-hint"><i class="fa-solid fa-hand-pointer"></i> ধরে টেনে বা স্ক্রল করে সবাইকে দেখুন</p>' +
+      '<p class="frame-hint"><i class="fa-solid fa-hand-pointer"></i> আমাদের সম্মানিত সদস্য</p>' +
 
       '<div class="modal-overlay" id="modal">' +
         '<div class="modal-content" id="memberModalContent">' +
@@ -90,16 +90,16 @@ RJF.renderMemberPage = function () {
           '<span class="modal-status" id="modal-status"></span>' +
           '<p id="modal-desc">বিবরণ</p>' +
           '<a href="#" id="modal-member-link" target="_blank" rel="noopener" style="text-decoration:none;">' +
-            '<button type="button" id="modal-memberid" class="modal-id-btn">মেম্বার আইডি</button>' +
+            '<button type="button" id="modal-memberid" class="modal-id-btn">Member ID</button>' +
           '</a>' +
           '<div class="social-links" id="modal-social"></div>' +
-          '<button type="button" class="close-btn" id="memberModalCloseBtn">বন্ধ করুন</button>' +
+          '<button type="button" class="close-btn" id="memberModalCloseBtn">Close</button>' +
         '</div>' +
       '</div>' +
 
-      '<button type="button" class="scroll-top-btn" id="memberScrollTopBtn" title="উপরে যান"><i class="fa-solid fa-arrow-up"></i></button>' +
+      '<button type="button" class="scroll-top-btn" id="memberScrollTopBtn" title="Go up"><i class="fa-solid fa-arrow-up"></i></button>' +
 
-      '<footer class="member-foot"><p>&copy; <span id="memberYear"></span> <strong>রূপসা জনকল্যাণ ফাউন্ডেশন (RJ Foundation)</strong> — সর্বস্বত্ব সংরক্ষিত।</p></footer>' +
+      
 
       '<canvas id="member-snow"></canvas>' +
     '</div>';
