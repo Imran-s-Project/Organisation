@@ -2,412 +2,51 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>404</title>
-<meta name="theme-color" content="#004d40">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>404 | রূপসা জনকল্যাণ ফাউন্ডেশন</title>
+<meta name="theme-color" content="#0E3B36">
 <meta name="robots" content="noindex">
 <link rel="manifest" href="manifest.json">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Rupsha Janakalyan Foundation | Page not found">
-<meta property="og:description" content="Let service be the conviction, public welfare the victory — Return to our home page or search for the desired page.">
-<meta property="og:image" content="icons/meta-banner.png">
-<link rel="icon" type="image/png" href="icons/logo.webp">
+<meta property="og:description" content="সেবা হোক প্রত্যয়, জনকল্যাণ হোক জয় — সঠিক পেজে ফিরে যান অথবা খুঁজে নিন যা দরকার।">
+<link rel="icon" type="image/png" href="icons/favicon.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
 
-:root{
-  --primary-bg: linear-gradient(135deg, #004d40, #00796b);
-  --accent: #80cbc4;
-  --gold: #d4af37;
-  --glass: rgba(255,255,255,0.08);
-  --glass-border: rgba(255,255,255,0.16);
-}
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Hind Siliguri',sans-serif;}
-html{scroll-behavior:smooth;}
-body{
-  min-height:100vh;
-  background:#00251a;
-  color:#fff;
-  display:flex;
-  flex-direction:column;
-  overflow-x:hidden;
-}
-
-/* ---------- TOP MINI BAR (brand identity strip) ---------- */
-.brand-strip{
-  background:#00352b;
-  padding:8px 18px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  font-size:12.5px;
-  color:rgba(255,255,255,0.75);
-  border-bottom:1px solid rgba(255,255,255,0.06);
-  text-align:center;
-}
-.brand-strip i{color:var(--gold);}
-
-/* ---------- HEADER (mirrors real site header) ---------- */
-header.site-header{
-  position:relative;
-  width:100%;
-  padding:26px 20px 34px;
-  background: var(--primary-bg);
-  box-shadow:0 4px 20px rgba(0,0,0,0.25);
-  overflow:hidden;
-  text-align:center;
-}
-header.site-header::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(255,255,255,0.08), transparent 40%),
-    radial-gradient(circle at 80% 70%, rgba(255,255,255,0.06), transparent 45%);
-  pointer-events:none;
-}
-.header-content{
-  position:relative;
-  z-index:2;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:10px;
-}
-.logo-wrapper{
-  width:78px;height:78px;
-  border-radius:50%;
-  overflow:hidden;
-  border:3px solid rgba(255,255,255,0.55);
-  box-shadow:0 6px 24px rgba(0,0,0,0.35);
-  background:#fff;
-}
-.logo-wrapper img{width:100%;height:100%;object-fit:cover;display:block;}
-.site-title{
-  font-size:21px;
-  font-weight:700;
-  letter-spacing:0.3px;
-}
-.site-tagline{
-  font-size:13px;
-  color:var(--accent);
-  font-weight:500;
-  opacity:0.95;
-}
-
-/* breadcrumb */
-.breadcrumb{
-  position:relative;
-  z-index:2;
-  margin-top:18px;
-  font-size:12.5px;
-  color:rgba(255,255,255,0.75);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  flex-wrap:wrap;
-}
-.breadcrumb a{color:var(--accent); text-decoration:none;}
-.breadcrumb i{font-size:9px; opacity:0.7;}
-
-/* ---------- MAIN 404 CONTENT ---------- */
-main{
-  flex:1;
-  position:relative;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:40px 18px 60px;
-}
-.blob{position:fixed;border-radius:50%;filter:blur(60px);opacity:0.3;z-index:0;animation:float 12s ease-in-out infinite;}
-.blob1{width:280px;height:280px;background:#80cbc4;top:-80px;left:-80px;}
-.blob2{width:220px;height:220px;background:#004d40;bottom:-60px;right:-60px;animation-delay:2s;}
-.blob3{width:180px;height:180px;background:#26a69a;top:55%;left:82%;animation-delay:4s;}
-@keyframes float{0%,100%{transform:translate(0,0);}50%{transform:translate(20px,-30px);}}
-.particle{position:fixed;width:5px;height:5px;background:rgba(255,255,255,0.5);border-radius:50%;z-index:0;animation:rise linear infinite;}
-@keyframes rise{from{transform:translateY(0);opacity:0;}10%{opacity:1;}90%{opacity:1;}to{transform:translateY(-100vh);opacity:0;}}
-
-.card{
-  position:relative;
-  z-index:2;
-  max-width:560px;
-  width:100%;
-  background: var(--glass);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border:1px solid var(--glass-border);
-  border-radius:28px;
-  padding:44px 32px 38px;
-  text-align:center;
-  box-shadow:0 20px 60px rgba(0,0,0,0.35);
-  animation:cardIn 0.7s cubic-bezier(.2,.8,.2,1);
-}
-@keyframes cardIn{from{opacity:0;transform:translateY(30px) scale(0.96);}to{opacity:1;transform:translateY(0) scale(1);}}
-
-/* ---------- "404" লেখাটার ৮ রকম প্রো-লেভেল স্টাইল — প্রতিবার রিফ্রেশে র‍্যান্ডম একটা দেখাবে ---------- */
-@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&display=swap');
-
-.error-stage{
-  position:relative;
-  min-height:150px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin:2px auto 8px;
-}
-
-.main-404{
-  font-family:'Baloo 2','Hind Siliguri',sans-serif;
-  font-size:90px;
-  font-weight:800;
-  line-height:1;
-  letter-spacing:2px;
-  display:flex;
-  gap:2px;
-}
-.main-404 span{ display:inline-block; }
-
-.scene-caption{
-  font-size:12.5px;color:var(--accent);text-align:center;
-  margin:2px 0 14px;min-height:16px;font-weight:500;opacity:0.9;
-}
-
-.icon-float{font-size:32px;color:var(--accent);margin:0 0 6px;animation:bob 2.4s ease-in-out infinite;}
-@keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
-
-/* --- স্টাইল ১: নিয়ন গ্লো --- */
-.style-1 .main-404{
-  color:#eafffb;
-  text-shadow:
-    0 0 6px #80cbc4, 0 0 14px #80cbc4,
-    0 0 26px #26e0d1, 0 0 46px #12b8ab,
-    0 0 2px #fff;
-  animation:neonFlicker 2.6s infinite;
-}
-@keyframes neonFlicker{0%,19%,21%,23%,55%,57%,80%,100%{opacity:1;}20%,22%,56%{opacity:0.5;}}
-
-/* --- স্টাইল ২: থ্রিডি এমবস্‌ড ব্লক --- */
-.style-2 .main-404{
-  color:#ffe9b0;
-  text-shadow:
-    1px 1px 0 #d4af37,2px 2px 0 #c39c2e,3px 3px 0 #b28825,
-    4px 4px 0 #a1751d,5px 5px 0 #906214,6px 6px 10px rgba(0,0,0,0.5);
-  animation:d3Tilt 4s ease-in-out infinite;
-}
-@keyframes d3Tilt{0%,100%{transform:perspective(400px) rotateX(0deg);}50%{transform:perspective(400px) rotateX(10deg);}}
-
-/* --- স্টাইল ৩: একটা কার্টুন হাত সাইনবোর্ডে "৪০৪" ধরে আছে --- */
-.hand-sign{ display:none; }
-.style-3 .main-404{ display:none; }
-.style-3 .hand-sign{
-  display:flex; flex-direction:column; align-items:center; position:relative;
-}
-.sign-board{
-  background:#fff; color:#00251a; font-family:'Baloo 2','Hind Siliguri',sans-serif;
-  font-weight:800; font-size:42px; padding:8px 24px; border-radius:10px;
-  border:3px solid var(--gold); box-shadow:0 12px 26px rgba(0,0,0,0.4);
-  position:relative; z-index:2; transform-origin:bottom center;
-  animation:signWave 2.6s ease-in-out infinite;
-}
-.hand{ position:relative; width:70px; height:30px; margin-top:-12px; z-index:3; }
-.palm{ position:absolute; bottom:0; left:50%; transform:translateX(-50%); width:38px; height:24px;
-  background:linear-gradient(160deg,#ffe9b0,var(--gold)); border-radius:40% 40% 50% 50%;
-  box-shadow:0 4px 10px rgba(0,0,0,0.3); }
-.finger{ position:absolute; bottom:12px; width:8px; height:18px;
-  background:linear-gradient(160deg,#ffe9b0,var(--gold)); border-radius:6px; }
-.f1{ left:8px; transform:rotate(-8deg); }
-.f2{ left:21px; }
-.f3{ left:34px; transform:rotate(8deg); }
-.thumb{ position:absolute; bottom:4px; left:-2px; width:8px; height:15px;
-  background:linear-gradient(160deg,#ffe9b0,var(--gold)); border-radius:6px; transform:rotate(-40deg); }
-.arm{ width:15px; height:46px; background:linear-gradient(160deg,#ffe9b0,var(--gold));
-  border-radius:8px 8px 4px 4px; margin-top:-6px; box-shadow:0 4px 10px rgba(0,0,0,0.25); }
-@keyframes signWave{0%,100%{transform:rotate(-4deg);}50%{transform:rotate(4deg);}}
-
-/* --- স্টাইল ৪: গ্লসি বাবল / বেলুন --- */
-.style-4 .main-404{
-  background:radial-gradient(circle at 30% 25%, #ffffff 0%, #80cbc4 42%, #00796b 100%);
-  -webkit-background-clip:text; background-clip:text; color:transparent;
-  filter:drop-shadow(0 10px 16px rgba(0,0,0,0.35));
-  animation:bubbleFloat 2.8s ease-in-out infinite;
-}
-@keyframes bubbleFloat{0%,100%{transform:translateY(0) scale(1);}50%{transform:translateY(-9px) scale(1.03);}}
-
-/* --- স্টাইল ৫: ডিজিটাল গ্লিচ --- */
-.style-5 .main-404{ color:#fff; position:relative; animation:glitchMain 1.6s steps(2) infinite; }
-.style-5 .main-404::before,
-.style-5 .main-404::after{
-  content:'404'; position:absolute; left:0; top:0; width:100%; height:100%;
-  font-family:inherit; font-weight:inherit; letter-spacing:inherit; overflow:hidden;
-}
-.style-5 .main-404::before{ color:#ff3d5a; animation:glitchTop 1.6s steps(2) infinite; }
-.style-5 .main-404::after{ color:#26e0d1; animation:glitchBottom 1.6s steps(2) infinite; }
-@keyframes glitchMain{0%,100%{transform:translate(0);}20%{transform:translate(-2px,1px);}40%{transform:translate(2px,-1px);}60%{transform:translate(-1px,-1px);}80%{transform:translate(1px,1px);}}
-@keyframes glitchTop{0%,100%{transform:translate(0);}20%{transform:translate(3px,-2px);}50%{transform:translate(-3px,2px);}}
-@keyframes glitchBottom{0%,100%{transform:translate(0);}30%{transform:translate(-3px,2px);}60%{transform:translate(3px,-2px);}}
-
-/* --- স্টাইল ৬: লিকুইড ওয়েভ --- */
-.style-6 .main-404 span{
-  color:#80cbc4; text-shadow:0 0 20px rgba(128,203,196,0.6);
-  animation:liquidWave 2s ease-in-out infinite;
-}
-.style-6 .main-404 span:nth-child(1){animation-delay:0s;}
-.style-6 .main-404 span:nth-child(2){animation-delay:.15s;}
-.style-6 .main-404 span:nth-child(3){animation-delay:.3s;}
-@keyframes liquidWave{0%,100%{transform:translateY(0) skewX(0deg);}50%{transform:translateY(-12px) skewX(-6deg);}}
-
-/* --- স্টাইল ৭: রাবার স্ট্যাম্প --- */
-.style-7 .main-404{
-  color:transparent; -webkit-text-stroke:3px #d4af37;
-  border:4px double #d4af37; padding:6px 22px; border-radius:10px;
-  transform:rotate(-6deg); opacity:0.92;
-  animation:stampPulse 3s ease-in-out infinite;
-}
-@keyframes stampPulse{0%,100%{opacity:0.82;transform:rotate(-6deg);}50%{opacity:1;transform:rotate(-3deg);}}
-
-/* --- স্টাইল ৮: পেপার কাট-আউট, পিন করা --- */
-.style-8 .main-404{
-  color:#00251a; background:#fdf6e3; font-size:64px;
-  padding:8px 26px; border-radius:6px;
-  box-shadow:0 12px 24px rgba(0,0,0,0.4), inset 0 0 0 2px rgba(0,0,0,0.05);
-  transform:rotate(-3deg); position:relative;
-  animation:paperSway 3.4s ease-in-out infinite;
-}
-.style-8 .main-404::before, .style-8 .main-404::after{
-  content:''; position:absolute; top:-8px; width:12px;height:12px;border-radius:50%;
-  background:#c1632f; box-shadow:0 2px 4px rgba(0,0,0,0.4);
-}
-.style-8 .main-404::before{ left:16px; }
-.style-8 .main-404::after{ right:16px; }
-@keyframes paperSway{0%,100%{transform:rotate(-3deg);}50%{transform:rotate(2deg);}}
-
-h1{font-size:22px;font-weight:700;margin:6px 0 10px;}
-p.desc{font-size:15px;line-height:1.75;color:rgba(255,255,255,0.85);margin-bottom:24px;}
-p.desc b{color:var(--accent);}
-
-.search-box{
-  display:flex;align-items:center;
-  background:rgba(255,255,255,0.1);
-  border:1px solid rgba(255,255,255,0.2);
-  border-radius:14px;
-  padding:6px 6px 6px 16px;
-  margin-bottom:24px;
-  transition:.3s;
-}
-.search-box:focus-within{border-color:var(--accent);background:rgba(255,255,255,0.15);}
-.search-box i{color:rgba(255,255,255,0.6);margin-right:10px;}
-.search-box input{flex:1;background:transparent;border:none;outline:none;color:#fff;font-size:14px;padding:10px 0;}
-.search-box input::placeholder{color:rgba(255,255,255,0.5);}
-.search-box button{
-  background:var(--accent);color:#00332c;border:none;border-radius:10px;
-  padding:10px 16px;font-weight:600;font-size:14px;cursor:pointer;transition:.25s;white-space:nowrap;
-}
-.search-box button:hover{background:#a2ded6;transform:translateY(-1px);}
-.suggest-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:-12px 0 24px;}
-.suggest-chip{
-  font-size:12px;color:rgba(255,255,255,0.7);
-  border:1px solid rgba(255,255,255,0.15);
-  padding:5px 12px;border-radius:20px;cursor:pointer;transition:.2s;
-}
-.suggest-chip:hover{background:rgba(255,255,255,0.12);color:#fff;border-color:var(--accent);}
-
-.section-label{
-  font-size:12px;color:rgba(255,255,255,0.55);
-  text-transform:uppercase;letter-spacing:1px;
-  margin:0 0 12px;text-align:left;font-weight:600;
-}
-.quick-links{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:26px;}
-.quick-links a{
-  display:flex;align-items:center;gap:9px;text-decoration:none;color:#fff;
-  background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);
-  padding:13px 14px;border-radius:12px;font-size:13.5px;font-weight:500;transition:.25s;
-}
-.quick-links a:hover{background:rgba(255,255,255,0.16);transform:translateY(-2px);border-color:var(--accent);}
-.quick-links a.highlight{
-  background:linear-gradient(135deg, rgba(212,175,55,0.22), rgba(212,175,55,0.08));
-  border-color:rgba(212,175,55,0.4);
-}
-.quick-links i{color:var(--accent);font-size:15px;width:16px;text-align:center;}
-.quick-links a.highlight i{color:var(--gold);}
-
-.home-btn{
-  display:inline-flex;align-items:center;gap:8px;background:#fff;color:#004d40;
-  text-decoration:none;font-weight:700;font-size:15px;padding:13px 30px;border-radius:14px;
-  box-shadow:0 8px 24px rgba(0,0,0,0.25);transition:.25s;
-}
-.home-btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,0,0,0.3);}
-
-.redirect-note{margin-top:18px;font-size:12.5px;color:rgba(255,255,255,0.6);}
-.redirect-note span{color:var(--accent);font-weight:600;}
-.redirect-note a{color:var(--accent);text-decoration:underline;cursor:pointer;}
-
-.help-line{
-  margin-top:26px;padding-top:22px;
-  border-top:1px solid rgba(255,255,255,0.12);
-  font-size:12.5px;color:rgba(255,255,255,0.6);
-  display:flex;flex-wrap:wrap;gap:14px;justify-content:center;
-}
-.help-line a{color:rgba(255,255,255,0.85);text-decoration:none;display:inline-flex;align-items:center;gap:6px;}
-.help-line a:hover{color:var(--accent);}
-
-/* ---------- FOOTER (mirrors real site footer) ---------- */
-footer.site-footer{
-  position:relative;
-  z-index:2;
-  background:#001e16;
-  padding:32px 20px 18px;
-  text-align:center;
-  border-top:1px solid rgba(255,255,255,0.06);
-}
-.footer-name{font-size:15px;font-weight:700;margin-bottom:6px;}
-.footer-quote{font-size:12.5px;color:var(--accent);font-style:italic;margin-bottom:14px;}
-.footer-social{display:flex;gap:12px;justify-content:center;margin-bottom:16px;}
-.footer-social a{
-  width:34px;height:34px;border-radius:50%;
-  background:rgba(255,255,255,0.08);
-  display:flex;align-items:center;justify-content:center;
-  color:#fff;text-decoration:none;font-size:14px;transition:.25s;
-}
-.footer-social a:hover{background:var(--accent);color:#00332c;transform:translateY(-2px);}
-.footer-bottom{font-size:11.5px;color:rgba(255,255,255,0.4);}
-
-@media (max-width:480px){
-  .main-404{font-size:64px;}
-  .style-8 .main-404{font-size:46px;}
-  .error-stage{min-height:110px;}
-  .card{padding:34px 20px 30px;border-radius:22px;}
-  .quick-links{grid-template-columns:1fr;}
-  .site-title{font-size:18px;}
-}
-</style>
+<!-- ঠিক index.html-এর মতোই একই ডিজাইন-সিস্টেম ফাইলগুলো লোড হচ্ছে, -->
+<!-- তাই নেভিগেশন বার ও ফুটার হোমপেজের সাথে হুবহু মিলে যাবে -->
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/nav.css">
+<link rel="stylesheet" href="css/footer.css">
+<link rel="stylesheet" href="css/back-home.css">
+<link rel="stylesheet" href="css/error.css">
 </head>
 <body>
 
-<div class="brand-strip"><i class="fa-solid fa-heart"></i> Rupsha Public Welfare Foundation — Official Website</div>
+<!-- নেভিগেশন বার — হোমপেজের মতোই js/nav.js দিয়ে রেন্ডার হবে -->
+<div id="nav-root"></div>
 
-<header class="site-header">
-  <div class="header-content">
-    <div class="logo-wrapper">
-      <img src="/icons/file_00000000ab908209aa1ec8e66e5efe5a.png" alt="Rupsha Public Welfare Foundation Logo" onerror="this.style.display='none'">
-    </div>
-    <div class="site-title">Rupsha Public Welfare Foundation</div>
-    <div class="site-tagline">"Let service be your conviction, let public welfare be your victory."</div>
-  </div>
+<main class="error-page">
+  <a class="rjf-back-home" href="/">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="transform:rotate(-90deg)"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+    <span>Go back</span>
+  </a>
+
   <div class="breadcrumb">
-    <a href="/"> home</a> <i class="fa-solid fa-chevron-right"></i> <span>Page not found.</span>
+    <a href="/">হোম</a> <i class="fa-solid fa-chevron-right"></i> <span>Page not found</span>
   </div>
-</header>
 
-<div class="blob blob1"></div>
-<div class="blob blob2"></div>
-<div class="blob blob3"></div>
-<div id="particles"></div>
+  <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
+  <div class="blob blob3"></div>
 
-<main>
-  <div class="card">
+  <div class="error-card">
     <div class="error-stage" id="errorStage">
       <div class="main-404" id="main404">
         <span>4</span><span>0</span><span>4</span>
@@ -428,63 +67,69 @@ footer.site-footer{
     <div class="icon-float"><i class="fa-solid fa-compass"></i></div>
 
     <h1>Oops! Page not found.</h1>
-    <p class="desc">The page you're looking for may have been deleted, renamed, or the link is broken. But don't worry — <b>Use the options below to return to the correct page of Rupsha Janakalyan Foundation.</p>
+    <p class="desc">যে পেজটা খুঁজছেন সেটা হয়তো ডিলিট হয়ে গেছে, নাম বদলে গেছে, অথবা লিংকটা ভুল। চিন্তা নেই — <b>নিচের অপশনগুলো থেকে রূপসা জনকল্যাণ ফাউন্ডেশনের সঠিক পেজে ফিরে যান।</b></p>
 
     <form class="search-box" id="searchForm" onsubmit="return handleSearch(event)">
       <i class="fa-solid fa-magnifying-glass"></i>
-      <input type="text" id="searchInput" placeholder=" Type what you are looking for...">
-      <button type="submit">Search</button>
+      <input type="text" id="searchInput" placeholder="যা খুঁজছেন লিখুন...">
+      <button type="submit">খুঁজুন</button>
     </form>
     <div class="suggest-row">
-      <span class="suggest-chip" onclick="quickSearch('দান')">Donate</span>
-      <span class="suggest-chip" onclick="quickSearch('সদস্য')">Members</span>
-      <span class="suggest-chip" onclick="quickSearch('যাচাই')">Verify</span>
-      <span class="suggest-chip" onclick="quickSearch('যোগাযোগ')">Contact</span>
+      <span class="suggest-chip" onclick="quickSearch('দান')">দান করুন</span>
+      <span class="suggest-chip" onclick="quickSearch('সদস্য')">সদস্যবৃন্দ</span>
+      <span class="suggest-chip" onclick="quickSearch('যাচাই')">যাচাই</span>
+      <span class="suggest-chip" onclick="quickSearch('যোগাযোগ')">যোগাযোগ</span>
     </div>
 
     <div class="section-label">Useful links</div>
     <div class="quick-links">
-      <a href="/"><i class="fa-solid fa-house"></i> Home page</a>
-      <a href="/#somporke"><i class="fa-solid fa-circle-info"></i> About us</a>
-      <a href="/#/member"><i class="fa-solid fa-people-group"></i> Members</a>
-      <a href="/verify.html"><i class="fa-solid fa-magnifying-glass"></i> Verify member</a>
-      <a href="/#অবস্থান"><i class="fa-solid fa-location-dot"></i> Contact us</a>
-      <a href="/#feedback-root"><i class="fa-solid fa-comment-dots"></i> Feedback</a>
-      <a href="/#/privacy"><i class="fa-solid fa-file-shield"></i> Privacy policy</a>
-      <a href="/#/terms"><i class="fa-solid fa-file-lines"></i> Terms of use</a>
-      <a href="/#/donate" class="highlight"><i class="fa-solid fa-hand-holding-heart"></i> Donate</a>
-      <a href="https://www.facebook.com/rupshajonokollanfoundation" class="highlight"><i class="fa-brands fa-facebook-f"></i> Facebook page</a>
+      <a href="/"><i class="fa-solid fa-house"></i> হোম পেজ</a>
+      <a href="/#somporke"><i class="fa-solid fa-circle-info"></i> আমাদের সম্পর্কে</a>
+      <a href="/#/member"><i class="fa-solid fa-people-group"></i> সদস্যবৃন্দ</a>
+      <a href="/verify.html"><i class="fa-solid fa-magnifying-glass"></i> সদস্য যাচাই</a>
+      <a href="/#অবস্থান"><i class="fa-solid fa-location-dot"></i> যোগাযোগ</a>
+      <a href="/#feedback-root"><i class="fa-solid fa-comment-dots"></i> ফিডব্যাক</a>
+      <a href="/#/privacy"><i class="fa-solid fa-file-shield"></i> প্রাইভেসি পলিসি</a>
+      <a href="/#/terms"><i class="fa-solid fa-file-lines"></i> ব্যবহারের শর্তাবলী</a>
+      <a href="/#/donate" class="highlight"><i class="fa-solid fa-hand-holding-heart"></i> দান করুন</a>
+      <a href="https://www.facebook.com/rupshajonokollanfoundation" class="highlight"><i class="fa-brands fa-facebook-f"></i> ফেসবুক পেজ</a>
     </div>
 
-    <a href="/" class="home-btn"><i class="fa-solid fa-arrow-left-long"></i> Return to home page</a>
+    <a href="/" class="home-btn"><i class="fa-solid fa-arrow-left-long"></i> হোম পেজে ফিরে যান</a>
 
     <div class="redirect-note">
-      <span id="countdown">10</span> Automatically going to the home page after a few seconds —
-      <a onclick="cancelRedirect()" id="cancelLink">Cancel</a>
+      <span id="countdown">১০</span> সেকেন্ডে স্বয়ংক্রিয়ভাবে হোম পেজে নিয়ে যাওয়া হবে —
+      <a onclick="cancelRedirect()" id="cancelLink">বাতিল করুন</a>
     </div>
 
     <div class="help-line">
       <a href="mailto:info.rjfoundation25@gmail.com"><i class="fa-solid fa-envelope"></i> info.rjfoundation25@gmail.com</a>
-      <a href="https://wa.me/8801957329211"><i class="fa-brands fa-whatsapp"></i> Contact on WhatsApp</a>
+      <a href="https://wa.me/8801957329211"><i class="fa-brands fa-whatsapp"></i> WhatsApp-এ যোগাযোগ করুন</a>
     </div>
   </div>
 </main>
 
-<footer class="site-footer">
-  <div class="footer-name">রূপসা জনকল্যাণ ফাউন্ডেশন</div>
-  <div class="footer-quote">"সেবা হোক প্রত্যয়, জনকল্যাণ হোক জয়"</div>
-  <div class="footer-social">
-    <a href="https://www.facebook.com/rupshajonokollanfoundation" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-    <a href="https://youtube.com/channel/UCempOBWhLCDczEKN2j859Iw" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
-    <a href="https://m.me/803315036207248" title="Messenger"><i class="fa-brands fa-facebook-messenger"></i></a>
-    <a href="https://wa.me/8801957329211" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-    <a href="mailto:info.rjfoundation25@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
-  </div>
-  <div class="footer-bottom">স্বত্ব &copy; <span id="year"></span> রূপসা জনকল্যাণ ফাউন্ডেশন — সর্ব স্বত্ব সংরক্ষিত।</div>
-</footer>
+<!-- ফুটার — হোমপেজের মতোই js/footer.js দিয়ে রেন্ডার হবে (একই কুইক লিংক, নীতিমালা লিংক, সোশ্যাল আইকন) -->
+<div id="footer-root"></div>
 
+<script src="js/data.js"></script>
+<script src="js/icons.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/footer.js"></script>
 <script>
-document.getElementById('year').textContent = new Date().getFullYear();
+document.addEventListener('DOMContentLoaded', function () {
+  // হোমপেজের মতো একই ইঞ্জিন দিয়ে নেভ ও ফুটার তৈরি
+  RJF.renderNav();
+  RJF.renderFooter();
+
+  // nav.js/footer.js যে লিংকগুলো বানায় (যেমন "#hero", "#/donate") সেগুলো
+  // index.html-এর ভেতরের জন্য বানানো। যেহেতু আমরা এখন 404.html-এ আছি,
+  // সেগুলোর সামনে "/" জুড়ে দিচ্ছি যাতে ক্লিক করলে সরাসরি হোম পেজের
+  // সঠিক জায়গায় নিয়ে যায় (যেমন "#/donate" → "/#/donate")
+  document.querySelectorAll('#nav-root a[href^="#"], #footer-root a[href^="#"]').forEach(function (a) {
+    a.setAttribute('href', '/' + a.getAttribute('href'));
+  });
+});
 
 // প্রতিবার পেজ লোড/রিফ্রেশে "404" লেখাটার ৮টা স্টাইলের মধ্যে থেকে একটা র‍্যান্ডম বেছে নেওয়া হয়
 (function () {
@@ -506,21 +151,8 @@ document.getElementById('year').textContent = new Date().getFullYear();
   if (cap) cap.textContent = captions[styleNo] || '';
 })();
 
-// floating particles
-const particleContainer = document.getElementById('particles');
-for(let i=0;i<20;i++){
-  const p = document.createElement('div');
-  p.className = 'particle';
-  p.style.left = Math.random()*100 + 'vw';
-  p.style.bottom = '-10px';
-  p.style.animationDuration = (8 + Math.random()*10) + 's';
-  p.style.animationDelay = (Math.random()*10) + 's';
-  p.style.opacity = Math.random()*0.5 + 0.2;
-  particleContainer.appendChild(p);
-}
-
-// smart search: map known keywords to real pages of the site
-const routeMap = [
+// smart search: known keywords → real পেজের রুট
+var routeMap = [
   { keys: ['দান','donate','ডোনেট','অনুদান'], url: '/#/donate' },
   { keys: ['সদস্য','member','টিম','team','ভলান্টিয়ার','কমিটি'], url: '/#/member' },
   { keys: ['যাচাই','verify'], url: '/verify.html' },
@@ -531,35 +163,37 @@ const routeMap = [
   { keys: ['আমাদের সম্পর্কে','about','পরিচিতি'], url: '/#somporke' },
 ];
 
-function resolveQuery(q){
+function resolveQuery(q) {
   q = q.trim().toLowerCase();
-  if(!q) return '/';
-  const match = routeMap.find(r => r.keys.some(k => q.includes(k.toLowerCase())));
+  if (!q) return '/';
+  var match = routeMap.find(function (r) { return r.keys.some(function (k) { return q.includes(k.toLowerCase()); }); });
   return match ? match.url : '/';
 }
-function handleSearch(e){
+function handleSearch(e) {
   e.preventDefault();
   window.location.href = resolveQuery(document.getElementById('searchInput').value);
   return false;
 }
-function quickSearch(term){
+function quickSearch(term) {
   window.location.href = resolveQuery(term);
 }
 
 // auto redirect countdown
-let seconds = 10;
-let redirectTimer;
-const countdownEl = document.getElementById('countdown');
-function tick(){
+var bnDigits = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+function toBn(n) { return String(n).split('').map(function (d) { return /\d/.test(d) ? bnDigits[d] : d; }).join(''); }
+var seconds = 10;
+var redirectTimer;
+var countdownEl = document.getElementById('countdown');
+function tick() {
   seconds--;
-  if(seconds <= 0){ window.location.href = '/'; return; }
-  countdownEl.textContent = seconds;
+  if (seconds <= 0) { window.location.href = '/'; return; }
+  countdownEl.textContent = toBn(seconds);
   redirectTimer = setTimeout(tick, 1000);
 }
 redirectTimer = setTimeout(tick, 1000);
-function cancelRedirect(){
+function cancelRedirect() {
   clearTimeout(redirectTimer);
-  document.querySelector('.redirect-note').innerHTML = '✔️ Automatic redirect canceled';
+  document.querySelector('.redirect-note').innerHTML = '✔️ স্বয়ংক্রিয় রিডাইরেক্ট বাতিল করা হয়েছে';
 }
 </script>
 
