@@ -1,0 +1,352 @@
+/* ==========================================================================
+   ফটো গ্যালারি পেজ — #/gallery রুট
+   .gallery-page এর ভেতরেই সব স্টাইল আটকে রাখা হয়েছে, রঙ ও টাইপোগ্রাফি
+   মূল হোমপেজের ডিজাইন-ভাষা (variables.css) থেকে নেওয়া — যাতে member/donate
+   পেজের মতোই একই সাইটের অংশ মনে হয়
+   ========================================================================== */
+
+.gallery-page {
+  --g-bg: var(--rice);
+  --g-surface: var(--white);
+  --g-border: rgba(14, 59, 54, 0.14);
+  --g-accent: var(--clay);
+  --g-accent-2: var(--turmeric);
+  --g-text-main: var(--river-deep);
+  --g-text-sub: #5c655f;
+  --g-radius-lg: 24px;
+  --g-radius-md: 16px;
+  --g-transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+  --g-max-width: 1180px;
+
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  max-width: var(--g-max-width);
+  padding: 130px 20px 60px;
+  font-family: 'Hind Siliguri', sans-serif;
+  color: var(--g-text-main);
+  line-height: 1.5;
+}
+
+.gallery-page * { box-sizing: border-box; }
+.gallery-page h1, .gallery-page h2, .gallery-page h3, .gallery-page h4 { font-family: 'Baloo Da 2', 'Hind Siliguri', sans-serif; }
+.gallery-page h1, .gallery-page h2, .gallery-page h3, .gallery-page h4, .gallery-page p { margin: 0; }
+.gallery-page a { color: inherit; text-decoration: none; }
+.gallery-page button { font-family: inherit; }
+.gallery-page img { max-width: 100%; display: block; }
+
+/* ---------- "মূল পাতায় ফিরুন" — শেয়ার্ড বাটন, দেখুন css/back-home.css ---------- */
+
+/* ---------- হিরো সেকশন ---------- */
+.gallery-page .gallery-hero {
+  width: 100%;
+  padding: 48px 24px;
+  margin-bottom: 30px;
+  background: linear-gradient(-45deg, var(--river-deep), var(--river-deep-2), var(--river-deep), var(--clay-dark));
+  background-size: 400% 400%;
+  animation: galleryGradientBG 10s ease infinite;
+  border-radius: var(--g-radius-lg);
+  border: 1px solid var(--g-border);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(14, 59, 46, 0.28);
+  text-align: center;
+}
+@keyframes galleryGradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.gallery-page .gallery-hero-particles span {
+  position: absolute;
+  background: rgba(227, 167, 62, 0.25);
+  border-radius: 50%;
+  animation: galleryFloatParticle 6s infinite ease-in-out;
+}
+.gallery-page .gallery-hero-particles span:nth-child(1) { width: 50px; height: 50px; left: 8%; top: -10px; animation-delay: 0s; }
+.gallery-page .gallery-hero-particles span:nth-child(2) { width: 30px; height: 30px; right: 12%; bottom: -5px; animation-delay: 2s; }
+.gallery-page .gallery-hero-particles span:nth-child(3) { width: 18px; height: 18px; left: 45%; top: 15px; animation-delay: 4s; }
+@keyframes galleryFloatParticle {
+  0% { transform: translateY(0) scale(1); opacity: 0.4; }
+  50% { transform: translateY(-15px) scale(1.1); opacity: 0.8; }
+  100% { transform: translateY(0) scale(1); opacity: 0.4; }
+}
+
+.gallery-page .gallery-hero-content { position: relative; z-index: 2; }
+.gallery-page .gallery-hero-content .eyebrow {
+  display: inline-block;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  color: var(--turmeric);
+  background: rgba(227, 167, 62, 0.12);
+  border: 1px solid rgba(227, 167, 62, 0.3);
+  padding: 5px 16px;
+  border-radius: 50px;
+  margin-bottom: 14px;
+  font-family: 'Work Sans', sans-serif;
+  text-transform: uppercase;
+}
+.gallery-page .gallery-hero-content h1 {
+  color: var(--white);
+  font-size: clamp(1.7rem, 4vw, 2.7rem);
+  font-weight: 700;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.35);
+  letter-spacing: 0.3px;
+}
+.gallery-page .gallery-hero-content p {
+  margin-top: 10px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+}
+
+/* সাবস্ক্রাইব বাটন — হিরোর ভেতরেই, আলাদা ফিক্সড ন্যাভবার না রেখে সাইটের ভাষায় বসানো */
+.gallery-page .gallery-subscribe-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 22px;
+  padding: 11px 26px;
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 100px;
+  color: var(--white);
+  font-weight: 600;
+  font-size: 0.95rem;
+  overflow: hidden;
+  transition: var(--g-transition);
+}
+.gallery-page .gallery-subscribe-btn:hover {
+  background: var(--white);
+  color: var(--river-deep);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.22);
+}
+.gallery-page .gallery-shimmer {
+  position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.35), transparent);
+  animation: galleryShine 4s infinite linear;
+}
+@keyframes galleryShine {
+  0% { left: -100%; } 20% { left: 100%; } 100% { left: 100%; }
+}
+
+/* ---------- গ্যালারি / ভিডিও টগল সুইচার ---------- */
+.gallery-page .gallery-toggle-wrap { display: flex; justify-content: center; margin-bottom: 34px; }
+.gallery-page .gallery-toggle {
+  position: relative;
+  background: var(--g-surface);
+  border: 1px solid var(--g-border);
+  border-radius: 100px;
+  padding: 5px;
+  display: flex;
+  width: fit-content;
+  box-shadow: 0 12px 30px rgba(14, 59, 54, 0.08);
+}
+.gallery-page .gallery-toggle-slider {
+  position: absolute;
+  top: 5px; left: 5px;
+  height: calc(100% - 10px);
+  background: linear-gradient(135deg, var(--river-deep), var(--river-deep-2));
+  border-radius: 100px;
+  transition: all 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 8px 20px rgba(14, 59, 54, 0.3);
+  z-index: 1;
+}
+.gallery-page .gallery-toggle-btn {
+  position: relative; z-index: 2;
+  background: transparent; border: none;
+  padding: 12px 28px;
+  font-size: 0.95rem; font-weight: 700;
+  color: var(--g-text-main);
+  display: flex; align-items: center; gap: 9px;
+  cursor: pointer;
+  transition: color 0.4s ease;
+}
+.gallery-page .gallery-toggle-btn.active { color: var(--white); }
+.gallery-page .gallery-toggle-btn:active { transform: scale(0.96); }
+.gallery-page .gallery-badge {
+  font-size: 0.72rem;
+  background: rgba(14, 59, 54, 0.08);
+  color: var(--g-text-main);
+  padding: 2px 9px;
+  border-radius: 20px;
+  font-weight: 700;
+  transition: var(--g-transition);
+}
+.gallery-page .gallery-toggle-btn.active .gallery-badge { background: rgba(255, 255, 255, 0.25); color: var(--white); }
+
+/* ---------- ফিল্টার ---------- */
+.gallery-page .gallery-filters { display: flex; flex-direction: column; gap: 20px; margin-bottom: 34px; }
+.gallery-page .gallery-filter-group { text-align: center; }
+.gallery-page .gallery-filter-label {
+  display: block; font-size: 1rem; font-weight: 700;
+  color: var(--g-text-main); margin-bottom: 12px;
+}
+.gallery-page .gallery-filter-row { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.gallery-page .gallery-chip {
+  padding: 9px 22px;
+  background: var(--g-surface);
+  border: 1px solid var(--g-border);
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--g-text-main);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+  transition: var(--g-transition);
+}
+.gallery-page .gallery-chip.active,
+.gallery-page .gallery-chip:hover {
+  background: var(--g-accent);
+  color: var(--white);
+  border-color: var(--g-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(193, 99, 47, 0.3);
+}
+
+/* ---------- মিডিয়া সেকশন ---------- */
+.gallery-page .gallery-hidden { display: none !important; }
+.gallery-page .gallery-media-section { animation: galleryReveal 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+@keyframes galleryReveal {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- ম্যাসনরি গ্রিড ---------- */
+.gallery-page .gallery-grid { columns: 3 300px; column-gap: 18px; }
+.gallery-page .gallery-item, .gallery-page .gallery-coming-soon {
+  break-inside: avoid;
+  margin-bottom: 18px;
+  position: relative;
+  border-radius: var(--g-radius-md);
+  overflow: hidden;
+  background: var(--g-surface);
+  border: 1px solid var(--g-border);
+  box-shadow: 0 8px 20px rgba(14, 59, 54, 0.07);
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+}
+.gallery-page .gallery-item:hover { transform: translateY(-4px); box-shadow: 0 14px 28px rgba(14, 59, 54, 0.14); }
+.gallery-page .gallery-item:focus-visible { outline: 2px solid var(--g-accent); outline-offset: 2px; }
+
+.gallery-page .gallery-item.gallery-hide,
+.gallery-page .gallery-coming-soon.gallery-hide {
+  opacity: 0; transform: scale(0.85);
+  position: absolute; visibility: hidden; pointer-events: none;
+  margin: 0; height: 0;
+}
+
+.gallery-page .gallery-item img { width: 100%; display: block; transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1); }
+.gallery-page .gallery-item:hover img { transform: scale(1.06); }
+
+.gallery-page .gallery-overlay {
+  position: absolute; inset: 0;
+  background: rgba(14, 59, 54, 0.88);
+  backdrop-filter: blur(4px);
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  opacity: 0; transition: var(--g-transition);
+  color: var(--white); padding: 20px; text-align: center;
+}
+.gallery-page .gallery-item:hover .gallery-overlay,
+.gallery-page .gallery-item:focus-visible .gallery-overlay { opacity: 1; }
+.gallery-page .gallery-overlay i { font-size: 24px; margin-bottom: 12px; color: var(--turmeric); transform: scale(0); transition: var(--g-transition); }
+.gallery-page .gallery-overlay h4 { font-size: 19px; font-weight: 700; transform: translateY(15px); transition: var(--g-transition); }
+.gallery-page .gallery-overlay p { font-size: 13px; opacity: 0.85; margin-top: 8px; transform: translateY(15px); transition: var(--g-transition) 0.05s; }
+.gallery-page .gallery-item:hover .gallery-overlay i { transform: scale(1); }
+.gallery-page .gallery-item:hover .gallery-overlay h4,
+.gallery-page .gallery-item:hover .gallery-overlay p { transform: translateY(0); }
+
+/* ---------- কামিং-সুন বক্স ---------- */
+.gallery-page .gallery-coming-soon {
+  background: linear-gradient(135deg, var(--river-deep-2), var(--river-deep), var(--clay-dark));
+  background-size: 200% 200%;
+  height: 260px;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  padding: 28px; color: var(--white); text-align: center;
+  animation: galleryComingSoonBG 6s ease infinite;
+}
+@keyframes galleryComingSoonBG {
+  0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; }
+}
+.gallery-page .gallery-coming-soon-icon {
+  position: relative; width: 64px; height: 64px;
+  display: flex; align-items: center; justify-content: center; margin-bottom: 14px;
+}
+.gallery-page .gallery-coming-soon-icon::before {
+  content: ''; position: absolute; inset: 0; border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15); animation: galleryRadarPulse 2s infinite ease-out;
+}
+@keyframes galleryRadarPulse { 0% { transform: scale(0.9); opacity: 1; } 100% { transform: scale(1.6); opacity: 0; } }
+.gallery-page .gallery-coming-soon-icon i {
+  font-size: 28px; color: var(--turmeric); z-index: 2; animation: galleryIconFloat 3s ease-in-out infinite;
+}
+@keyframes galleryIconFloat { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-6px) rotate(10deg); } }
+.gallery-page .gallery-coming-soon-text { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+.gallery-page .gallery-coming-soon-sub { font-size: 13px; opacity: 0.85; }
+
+/* ---------- ভিডিও সেকশন ---------- */
+.gallery-page .gallery-video-block { max-width: 900px; margin: 0 auto 40px; }
+.gallery-page .gallery-video-frame {
+  position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;
+  border-radius: var(--g-radius-md); background: #000;
+  box-shadow: 0 18px 40px rgba(14, 59, 54, 0.22);
+  border: 4px solid var(--g-surface);
+}
+.gallery-page .gallery-video-frame iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+.gallery-page .gallery-video-caption { text-align: center; margin-top: 16px; font-weight: 600; color: var(--g-text-main); font-size: 15px; }
+
+/* ---------- লাইটবক্স ---------- */
+.gallery-page .gallery-lightbox {
+  position: fixed; inset: 0;
+  background: rgba(10, 20, 18, 0.93);
+  backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: flex; justify-content: center; align-items: center;
+  opacity: 0; visibility: hidden;
+  transition: var(--g-transition);
+}
+.gallery-page .gallery-lightbox.active { opacity: 1; visibility: visible; }
+.gallery-page .gallery-lightbox img {
+  max-width: 90%; max-height: 82vh; border-radius: 12px;
+  transform: scale(0.9); box-shadow: 0 15px 50px rgba(0,0,0,0.6);
+  transition: var(--g-transition);
+}
+.gallery-page .gallery-lightbox.active img { transform: scale(1); }
+.gallery-page .gallery-lightbox-close {
+  position: absolute; top: 25px; right: 30px;
+  color: var(--white); font-size: 36px; cursor: pointer;
+  transition: var(--g-transition);
+}
+.gallery-page .gallery-lightbox-close:hover { color: var(--turmeric); transform: rotate(90deg); }
+
+/* ---------- স্ক্রল-টু-টপ ---------- */
+.gallery-page .gallery-scroll-top {
+  position: fixed; right: 22px; bottom: 26px;
+  width: 48px; height: 48px; border-radius: 50%;
+  background: linear-gradient(45deg, var(--g-accent), var(--g-accent-2));
+  color: var(--white); border: none;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; cursor: pointer; z-index: 400;
+  opacity: 0; pointer-events: none; transform: translateY(15px);
+  transition: var(--g-transition);
+  box-shadow: 0 10px 25px rgba(193, 99, 47, 0.35);
+}
+.gallery-page .gallery-scroll-top.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+.gallery-page .gallery-scroll-top:hover { transform: translateY(-4px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-page * { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+}
+
+@media (max-width: 768px) {
+  .gallery-page .gallery-grid { columns: 2; }
+}
+@media (max-width: 520px) {
+  .gallery-page { padding: 105px 16px 50px; }
+  .gallery-page .gallery-grid { columns: 1; }
+  .gallery-page .gallery-coming-soon { height: 220px; }
+  .gallery-page .gallery-chip { padding: 8px 18px; font-size: 0.82rem; }
+}
