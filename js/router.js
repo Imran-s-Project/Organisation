@@ -17,11 +17,13 @@ RJF.route = function () {
   var legalKey = hash === '#/privacy' ? 'privacy' : hash === '#/terms' ? 'terms' : null;
   var isDonate = hash === '#/donate';
   var isMember = hash === '#/member';
+  var isGallery = hash === '#/gallery';
   var legalRoot = document.getElementById('legal-root');
   var donateRoot = document.getElementById('donate-root');
   var memberRoot = document.getElementById('member-root');
+  var galleryRoot = document.getElementById('gallery-root');
 
-  if (legalKey || isDonate || isMember) {
+  if (legalKey || isDonate || isMember || isGallery) {
     RJF.HOME_ROOTS.forEach(function (id) {
       var el = document.getElementById(id);
       if (el) el.hidden = true;
@@ -30,10 +32,12 @@ RJF.route = function () {
     if (legalRoot) legalRoot.hidden = !legalKey;
     if (donateRoot) donateRoot.hidden = !isDonate;
     if (memberRoot) memberRoot.hidden = !isMember;
+    if (galleryRoot) galleryRoot.hidden = !isGallery;
 
     if (legalKey) RJF.renderLegalPage(legalKey);
     if (isDonate) RJF.renderDonatePage();
     if (isMember) RJF.renderMemberPage();
+    if (isGallery) RJF.renderGalleryPage();
 
     window.scrollTo(0, 0);
     return;
@@ -46,6 +50,7 @@ RJF.route = function () {
   if (legalRoot) legalRoot.hidden = true;
   if (donateRoot) donateRoot.hidden = true;
   if (memberRoot) memberRoot.hidden = true;
+  if (galleryRoot) galleryRoot.hidden = true;
 
   if (hash.length > 1 && hash.indexOf('#/') !== 0) {
     var target = document.getElementById(decodeURIComponent(hash.slice(1)));
