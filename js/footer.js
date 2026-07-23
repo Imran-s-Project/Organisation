@@ -7,9 +7,9 @@ RJF.renderFooter = function(){
   var d = RJF.data;
   var f = d.footer;
 
-  function linkList(items){
+  function linkList(items, icon){
     return '<ul class="footer-links">' + items.map(function(i){
-      return '<li><a href="' + i.href + '">' + i.label + '</a></li>';
+      return '<li><a href="' + i.href + '"><i class="fa-solid ' + (icon || 'fa-angle-right') + '"></i><span>' + i.label + '</span></a></li>';
     }).join('') + '</ul>';
   }
 
@@ -26,14 +26,18 @@ RJF.renderFooter = function(){
           '<div class="footer-social">' + socialHtml + '</div>' +
         '</div>' +
         '<div class="footer-col" data-accordion>' +
-          '<h4>কুইক লিংক <span class="footer-accordion-toggle">+</span></h4>' + linkList(f.quickLinks) +
+          '<h4>কুইক লিংক <span class="footer-accordion-toggle">+</span></h4>' + linkList(f.quickLinks, 'fa-angle-right') +
         '</div>' +
         '<div class="footer-col" data-accordion>' +
-          '<h4>নীতিমালা <span class="footer-accordion-toggle">+</span></h4>' + linkList(f.legalLinks) +
+          '<h4>নীতিমালা <span class="footer-accordion-toggle">+</span></h4>' + linkList(f.legalLinks, 'fa-shield-halved') +
         '</div>' +
         '<div class="footer-col" data-accordion>' +
           '<h4>যোগাযোগ <span class="footer-accordion-toggle">+</span></h4>' +
-          '<ul class="footer-links"><li><a href="tel:' + d.location.phone + '">' + d.location.phone + '</a></li><li><a href="mailto:' + d.location.email + '?subject=' + encodeURIComponent('যোগাযোগ - ' + d.brand.name) + '&body=' + encodeURIComponent('আসসালামু আলাইকুম,\n\nআমি আপনাদের সাথে যোগাযোগ করতে চাচ্ছি।\n\nবিষয়: \n\nধন্যবাদান্তে,\n') + '">' + d.location.email + '</a></li><li>' + d.location.address + '</li></ul>' +
+          '<ul class="footer-links">' +
+            '<li><a href="tel:' + d.location.phone + '"><i class="fa-solid fa-phone"></i><span>' + d.location.phone + '</span></a></li>' +
+            '<li><a href="mailto:' + d.location.email + '?subject=' + encodeURIComponent('যোগাযোগ - ' + d.brand.name) + '&body=' + encodeURIComponent('আসসালামু আলাইকুম,\n\nআমি আপনাদের সাথে যোগাযোগ করতে চাচ্ছি।\n\nবিষয়: \n\nধন্যবাদান্তে,\n') + '"><i class="fa-solid fa-envelope"></i><span>' + d.location.email + '</span></a></li>' +
+            '<li><span class="footer-static-item"><i class="fa-solid fa-location-dot"></i><span>' + d.location.address + '</span></span></li>' +
+          '</ul>' +
         '</div>' +
       '</div>' +
       '<div class="footer-bottom">' +
