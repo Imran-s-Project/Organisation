@@ -8,8 +8,9 @@ RJF.renderFooter = function(){
   var f = d.footer;
 
   function linkList(items, icon){
-    return '<ul class="footer-links">' + items.map(function(i){
-      return '<li><a href="' + i.href + '"><i class="fa-solid ' + (icon || 'fa-angle-right') + '"></i><span>' + i.label + '</span></a></li>';
+    return '<ul class="footer-links">' + items.map(function(i, idx){
+      var iconClass = Array.isArray(icon) ? (icon[idx] || 'fa-angle-right') : (icon || 'fa-angle-right');
+      return '<li><a href="' + i.href + '"><i class="fa-solid ' + iconClass + '"></i><span>' + i.label + '</span></a></li>';
     }).join('') + '</ul>';
   }
 
@@ -29,7 +30,7 @@ RJF.renderFooter = function(){
           '<h4>কুইক লিংক <span class="footer-accordion-toggle">+</span></h4>' + linkList(f.quickLinks, 'fa-angle-right') +
         '</div>' +
         '<div class="footer-col" data-accordion>' +
-          '<h4>নীতিমালা <span class="footer-accordion-toggle">+</span></h4>' + linkList(f.legalLinks, 'fa-shield-halved') +
+          '<h4>নীতিমালা <span class="footer-accordion-toggle">+</span></h4>' + linkList(f.legalLinks, ['fa-lock', 'fa-file-contract']) +
         '</div>' +
         '<div class="footer-col" data-accordion>' +
           '<h4>যোগাযোগ <span class="footer-accordion-toggle">+</span></h4>' +
