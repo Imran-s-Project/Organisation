@@ -9,9 +9,30 @@
 }
 .footer-col.brand-col .brand-logo-footer{ height:40px; margin-bottom:14px; }
 .footer-col.brand-col p{ font-size:.88rem; color:rgba(255,255,255,.7); max-width:280px; }
-.footer-links{ list-style:none; display:flex; flex-direction:column; gap:10px; }
-.footer-links a{ font-size:.9rem; color:rgba(255,255,255,.75); transition:color .2s ease, padding-right .2s ease; }
-.footer-links a:hover{ color:var(--turmeric); padding-right:4px; }
+.footer-links{ list-style:none; display:flex; flex-direction:column; gap:12px; }
+.footer-links a{
+  font-size:.9rem; color:rgba(255,255,255,.75);
+  display:flex; align-items:center; gap:10px;
+  transition:color .2s ease, transform .2s ease;
+}
+.footer-links a i{
+  width:30px; height:30px; flex-shrink:0; border-radius:50%;
+  background:rgba(255,255,255,.08); color:var(--turmeric);
+  display:flex; align-items:center; justify-content:center;
+  font-size:.8rem; transition:background .2s ease, color .2s ease;
+}
+.footer-links a:hover{ color:var(--turmeric); transform:translateX(4px); }
+.footer-links a:hover i{ background:var(--turmeric); color:var(--river-deep); }
+.footer-links .footer-static-item{
+  font-size:.9rem; color:rgba(255,255,255,.75);
+  display:flex; align-items:flex-start; gap:10px;
+}
+.footer-links .footer-static-item i{
+  width:30px; height:30px; flex-shrink:0; border-radius:50%;
+  background:rgba(255,255,255,.08); color:var(--turmeric);
+  display:flex; align-items:center; justify-content:center;
+  font-size:.8rem; margin-top:1px;
+}
 .footer-social{ display:flex; gap:10px; margin-top:6px; }
 .footer-social a{
   width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,.08);
@@ -52,7 +73,8 @@
   .footer-col:not(.brand-col) .footer-links{
     max-height:0; overflow:hidden; transition:max-height .3s ease; gap:0;
   }
-  .footer-col:not(.brand-col).open .footer-links{ max-height:300px; padding-top:6px; }
+  .footer-col:not(.brand-col).open .footer-links{ max-height:400px; padding-top:6px; }
   .footer-col:not(.brand-col).open .footer-accordion-toggle{ transform:rotate(45deg); }
-  .footer-links a{ padding:6px 0; display:inline-block; }
+  .footer-links a{ padding:6px 0; }
+  .footer-links .footer-static-item{ padding:6px 0; }
 }
