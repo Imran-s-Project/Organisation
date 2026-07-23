@@ -124,12 +124,9 @@ RJF.renderGalleryPage = function () {
         '<img id="galleryLightboxImg" src="" alt="">' +
       '</div>' +
 
-      '<button type="button" id="galleryScrollTop" class="gallery-scroll-top" aria-label="উপরে যান"><i class="fas fa-arrow-up"></i></button>' +
-
     '</div>';
 
   RJF._wireGalleryFilters();
   RJF._wireGalleryLightbox();
   RJF._wireGallerySwitcher();
-  RJF._wireGalleryScrollTop();
 };
