@@ -20,15 +20,27 @@ RJF.data = {
 
   hero: {
     eyebrow: "সেবা হোক প্রত্যয়, জনকল্যাণ হোক জয়",
-    title: "মানুষের পাশে দাঁড়ানোই আমাদের একমাত্র পরিচয়",
-    desc: "শিক্ষা, স্বাস্থ্য, ত্রাণ ও দক্ষতা উন্নয়নের মাধ্যমে আমরা গড়ে তুলছি একটি স্বনির্ভর সমাজ।",
-    // ছবিগুলো images/ ফোল্ডারে এই নামে যোগ করলেই ক্যারোজেলে দেখা যাবে, না থাকলে আইকন-প্লেসহোল্ডার দেখাবে
+    title: "মানুষের পাশে আমরা সব সময়",
+    desc: "আমাদের মূল কাজ আমাদের পারিপার্শ্বিক দিকে থাকা সকল বিষয়ের প্রতি নজরদারি করা এবং অসহায়,দরিদ্র এবং বস্তহীন মানুষের পাশে দাঁড়িয়ে সুন্দর সুশৃঙ্খল দেশ গড়ে তোলাই আমাদের লক্ষ্য। ",
+
+    // গ্যালারি স্লাইডার স্লাইডার মেনু ফটো সেকশনে
     slides: [
       { src: "/gallery/win-team.webp", alt: "শিক্ষা কার্যক্রম", icon: "book", label: "শিক্ষা কার্যক্রমের ছবি এখানে যোগ করুন" },
       { src: "/gallery/IMG_20260320_234348.jpg", alt: "ইফতার মাহফিল", icon: "heart", label: "স্বাস্থ্যসেবা কার্যক্রমের ছবি এখানে যোগ করুন" },
       { src: "/gallery/lost-team.webp", alt: "খেলাধুলা", icon: "hand", label: "ত্রাণ বিতরণ কার্যক্রমের ছবি এখানে যোগ করুন" },
       { src: "/gallery/national-anthem-all-team.webp", alt: "জাতীয় সংগীত", icon: "tool", label: "প্রশিক্ষণ কার্যক্রমের ছবি এখানে যোগ করুন" },
-      { src: "/gallery/team-trophy.webp", alt: "ট্রফি উদযাপন", icon: "leaf", label: "বৃক্ষরোপণ কার্যক্রমের ছবি এখানে যোগ করুন" }
+      { src: "/gallery/team-trophy.webp", alt: "ট্রফি উদযাপন", icon: "leaf", label: "বৃক্ষরোপণ কার্যক্রমের ছবি এখানে যোগ করুন" },
+      { src: "/gallery/member/rafiqul.webp", alt: "member of foundation", icon: "tool", label: "Our special members" },
+       { src: "/gallery/member/harrun.webp", alt: "member of foundation", icon: "tool", label: "Our special members" },
+      { src: "/gallery/member/humayon1.webp", alt: "member of foundation", icon: "tool", label: "Our special members" },
+       { src: "/gallery/member/kawsar.webp", alt: "member of foundation", icon: "tool", label: "Our special members" },
+       { src: "/gallery/member/imran_ahmed.webp", alt: "member of foundation", icon: "tool", label: "Our special members" },
+       { src: "/gallery/member/naim.webp", alt: "member of foundation", icon: "tool", label: "Our special members" },
+       { src: "/gallery/member/kamrul.webp", alt: "member of foundation", icon: "tool", label: "Our special members" },
+        { src: "/gallery/member/fahim.webp", alt: "জাতীয় সংগীত", icon: "tool", label: "Our special members" },
+      { src: "/gallery/member/omor.webp", alt: "member of foundation", icon: "tool", label: "Our special members" },
+
+      { src: "/gallery/sumon.webp", alt: "member of foundation", icon: "tool", label: "Our special members" }
     ]
   },
 
