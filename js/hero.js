@@ -1,99 +1,41 @@
-/* হিরো সেকশন — অটো + ম্যানুয়াল (ড্র্যাগ/সোয়াইপ) ফটো ক্যারোজেল */
-window.RJF = window.RJF || {};
+.hero{ position:relative; height:92vh; min-height:520px; overflow:hidden; background:var(--river-deep); }
+.carousel{ position:absolute; inset:0; display:flex; height:100%; cursor:grab; touch-action:pan-y; }
+.carousel.dragging{ cursor:grabbing; }
+.slide{ position:relative; flex:0 0 100%; height:100%; overflow:hidden; }
+.slide img{ width:100%; height:100%; object-fit:cover; object-position:center 25%; user-select:none; -webkit-user-drag:none; }
 
-RJF.renderHero = function(){
-  var root = document.getElementById('hero-root');
-  if(!root) return;
-  var h = RJF.data.hero;
-
-  var slidesHtml = h.slides.map(function(s){
-    return '<div class="slide"><img src="' + s.src + '" alt="' + s.alt + '" data-icon="' + s.icon + '" data-label="' + s.label + '"></div>';
-  }).join('');
-
-  root.innerHTML =
-    '<header class="hero" id="hero">' +
-      '<div class="carousel" id="carousel">' + slidesHtml + '</div>' +
-      '<div class="hero-overlay"></div>' +
-      '<div class="hero-arrows">' +
-        '<button class="hero-arrow" id="prevBtn" aria-label="আগের ছবি">' + RJF.iconSvg('up','fill="none" stroke="currentColor" stroke-width="2" style="transform:rotate(-90deg)"') + '</button>' +
-        '<button class="hero-arrow" id="nextBtn" aria-label="পরের ছবি">' + RJF.iconSvg('up','fill="none" stroke="currentColor" stroke-width="2" style="transform:rotate(90deg)"') + '</button>' +
-      '</div>' +
-      '<div class="hero-content">' +
-        '<div class="eyebrow">' + h.eyebrow + '</div>' +
-        '<h1>' + h.title + '</h1>' +
-        '<p>' + h.desc + '</p>' +
-      '</div>' +
-      '<div class="hero-dots" id="heroDots"></div>' +
-      '<div class="wave"><svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path fill="#FBF5E9" d="M0,40 C240,100 480,0 720,30 C960,60 1200,110 1440,50 L1440,100 L0,100 Z"></path></svg></div>' +
-    '</header>';
-
-  /* ছবি না পাওয়া গেলে আইকন-সহ প্লেসহোল্ডার */
-  root.querySelectorAll('.slide img').forEach(function(img){
-    img.addEventListener('error', function(){
-      var fallback = RJF.makeFallbackSlide(img.dataset.label, img.dataset.icon);
-      img.replaceWith(fallback);
-    });
-  });
-
-  var carousel = document.getElementById('carousel');
-  var slides = Array.from(carousel.children);
-  var dotsWrap = document.getElementById('heroDots');
-  var current = 0, autoTimer = null;
-
-  slides.forEach(function(_, i){
-    var dot = document.createElement('button');
-    if(i === 0) dot.classList.add('active');
-    dot.addEventListener('click', function(){ goTo(i); });
-    dotsWrap.appendChild(dot);
-  });
-  var dots = Array.from(dotsWrap.children);
-
-  function render(withTransition){
-    carousel.style.transition = withTransition === false ? 'none' : 'transform .6s cubic-bezier(.6,0,.2,1)';
-    carousel.style.transform = 'translateX(' + (-current * 100) + '%)';
-    dots.forEach(function(d,i){ d.classList.toggle('active', i === current); });
-  }
-  function goTo(i){ current = (i + slides.length) % slides.length; render(); restartAuto(); }
-  function next(){ goTo(current + 1); }
-  function prev(){ goTo(current - 1); }
-
-  document.getElementById('nextBtn').addEventListener('click', next);
-  document.getElementById('prevBtn').addEventListener('click', prev);
-
-  function startAuto(){ autoTimer = setInterval(next, 4500); }
-  function restartAuto(){ clearInterval(autoTimer); startAuto(); }
-  startAuto();
-  render(false);
-
-  var dragging = false, startX = 0, deltaX = 0, widthPx = 0;
-  function dragStart(x){
-    dragging = true; startX = x; deltaX = 0;
-    widthPx = carousel.parentElement.getBoundingClientRect().width;
-    carousel.classList.add('dragging');
-    carousel.style.transition = 'none';
-    clearInterval(autoTimer);
-  }
-  function dragMove(x){
-    if(!dragging) return;
-    deltaX = x - startX;
-    var base = -current * widthPx;
-    carousel.style.transform = 'translateX(' + (base + deltaX) + 'px)';
-  }
-  function dragEnd(){
-    if(!dragging) return;
-    dragging = false;
-    carousel.classList.remove('dragging');
-    var threshold = widthPx * 0.15;
-    if(deltaX < -threshold) current = (current + 1) % slides.length;
-    else if(deltaX > threshold) current = (current - 1 + slides.length) % slides.length;
-    render();
-    restartAuto();
-  }
-  carousel.addEventListener('mousedown', function(e){ dragStart(e.clientX); });
-  window.addEventListener('mousemove', function(e){ dragMove(e.clientX); });
-  window.addEventListener('mouseup', dragEnd);
-  carousel.addEventListener('touchstart', function(e){ dragStart(e.touches[0].clientX); }, {passive:true});
-  carousel.addEventListener('touchmove', function(e){ dragMove(e.touches[0].clientX); }, {passive:true});
-  carousel.addEventListener('touchend', dragEnd);
-  window.addEventListener('resize', function(){ render(false); });
-};
+@media (max-width: 768px){
+  .hero{ height:65vh; min-height:420px; max-height:620px; }
+}
+@media (max-width: 480px){
+  .hero{ height:58vh; min-height:380px; max-height:520px; }
+}
+.slide-fallback{
+  width:100%; height:100%; display:flex; align-items:center; justify-content:center;
+  flex-direction:column; gap:14px;
+  background:linear-gradient(135deg,var(--river-deep-2),var(--river-deep));
+}
+.slide-fallback svg{ width:52px; height:52px; opacity:.85; }
+.slide-fallback span{ color:rgba(255,255,255,.75); font-size:.9rem; font-family:'Work Sans'; }
+.hero-overlay{
+  position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(14,59,54,.35) 0%, rgba(14,59,54,.15) 35%, rgba(10,30,28,.85) 100%);
+  pointer-events:none;
+}
+.hero-content{ position:absolute; left:0; right:0; bottom:9%; z-index:20; padding:0 6vw; color:var(--white); pointer-events:none; }
+.hero-content .eyebrow{ color:var(--turmeric); }
+.hero-content h1{ font-size:clamp(2rem,5vw,3.4rem); font-weight:800; margin:8px 0 12px; max-width:820px; text-shadow:0 4px 20px rgba(0,0,0,.25); }
+.hero-content p{ max-width:560px; color:rgba(255,255,255,.9); font-size:1.05rem; }
+.hero-dots{ position:absolute; bottom:6%; right:6vw; z-index:25; display:flex; gap:9px; }
+.hero-dots button{ width:9px; height:9px; border-radius:50%; background:rgba(255,255,255,.4); transition:all .3s ease; padding:0; }
+.hero-dots button.active{ background:var(--turmeric); width:26px; border-radius:5px; }
+.hero-arrows{ position:absolute; inset:0; display:flex; align-items:center; justify-content:space-between; padding:0 18px; z-index:25; pointer-events:none; }
+.hero-arrow{
+  pointer-events:all; width:42px; height:42px; border-radius:50%;
+  background:rgba(255,255,255,.14); backdrop-filter:blur(4px);
+  display:flex; align-items:center; justify-content:center; color:var(--white); transition:background .2s ease;
+}
+.hero-arrow:hover{ background:rgba(255,255,255,.28); }
+.hero-arrow svg{ width:18px; height:18px; }
+.wave{ position:absolute; left:0; right:0; bottom:-2px; z-index:15; line-height:0; }
+.wave svg{ width:100%; height:90px; display:block; }
