@@ -33,7 +33,7 @@ RJF.renderFooter = function(){
         '</div>' +
         '<div class="footer-col" data-accordion>' +
           '<h4>যোগাযোগ <span class="footer-accordion-toggle">+</span></h4>' +
-          '<ul class="footer-links"><li>' + d.location.phone + '</li><li>' + d.location.email + '</li><li>' + d.location.address + '</li></ul>' +
+          '<ul class="footer-links"><li><a href="tel:' + d.location.phone + '">' + d.location.phone + '</a></li><li><a href="mailto:' + d.location.email + '?subject=' + encodeURIComponent('যোগাযোগ - ' + d.brand.name) + '&body=' + encodeURIComponent('আসসালামু আলাইকুম,\n\nআমি আপনাদের সাথে যোগাযোগ করতে চাচ্ছি।\n\nবিষয়: \n\nধন্যবাদান্তে,\n') + '">' + d.location.email + '</a></li><li>' + d.location.address + '</li></ul>' +
         '</div>' +
       '</div>' +
       '<div class="footer-bottom">' +
