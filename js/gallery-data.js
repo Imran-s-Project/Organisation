@@ -7,7 +7,7 @@ RJF.galleryData = {
   eyebrow: "আমাদের কার্যক্রমের প্রতিচ্ছবি",
   title: "আমাদের ফটো গ্যালারি",
   desc: "মানবিক ও খেলাধুলার কিছু স্মরণীয় মুহূর্ত",
-  subscribeHref: "/subscribe/",
+  subscribeHref: "https://rupshajonokollanfoundation.vercel.app/subscribe/",
   subscribeLabel: "সাবস্ক্রাইব করুন",
 
   years: [
