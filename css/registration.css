@@ -1,0 +1,379 @@
+/* ==========================================================================
+   রূপসা জনকল্যাণ ফাউন্ডেশন — সদস্য আবেদন ফরম পেজ
+   .registration-page এর ভেতরেই সব স্টাইল আটকে রাখা হয়েছে, donate/donors পেজের
+   মতোই একই ওয়ার্ম কালার প্যালেট ও টাইপোগ্রাফি ব্যবহার করা হয়েছে
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap');
+
+.registration-page {
+  --cream: #FBF5E9;
+  --card: #FFFFFF;
+  --ink: #22302B;
+  --ink-soft: #5B6B62;
+  --teal: #0E5F52;
+  --teal-deep: #0A4A40;
+  --marigold: #E4A335;
+  --marigold-deep: #C7841C;
+  --terracotta: #C1502E;
+  --line: rgba(34, 48, 43, 0.1);
+
+  --font-display: 'Fraunces', 'Hind Siliguri', serif;
+  --font-body: 'Hind Siliguri', sans-serif;
+  --radius-lg: 22px;
+  --radius-sm: 10px;
+  --shadow-card: 0 20px 45px -18px rgba(14, 95, 82, 0.28);
+
+  position: relative;
+  margin: 0;
+  padding-top: 130px;
+  padding-bottom: 70px;
+  background: var(--cream);
+  color: var(--ink);
+  min-height: 100vh;
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+@media (max-width: 520px) { .registration-page { padding-top: 105px; } }
+
+.registration-page * { box-sizing: border-box; }
+.registration-page h1, .registration-page h2, .registration-page h4 { font-family: var(--font-display); margin: 0; }
+.registration-page p { margin: 0; }
+.registration-page label { font-family: var(--font-body); }
+
+/* ---------- হেডার ---------- */
+.registration-page .reg-header {
+  text-align: center;
+  padding: 8px 20px 30px;
+}
+.registration-page .reg-header-icon {
+  width: 68px;
+  height: 68px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--teal-deep), var(--teal));
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  box-shadow: var(--shadow-card);
+}
+.registration-page .reg-header h1 { font-size: clamp(1.4rem, 4vw, 1.9rem); color: var(--teal-deep); }
+.registration-page .reg-header h2 { font-size: 1.05rem; font-weight: 600; color: var(--ink); margin-top: 6px; }
+.registration-page .reg-tagline { font-style: italic; color: var(--ink-soft); margin-top: 8px; }
+.registration-page .reg-live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  padding: 7px 16px;
+  background: rgba(14, 95, 82, 0.08);
+  border-radius: 100px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--teal-deep);
+}
+.registration-page .reg-live-badge .pulse {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--marigold);
+  box-shadow: 0 0 0 0 rgba(228, 163, 53, 0.6);
+  animation: reg-pulse 1.6s infinite;
+}
+@keyframes reg-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(228, 163, 53, 0.55); }
+  70% { box-shadow: 0 0 0 8px rgba(228, 163, 53, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(228, 163, 53, 0); }
+}
+
+/* ---------- কার্ড ---------- */
+.registration-page .reg-container { max-width: 800px; margin: 0 auto; padding: 0 18px; }
+.registration-page .reg-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 28px 22px 32px;
+}
+@media (min-width: 640px) { .registration-page .reg-card { padding: 40px 44px 44px; } }
+
+/* ---------- স্টেপার (ডেস্কটপ) ---------- */
+.registration-page .reg-stepper {
+  display: none;
+  position: relative;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 34px;
+}
+@media (min-width: 720px) { .registration-page .reg-stepper { display: flex; } }
+
+.registration-page .reg-stepper-line {
+  position: absolute;
+  top: 19px; left: 0; right: 0;
+  height: 3px;
+  background: var(--line);
+  border-radius: 3px;
+  z-index: 0;
+}
+.registration-page .reg-stepper-line-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--teal);
+  border-radius: 3px;
+  transition: width 0.4s ease;
+}
+.registration-page .reg-step {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 70px;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+.registration-page .reg-step-circle {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--card);
+  border: 2px solid var(--line);
+  color: var(--ink-soft);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+.registration-page .reg-step-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  text-align: center;
+}
+.registration-page .reg-step.active .reg-step-circle {
+  background: var(--teal);
+  border-color: var(--teal);
+  color: #fff;
+  box-shadow: 0 0 0 5px rgba(14, 95, 82, 0.15);
+}
+.registration-page .reg-step.active .reg-step-label { color: var(--teal-deep); }
+.registration-page .reg-step.completed .reg-step-circle {
+  background: var(--teal-deep);
+  border-color: var(--teal-deep);
+  color: #fff;
+}
+.registration-page .reg-step.completed .reg-step-label { color: var(--teal-deep); }
+
+/* ---------- স্টেপার (মোবাইল) ---------- */
+.registration-page .reg-stepper-mobile { margin-bottom: 28px; }
+@media (min-width: 720px) { .registration-page .reg-stepper-mobile { display: none; } }
+.registration-page .reg-stepper-mobile-top {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--teal-deep);
+  margin-bottom: 8px;
+}
+.registration-page .reg-mob-progress {
+  height: 6px;
+  background: var(--line);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.registration-page .reg-mob-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--teal);
+  transition: width 0.4s ease;
+}
+
+/* ---------- ফর্ম সেকশন ---------- */
+.registration-page .reg-section { min-height: 260px; }
+.registration-page .reg-section.slide-right { animation: reg-slide-right 0.35s ease; }
+.registration-page .reg-section.slide-left { animation: reg-slide-left 0.35s ease; }
+@keyframes reg-slide-right { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes reg-slide-left { from { opacity: 0; transform: translateX(-24px); } to { opacity: 1; transform: translateX(0); } }
+
+.registration-page .reg-section-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 22px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--cream);
+}
+.registration-page .reg-section-icon {
+  width: 46px; height: 46px;
+  border-radius: 14px;
+  background: rgba(14, 95, 82, 0.08);
+  color: var(--teal);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.15rem;
+  flex-shrink: 0;
+}
+.registration-page .reg-section-head h2 { font-size: 1.25rem; color: var(--ink); }
+.registration-page .reg-section-head p { font-size: 0.85rem; color: var(--ink-soft); margin-top: 3px; }
+
+.registration-page .field-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+@media (min-width: 560px) { .registration-page .field-grid { grid-template-columns: 1fr 1fr; } }
+.registration-page .field-group.full { grid-column: 1 / -1; }
+
+.registration-page .field-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 7px;
+}
+.registration-page .field-group .req { color: var(--terracotta); }
+
+.registration-page .form-input {
+  width: 100%;
+  padding: 12px 14px;
+  background: var(--cream);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-sm);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 14px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.registration-page textarea.form-input { resize: none; }
+.registration-page .form-input::placeholder { color: var(--ink-soft); opacity: 0.8; }
+.registration-page .form-input:focus {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(14, 95, 82, 0.15);
+  outline: none;
+  background: var(--card);
+}
+.registration-page .form-input.invalid-signal { border-color: var(--terracotta); }
+.registration-page .error-hint { color: var(--terracotta); font-size: 11.5px; margin-top: 5px; min-height: 14px; }
+
+/* ---------- রিভিউ (নিশ্চিতকরণ ধাপ) ---------- */
+.registration-page .reg-review { display: flex; flex-direction: column; gap: 14px; margin-bottom: 22px; }
+.registration-page .reg-review-block {
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+}
+.registration-page .reg-review-block h4 {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--teal);
+  display: flex; align-items: center; gap: 6px;
+  margin-bottom: 10px;
+}
+.registration-page .reg-review-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 0.85rem;
+  padding: 5px 0;
+  border-bottom: 1px dashed var(--line);
+}
+.registration-page .reg-review-row:last-child { border-bottom: none; }
+.registration-page .reg-review-row span { color: var(--ink-soft); flex-shrink: 0; }
+.registration-page .reg-review-row strong { color: var(--ink); font-weight: 600; text-align: right; }
+.registration-page .reg-review-row .empty { color: var(--ink-soft); font-style: italic; font-weight: 400; }
+
+.registration-page .agree-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  padding: 16px;
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+}
+.registration-page .agree-row input {
+  width: 20px; height: 20px;
+  margin-top: 2px;
+  accent-color: var(--teal);
+  flex-shrink: 0;
+}
+.registration-page .agree-row span { font-size: 0.88rem; color: var(--ink); line-height: 1.6; }
+
+/* ---------- নেভিগেশন বাটন ---------- */
+.registration-page .reg-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 30px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+.registration-page .reg-btn {
+  padding: 13px 26px;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border: none;
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+.registration-page .reg-btn-primary {
+  margin-left: auto;
+  background: var(--teal);
+  color: var(--cream);
+  box-shadow: 0 10px 24px -10px rgba(14, 95, 82, 0.55);
+}
+.registration-page .reg-btn-primary:hover { background: var(--teal-deep); transform: translateY(-1px); }
+.registration-page .reg-btn-primary:disabled { opacity: 0.7; cursor: progress; transform: none; }
+.registration-page .reg-btn-ghost {
+  background: var(--card);
+  color: var(--ink-soft);
+  border: 1.5px solid var(--line);
+}
+.registration-page .reg-btn-ghost:hover { border-color: var(--teal); color: var(--teal); }
+
+.registration-page .reg-spinner {
+  display: none;
+  width: 15px; height: 15px;
+  border: 2.5px solid rgba(251, 245, 233, 0.35);
+  border-top-color: var(--cream);
+  border-radius: 50%;
+  animation: reg-spin 0.8s linear infinite;
+}
+.registration-page .reg-spinner.show { display: block; }
+@keyframes reg-spin { to { transform: rotate(360deg); } }
+
+/* ---------- টোস্ট ---------- */
+.registration-page .reg-toast {
+  position: fixed;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-30px);
+  opacity: 0;
+  visibility: hidden;
+  z-index: 200;
+  background: var(--teal);
+  color: var(--cream);
+  padding: 13px 24px;
+  border-radius: 100px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  box-shadow: 0 15px 35px -10px rgba(14, 59, 54, 0.4);
+  transition: all 0.35s ease;
+  max-width: 90vw;
+  text-align: center;
+}
+.registration-page .reg-toast.show { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+.registration-page .reg-toast.error { background: var(--terracotta); }
+
+@media (max-width: 480px) {
+  .registration-page .reg-card { padding: 24px 16px 28px; }
+  .registration-page .reg-btn { width: 100%; }
+  .registration-page .reg-btn-primary { margin-left: 0; }
+}
