@@ -53,8 +53,6 @@ RJF.renderDonorsPage = function () {
         '</div>' +
       '</div>' +
 
-      '<button type="button" class="donors-scroll-top" id="donorsScrollTopBtn" title="Go up"><i class="fa-solid fa-arrow-up"></i></button>' +
-
     '</div>';
 
   RJF._wireDonorsPage();
@@ -68,13 +66,4 @@ RJF._wireDonorsPage = function () {
     });
   }, { threshold: 0.1 });
   cards.forEach(function (card) { observer.observe(card); });
-
-  var scrollBtn = document.getElementById('donorsScrollTopBtn');
-  function onWindowScroll() {
-    var donorsRoot = document.getElementById('donors-root');
-    if (!donorsRoot || donorsRoot.hidden) return; // রুট ছেড়ে গেলে লিসেনার নিষ্ক্রিয়
-    scrollBtn.classList.toggle('show', window.pageYOffset > 400);
-  }
-  window.addEventListener('scroll', onWindowScroll);
-  scrollBtn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
 };
