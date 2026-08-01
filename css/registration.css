@@ -352,12 +352,12 @@
 /* ---------- টোস্ট ---------- */
 .registration-page .reg-toast {
   position: fixed;
-  top: 18px;
+  top: calc(100px + env(safe-area-inset-top, 0px));
   left: 50%;
-  transform: translateX(-50%) translateY(-30px);
+  transform: translateX(-50%) translateY(-16px);
   opacity: 0;
   visibility: hidden;
-  z-index: 200;
+  z-index: 600;
   background: var(--teal);
   color: var(--cream);
   padding: 13px 24px;
@@ -371,6 +371,10 @@
 }
 .registration-page .reg-toast.show { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
 .registration-page .reg-toast.error { background: var(--terracotta); }
+
+@media (max-width: 520px) {
+  .registration-page .reg-toast { top: calc(78px + env(safe-area-inset-top, 0px)); }
+}
 
 @media (max-width: 480px) {
   .registration-page .reg-card { padding: 24px 16px 28px; }
