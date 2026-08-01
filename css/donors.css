@@ -199,31 +199,6 @@
   box-shadow: 0 18px 36px -10px rgba(199, 132, 28, 0.6);
 }
 
-/* ---------- স্ক্রল টু টপ ---------- */
-.donors-page .donors-scroll-top {
-  position: fixed;
-  right: 22px;
-  bottom: 22px;
-  width: 46px;
-  height: 46px;
-  border: none;
-  border-radius: 50%;
-  background: var(--teal);
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 55;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(10px);
-  box-shadow: 0 10px 24px -8px rgba(14, 59, 54, 0.45);
-  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
-}
-.donors-page .donors-scroll-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
-.donors-page .donors-scroll-top:hover { background: var(--teal-deep); }
-
 @media (max-width: 480px) {
   .donors-page .donors-header { padding: 44px 16px 84px; }
   .donors-page .donors-container { margin-top: -44px; }
