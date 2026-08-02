@@ -393,7 +393,7 @@ RJF._wireRegistrationPage = function () {
         var dataObject = {};
         formData.forEach(function (value, key) { dataObject[key] = value; });
 
-        return fs.addDoc(fs.collection(db, 'members'), Object.assign({}, dataObject, { submittedAt: new Date() }))
+        return fs.addDoc(fs.collection(db, 'members'), Object.assign({}, dataObject, { submittedAt: new Date(), status: 'pending' }))
           .then(function () {
             var formspreePromise = fetch(d.formspreeUrl, {
               method: 'POST',
