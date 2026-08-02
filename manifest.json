@@ -26,13 +26,31 @@
   "shortcuts": [
     {
       "name": "দান করুন",
-      "short_name": "দান",
+      "short_name": "Donate",
       "url": "/index.html#/donate",
       "icons": [{ "src": "icons/icon-96.png", "sizes": "96x96" }]
     },
     {
-      "name": "সদস্যবৃন্দ",
-      "short_name": "সদস্য",
+      "name": "সদস্য নিবন্ধন ফরম",
+      "short_name": "Application form",
+      "url": "/index.html#/apply",
+      "icons": [{ "src": "icons/icon-96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "সম্মানিত সদস্য",
+      "short_name": "VIP",
+      "url": "/index.html#/donors",
+      "icons": [{ "src": "icons/icon-96.png", "sizes": "96x96" }]
+    },
+     {
+      "name": "কার্যক্রমের বিশেষ মুহুর্ত",
+      "short_name": "Gallery",
+      "url": "/index.html#/gallery",
+      "icons": [{ "src": "icons/icon-96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "স্থায়ী কমিটি ও সাধারণ সদস্য",
+      "short_name": "Member of Committee",
       "url": "/index.html#/member",
       "icons": [{ "src": "icons/icon-96.png", "sizes": "96x96" }]
     }
