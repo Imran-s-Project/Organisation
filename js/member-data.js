@@ -145,3 +145,31 @@ RJF.memberList = [
   { id: 36, name: "আবুল কালাম আজাদ", role: "উপদেষ্টা", category: "উপদেষ্টা", status: "active",
     image: "https://via.placeholder.com/150", desc: "প্রধান শিক্ষক,রূপসা উচ্চ বিদ্যালয়", memberid: "", profileUrl: "#", facebook: "https://facebook.com", whatsapp: "https://wa.me/1234567890" }
 ];
+
+/* ---------- এডমিন প্যানেল থেকে যোগ/এডিট করা ডাটা (Firestore) দিয়ে উপরের স্ট্যাটিক তালিকা ওভাররাইড ---------
+   এডমিন প্যানেলে 'team_members' কালেকশনে কোনো ডকুমেন্ট থাকলে সেটাই দেখানো হবে (না থাকলে উপরের ডিফল্ট তালিকা থাকবে) */
+RJF._teamFirestorePromise = null;
+RJF.refreshMemberListFromFirestore = function () {
+  if (RJF._teamFirestorePromise) return RJF._teamFirestorePromise;
+
+  RJF._teamFirestorePromise = Promise.all([
+    import('https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js'),
+    import('https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js')
+  ]).then(function (mods) {
+    var appMod = mods[0];
+    var fsMod = mods[1];
+    var cfg = { apiKey: "AIzaSyC-ke7FIUPX5Ksow8vJQ4axmGAIdiKd49Q", authDomain: "member-selection.firebaseapp.com", projectId: "member-selection", storageBucket: "member-selection.firebasestorage.app", messagingSenderId: "434008909239", appId: "1:434008909239:web:a790d1e0603ebfdbd27432" };
+    var app = appMod.getApps().length ? appMod.getApp() : appMod.initializeApp(cfg);
+    var db = fsMod.getFirestore(app);
+    var q = fsMod.query(fsMod.collection(db, 'team_members'), fsMod.orderBy('id', 'asc'));
+    return fsMod.getDocs(q).then(function (snapshot) {
+      if (snapshot.empty) return;
+      RJF.memberList = snapshot.docs.map(function (d) { return d.data(); });
+      if (window.location.hash === '#/member' && typeof RJF.renderMemberPage === 'function') {
+        RJF.renderMemberPage();
+      }
+    });
+  }).catch(function (err) { console.warn('team_members Firestore fetch failed, using static fallback:', err); });
+
+  return RJF._teamFirestorePromise;
+};
