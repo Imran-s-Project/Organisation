@@ -10,6 +10,93 @@ var STATUS_BADGE = { pending: 'badge-pending', approved: 'badge-approved', block
 
 var MEMBERSHIP_TYPES = ["সাধারণ সদস্য", "আজীবন সদস্য", "সম্মানিত সদস্য", "স্বেচ্ছাসেবক"];
 
+/* --- প্রোফাইল আপডেট নোটিফিকেশন ইমেইল (EmailJS) ---
+   Service ID ও Public Key registration-data.js-এর একই EmailJS অ্যাকাউন্ট থেকে নেওয়া।
+   ⚠️ TEMPLATE_ID নিচে বসাতে হবে — EmailJS ড্যাশবোর্ড → Email Templates-এ আপনার
+   "প্রোফাইল আপডেট" টেমপ্লেটের আইডি (যেমন template_xxxxxxx) কপি করে বসান। */
+var EMAILJS_SERVICE_ID = 'service_jy11eoh';
+var EMAILJS_PUBLIC_KEY = 'YVhcRNK-0_TgFrZCd';
+var EMAILJS_UPDATE_TEMPLATE_ID = 'template_xz7utgb';
+
+var FIELD_LABELS = {
+  member_id: 'মেম্বার আইডি', full_name: 'পুরো নাম', father_name: 'পিতার নাম', mother_name: 'মাতার নাম',
+  date_of_birth: 'জন্ম তারিখ', gender: 'লিঙ্গ', blood_group: 'রক্তের গ্রুপ', mobile_number: 'মোবাইল নম্বর',
+  email: 'ইমেইল', present_address: 'বর্তমান ঠিকানা', permanent_address: 'স্থায়ী ঠিকানা',
+  education: 'শিক্ষাগত যোগ্যতা', occupation: 'পেশা', membership_type: 'সদস্যপদের ধরন',
+  reference_name: 'রেফারেন্স', reference_mobile: 'রেফারেন্সের মোবাইল', photo_url: 'প্রোফাইল ছবি',
+  status: 'আবেদনের স্ট্যাটাস'
+};
+
+/* EmailJS SDK লোড হয়নি থাকলে একবারই লোড করে init করা */
+function loadEmailJS() {
+  return new Promise(function (resolve, reject) {
+    if (window.emailjs) { resolve(window.emailjs); return; }
+    var existing = document.getElementById('emailjs-sdk');
+    if (existing) {
+      existing.addEventListener('load', function () { resolve(window.emailjs); });
+      return;
+    }
+    var s = document.createElement('script');
+    s.id = 'emailjs-sdk';
+    s.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+    s.onload = function () {
+      try { window.emailjs.init(EMAILJS_PUBLIC_KEY); } catch (err) {}
+      resolve(window.emailjs);
+    };
+    s.onerror = function () { reject(new Error('EmailJS SDK লোড করা যায়নি')); };
+    document.head.appendChild(s);
+  });
+}
+
+function fmtNowBn() {
+  try {
+    return new Date().toLocaleString('bn-BD', { dateStyle: 'medium', timeStyle: 'short' });
+  } catch (err) {
+    return new Date().toLocaleString();
+  }
+}
+
+/* পুরনো ডেটা বনাম নতুন সেভ হতে যাওয়া ডেটা তুলনা করে কী কী পরিবর্তন হলো তার লিস্ট বানানো */
+function buildChangeSummary(oldData, newData) {
+  var lines = [];
+  EDITABLE_FIELDS.forEach(function (key) {
+    if (key === 'status') return; // স্ট্যাটাস আলাদাভাবে নিচে হ্যান্ডেল হচ্ছে (লেবেল লাগবে)
+    var oldVal = (oldData[key] || '').toString().trim();
+    var newVal = (newData[key] || '').toString().trim();
+    if (oldVal === newVal) return;
+    var label = FIELD_LABELS[key] || key;
+    lines.push(label + ': ' + (oldVal || '—') + ' → ' + (newVal || '—'));
+  });
+
+  var oldStatus = oldData.status || 'pending';
+  var newStatus = newData.status || 'pending';
+  if (oldStatus !== newStatus) {
+    lines.push('আবেদনের স্ট্যাটাস: ' + (STATUS_LABEL[oldStatus] || oldStatus) + ' → ' + (STATUS_LABEL[newStatus] || newStatus));
+  }
+  return lines;
+}
+
+/* আপডেট নোটিফিকেশন ইমেইল পাঠানো — ব্যর্থ হলেও সেভ প্রক্রিয়া আটকাবে না, শুধু কনসোলে লগ হবে */
+function sendUpdateEmail(payload, changes) {
+  if (!changes.length || !payload.email) return;
+  if (EMAILJS_UPDATE_TEMPLATE_ID === 'REPLACE_WITH_YOUR_TEMPLATE_ID') {
+    console.warn('EMAILJS_UPDATE_TEMPLATE_ID এখনো বসানো হয়নি — members.js-এর উপরের দিকে বসান।');
+    return;
+  }
+  loadEmailJS().then(function (emailjs) {
+    var params = {
+      to_name: payload.full_name || 'সদস্য',
+      to_email: payload.email,
+      member_id: payload.member_id || '—',
+      updated_at: fmtNowBn(),
+      changed_fields: changes.join('\n')
+    };
+    return emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_UPDATE_TEMPLATE_ID, params);
+  }).catch(function (err) {
+    console.error('আপডেট নোটিফিকেশন ইমেইল পাঠানো যায়নি:', err);
+  });
+}
+
 export function renderMembers(root) {
   root.innerHTML =
     '<div class="stat-grid" id="memberStats"></div>' +
@@ -268,12 +355,15 @@ var EDITABLE_FIELDS = [
 ];
 
 function saveMember(id) {
+  var existing = STATE.all.filter(function (x) { return x._id === id; })[0] || {};
   var payload = {};
   EDITABLE_FIELDS.forEach(function (name) {
     var el = document.getElementById('f_' + name);
     if (el) payload[name] = el.value.trim();
   });
   payload.updatedAt = serverTimestamp();
+
+  var changes = buildChangeSummary(existing, payload);
 
   var saveBtn = document.getElementById('saveEditBtn');
   saveBtn.disabled = true;
@@ -282,6 +372,7 @@ function saveMember(id) {
   updateDoc(doc(db, 'members', id), payload).then(function () {
     toast('সংরক্ষণ করা হয়েছে', 'success');
     closeDrawer();
+    sendUpdateEmail(payload, changes);
   }).catch(function (err) {
     console.error(err);
     toast('সংরক্ষণ করা যায়নি', 'error');
