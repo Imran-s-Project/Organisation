@@ -32,6 +32,12 @@ export async function verifyMember() {
                 showError(state.lang === 'bn' ? `সদস্য আইডি <strong>${memberId}</strong> ডাটাবেসে পাওয়া যায়নি।` : `Member ID <strong>${memberId}</strong> not found in database.`);
             } else {
                 const memberData = querySnapshot.docs[0].data();
+
+                if (memberData.status === 'blocked' || memberData.status === 'rejected') {
+                    showError(state.lang === 'bn' ? `সদস্য আইডি <strong>${memberId}</strong> বর্তমানে নিষ্ক্রিয় করা হয়েছে।` : `Member ID <strong>${memberId}</strong> has been deactivated.`);
+                    return;
+                }
+
                 sessionStorage.setItem(`rjf_member_${memberId}`, JSON.stringify(memberData));
                 showSuccess(memberData);
             }
