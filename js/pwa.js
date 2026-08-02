@@ -20,7 +20,7 @@ RJF.renderInstallButton = function () {
     btn.type = 'button';
     btn.innerHTML = '<i class="fa-solid fa-download"></i> অ্যাপ ইনস্টল করুন';
     btn.style.cssText =
-      'position:fixed; right:26px; bottom:96px; z-index:600;' +
+      'position:fixed; right:26px; bottom:166px; z-index:600;' +
       'display:none; align-items:center; gap:8px;' +
       'background:var(--turmeric,#E3A73E); color:#1A2420; border:none;' +
       'font-weight:700; font-size:.9rem; padding:12px 18px; border-radius:30px;' +
