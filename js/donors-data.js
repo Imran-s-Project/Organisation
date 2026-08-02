@@ -37,3 +37,31 @@ RJF.donorList = [
   { id: 11, name: "শাহাদৎ হোসেন", title: "সমাজ সেবা বিষয়ক সম্পাদক", rank: "heart",
     image: "https://via.placeholder.com/150", since: "০৭ মাস", contribution: "ফাউন্ডেশন কার্যক্রম" }
 ];
+
+/* ---------- এডমিন প্যানেল থেকে যোগ/এডিট করা ডাটা (Firestore) দিয়ে উপরের স্ট্যাটিক তালিকা ওভাররাইড ---------
+   এডমিন প্যানেলে 'donors' কালেকশনে কোনো ডকুমেন্ট থাকলে সেটাই দেখানো হবে (না থাকলে উপরের ডিফল্ট তালিকা থাকবে) */
+RJF._donorsFirestorePromise = null;
+RJF.refreshDonorListFromFirestore = function () {
+  if (RJF._donorsFirestorePromise) return RJF._donorsFirestorePromise;
+
+  RJF._donorsFirestorePromise = Promise.all([
+    import('https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js'),
+    import('https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js')
+  ]).then(function (mods) {
+    var appMod = mods[0];
+    var fsMod = mods[1];
+    var cfg = { apiKey: "AIzaSyC-ke7FIUPX5Ksow8vJQ4axmGAIdiKd49Q", authDomain: "member-selection.firebaseapp.com", projectId: "member-selection", storageBucket: "member-selection.firebasestorage.app", messagingSenderId: "434008909239", appId: "1:434008909239:web:a790d1e0603ebfdbd27432" };
+    var app = appMod.getApps().length ? appMod.getApp() : appMod.initializeApp(cfg);
+    var db = fsMod.getFirestore(app);
+    var q = fsMod.query(fsMod.collection(db, 'donors'), fsMod.orderBy('id', 'asc'));
+    return fsMod.getDocs(q).then(function (snapshot) {
+      if (snapshot.empty) return;
+      RJF.donorList = snapshot.docs.map(function (d) { return d.data(); });
+      if (window.location.hash === '#/donors' && typeof RJF.renderDonorsPage === 'function') {
+        RJF.renderDonorsPage();
+      }
+    });
+  }).catch(function (err) { console.warn('donors Firestore fetch failed, using static fallback:', err); });
+
+  return RJF._donorsFirestorePromise;
+};
