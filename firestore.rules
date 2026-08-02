@@ -1,0 +1,49 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // এখানে আপনার এডমিন ইমেইল বসান — এই ইমেইল দিয়ে লগইন করলেই শুধু এডিট/ডিলিট/অনুমোদন করা যাবে
+    // (admin/js/admin-config.js ফাইলের ADMIN_EMAILS লিস্টের সাথে অবশ্যই মিলিয়ে রাখবেন)
+    function isAdmin() {
+      return request.auth != null &&
+        request.auth.token.email in [
+          'imran.info.me@gmail.com'
+        ];
+    }
+
+    // ---------- সদস্য আবেদন ফরম (registration.js এখানে লেখে, verify.html এখান থেকে পড়ে) ----------
+    match /members/{memberId} {
+
+      // যে কেউ verify.html-এ নিজের member_id দিয়ে খুঁজতে পারবে
+      allow read: if true;
+
+      // নতুন আবেদন তৈরির সময় ডাটা ভ্যালিডেশন — প্রয়োজনীয় ফিল্ড থাকতে হবে,
+      // এবং স্ট্যাটাস অবশ্যই 'pending' দিয়ে শুরু হতে হবে (কেউ নিজে থেকে নিজেকে 'approved' বানাতে পারবে না)
+      allow create: if request.resource.data.full_name is string && request.resource.data.full_name.size() > 0 &&
+                      request.resource.data.email is string && request.resource.data.email.size() > 0 &&
+                      request.resource.data.member_id is string && request.resource.data.member_id.size() > 0 &&
+                      request.resource.data.status == 'pending';
+
+      // এডিট/ডিলিট/অনুমোদন শুধু এডমিন প্যানেল থেকেই করা যাবে
+      allow update, delete: if isAdmin();
+    }
+
+    // ---------- কমিটি সদস্য (#/member পেজ) ----------
+    match /team_members/{docId} {
+      allow read: if true;      // সাইটের #/member পেজে সবাই দেখতে পারবে
+      allow write: if isAdmin(); // যোগ/এডিট/ডিলিট শুধু এডমিন
+    }
+
+    // ---------- দাতাগণ (#/donors পেজ) ----------
+    match /donors/{docId} {
+      allow read: if true;      // সাইটের #/donors পেজে সবাই দেখতে পারবে
+      allow write: if isAdmin(); // যোগ/এডিট/ডিলিট শুধু এডমিন
+    }
+
+    // অন্য কোনো কালেকশনে কোনো এক্সেস নেই (নিরাপদ ডিফল্ট)
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
