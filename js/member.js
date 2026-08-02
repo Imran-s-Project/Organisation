@@ -511,7 +511,11 @@ RJF._wireMemberPage = function () {
   renderStats();
   renderMembers();
   s.typeTimer = setTimeout(typeEffect, 1000);
-  if (!s.rafId) { s.rafId = requestAnimationFrame(autoScrollLoop); }
+  /* Firestore থেকে ডেটা আসার পর পেজ আবার রেন্ডার হলে (router.js-এর refreshMemberListFromFirestore),
+     পুরনো লুপটা আগের (এখন detached) scroll-content-কে নাড়াতেই থাকে — তাই প্রতিবার রি-ওয়্যার হলে
+     আগের লুপ বাতিল করে নতুন DOM-এর সাথে বাঁধা নতুন লুপ শুরু করা হচ্ছে */
+  if (s.rafId) { cancelAnimationFrame(s.rafId); s.rafId = null; }
+  s.rafId = requestAnimationFrame(autoScrollLoop);
   startLiveTracker();
   startSnowEffect();
 };
