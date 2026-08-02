@@ -36,7 +36,7 @@ RJF.renderFooter = function(){
           '<h4>যোগাযোগ <span class="footer-accordion-toggle">+</span></h4>' +
           '<ul class="footer-links">' +
             '<li><a href="tel:' + d.location.phone + '"><i class="fa-solid fa-phone"></i><span>' + d.location.phone + '</span></a></li>' +
-            '<li><a href="mailto:' + d.location.email + '?subject=' + encodeURIComponent('যোগাযোগ - ' + d.brand.name) + '&body=' + encodeURIComponent('আসসালামু আলাইকুম,\n\nআমি আপনাদের সাথে যোগাযোগ করতে চাচ্ছি।\n\nবিষয়: \n\nধন্যবাদান্তে,\n') + '"><i class="fa-solid fa-envelope"></i><span>' + d.location.email + '</span></a></li>' +
+            '<li><a href="mailto:' + d.location.email + '?subject=' + encodeURIComponent('যোগাযোগ - ' + d.brand.name) + '&body=' + encodeURIComponent('আসসালামু আলাইকুম ওয়া রাহমাতুল্লাহি ওয়া বারাকাতুহু,\n\nসম্মানিত কর্তৃপক্ষ,\n\nবিনীত নিবেদন এই যে, আমি আপনাদের সাথে নিম্নলিখিত বিষয়ে যোগাযোগ করতে ইচ্ছুক।\n\nবিষয়: \n\nবিস্তারিত:\n\n\nআপনাদের মূল্যবান সময় ও সহযোগিতার জন্য আন্তরিক ধন্যবাদ। বিষয়টি সদয় বিবেচনা করে উত্তর দিলে কৃতজ্ঞ থাকব।\n\nবিনীত,\nনাম: \nমোবাইল: \nইমেইল: \n') + '"><i class="fa-solid fa-envelope"></i><span>' + d.location.email + '</span></a></li>' +
             '<li><span class="footer-static-item"><i class="fa-solid fa-location-dot"></i><span>' + d.location.address + '</span></span></li>' +
           '</ul>' +
         '</div>' +
