@@ -1,5 +1,5 @@
 .fb-btn{
-  position:fixed; right:26px; bottom:26px; z-index:900;
+  position:fixed; right:26px; bottom:46px; z-index:900;
   display:flex; align-items:center; gap:10px;
   background:var(--clay); color:var(--white);
   padding:16px; border-radius:50px;
@@ -21,7 +21,7 @@
   100%{ box-shadow:0 0 0 0 rgba(193,99,47,0); }
 }
 .fb-tip{
-  position:fixed; right:26px; bottom:96px; z-index:895;
+  position:fixed; right:26px; bottom:116px; z-index:895;
   background:var(--river-deep); color:var(--white); font-size:.82rem;
   padding:8px 14px; border-radius:10px; opacity:0; transform:translateY(6px);
   transition:all .3s ease; pointer-events:none;
