@@ -42,9 +42,15 @@ RJF.route = function () {
 
     if (legalKey) RJF.renderLegalPage(legalKey);
     if (isDonate) RJF.renderDonatePage();
-    if (isMember) RJF.renderMemberPage();
+    if (isMember) {
+      RJF.renderMemberPage();
+      if (typeof RJF.refreshMemberListFromFirestore === 'function') RJF.refreshMemberListFromFirestore();
+    }
     if (isGallery) RJF.renderGalleryPage();
-    if (isDonors) RJF.renderDonorsPage();
+    if (isDonors) {
+      RJF.renderDonorsPage();
+      if (typeof RJF.refreshDonorListFromFirestore === 'function') RJF.refreshDonorListFromFirestore();
+    }
     if (isApply) RJF.renderRegistrationPage();
 
     window.scrollTo(0, 0);
