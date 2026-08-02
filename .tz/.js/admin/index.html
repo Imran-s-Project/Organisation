@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>এডমিন প্যানেল | Rupsha Jonokollan Foundation</title>
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+  <div class="shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="logo-dot"><i class="fa-solid fa-hands-holding-child"></i></div>
+        <div>
+          <h2>RJF Admin</h2>
+          <span>Control Panel</span>
+        </div>
+      </div>
+
+      <nav>
+        <div class="nav-item" data-route="dashboard"><i class="fa-solid fa-gauge-high"></i> ড্যাশবোর্ড</div>
+        <div class="nav-item" data-route="members"><i class="fa-solid fa-file-signature"></i> আবেদন / সদস্য ফরম</div>
+        <div class="nav-item" data-route="team"><i class="fa-solid fa-users"></i> কমিটি সদস্য (Team)</div>
+        <div class="nav-item" data-route="donors"><i class="fa-solid fa-hand-holding-heart"></i> দাতাগণ (Donors)</div>
+      </nav>
+
+      <div class="sidebar-foot">
+        <div class="who" id="whoAmI">—</div>
+        <div class="nav-item" id="logoutBtn"><i class="fa-solid fa-right-from-bracket"></i> লগআউট</div>
+        <a class="nav-item" href="/verify.html" target="_blank" style="text-decoration:none;"><i class="fa-solid fa-arrow-up-right-from-square"></i> সাইট দেখুন</a>
+      </div>
+    </aside>
+
+    <div class="main">
+      <div class="topbar">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <button class="menu-toggle" id="menuToggle"><i class="fa-solid fa-bars"></i></button>
+          <div>
+            <h1 id="pageTitle">ড্যাশবোর্ড</h1>
+            <div class="sub" id="pageSub">রূপসা জনকল্যাণ ফাউন্ডেশন — সম্পূর্ণ প্রজেক্ট ব্যবস্থাপনা</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content" id="viewRoot">
+        <div class="empty-state"><i class="fa-solid fa-spinner spin"></i><p>লোড হচ্ছে...</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toastStack"></div>
+
+  <div class="confirm-box" id="confirmBox">
+    <div class="confirm-card">
+      <i class="fa-solid fa-triangle-exclamation"></i>
+      <h3 id="confirmTitle">নিশ্চিত করুন</h3>
+      <p id="confirmMsg">আপনি কি নিশ্চিত?</p>
+      <div class="confirm-actions">
+        <button class="btn btn-ghost" id="confirmCancel">বাতিল</button>
+        <button class="btn btn-danger" id="confirmOk">নিশ্চিত করুন</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
